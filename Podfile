@@ -1,0 +1,7 @@
+platform :ios, '7.0'
+pod 'SDWebImage'
+pod 'SVProgressHUD'
+pod 'AFNetworking', '~> 2.0'
+pod 'SSKeychain'
+pod 'iRate', '~> 1.11.4'
+pod 'CocoaAsyncSocket', '~> 7.4.1'
