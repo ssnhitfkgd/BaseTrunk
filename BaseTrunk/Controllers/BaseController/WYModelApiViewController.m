@@ -59,8 +59,8 @@
     
     
     switch (api_type) {            
-        case API_ALL_HOST_LIST:
-            [client all_host:pageSize offsetId:offset_id  cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
+        case API_SEARCH_IMAGE_BAIDU_LIST:
+            [client list_image_baidu:pageSize offsetId:more?((int)([self.model count])):0 text:@"haha" cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
             break;
        
         default:
@@ -86,7 +86,7 @@
 #pragma mark -
 - (void)reloadData {
     
-    if ([self isLoading])
+    if (![self isLoading])
     {
         self.model = nil;
         [self loadData:NSURLRequestReloadIgnoringCacheData more:NO];

@@ -12,14 +12,11 @@
 		EE7E77A41B737FF900959AD8 /* WYBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76B71B737FF900959AD8 /* WYBaseController.m */; };
 		EE7E77A51B737FF900959AD8 /* WYModelApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76B91B737FF900959AD8 /* WYModelApiViewController.m */; };
 		EE7E77A61B737FF900959AD8 /* WYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76BB1B737FF900959AD8 /* WYNavigationController.m */; };
-		EE7E77A71B737FF900959AD8 /* WYTableApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76BD1B737FF900959AD8 /* WYTableApiViewController.m */; };
-		EE7E77A81B737FF900959AD8 /* WYTableViewBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76C01B737FF900959AD8 /* WYTableViewBaseCell.m */; };
 		EE7E77A91B737FF900959AD8 /* WYConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76C31B737FF900959AD8 /* WYConfig.m */; };
 		EE7E77AA1B737FF900959AD8 /* WYFileClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76C51B737FF900959AD8 /* WYFileClient.m */; };
 		EE7E77AB1B737FF900959AD8 /* WYRequestSender.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76C71B737FF900959AD8 /* WYRequestSender.m */; };
-		EE7E77AC1B737FF900959AD8 /* WYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76CC1B737FF900959AD8 /* WYHomeViewController.m */; };
+		EE7E77AC1B737FF900959AD8 /* WYTableHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76CC1B737FF900959AD8 /* WYTableHomeViewController.m */; };
 		EE7E77AD1B737FF900959AD8 /* WYSingleHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76CE1B737FF900959AD8 /* WYSingleHomeCell.m */; };
-		EE7E77AE1B737FF900959AD8 /* WYSingleHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76D01B737FF900959AD8 /* WYSingleHomeView.m */; };
 		EE7E77AF1B737FF900959AD8 /* FMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76D41B737FF900959AD8 /* FMLogger.m */; };
 		EE7E77B01B737FF900959AD8 /* NSArray+SafeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76D71B737FF900959AD8 /* NSArray+SafeKit.m */; };
 		EE7E77B11B737FF900959AD8 /* NSMutableDictionary+SafeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76D91B737FF900959AD8 /* NSMutableDictionary+SafeKit.m */; };
@@ -83,6 +80,16 @@
 		EE7E78261B73903800959AD8 /* JMStaticContentTableViewSection.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E781F1B73903800959AD8 /* JMStaticContentTableViewSection.m */; };
 		EE7E78271B73903800959AD8 /* JMStaticTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78211B73903800959AD8 /* JMStaticTableViewCell.m */; };
 		EE7E78281B73903800959AD8 /* StaticTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78231B73903800959AD8 /* StaticTextFieldTableViewCell.m */; };
+		EE7E783F1B73A79300959AD8 /* WYTableApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78361B73A79300959AD8 /* WYTableApiViewController.m */; };
+		EE7E78401B73A79300959AD8 /* WYTableViewBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78391B73A79300959AD8 /* WYTableViewBaseCell.m */; };
+		EE7E78431B73AACC00959AD8 /* WYCollectionApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78421B73AACC00959AD8 /* WYCollectionApiViewController.m */; };
+		EE7E78461B75A34900959AD8 /* WYCollectionViewGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78451B75A34900959AD8 /* WYCollectionViewGridLayout.m */; };
+		EE7E78531B75AC2600959AD8 /* WYBaseTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78501B75AC2600959AD8 /* WYBaseTabbarViewController.m */; };
+		EE7E78541B75AC2600959AD8 /* WYMainAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78521B75AC2600959AD8 /* WYMainAppViewController.m */; };
+		EE7E78581B75AF5F00959AD8 /* WYCollectionHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78571B75AF5F00959AD8 /* WYCollectionHomeViewController.m */; };
+		EE7E785C1B75E39000959AD8 /* WYBaiduImageInfoDto.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E785B1B75E39000959AD8 /* WYBaiduImageInfoDto.m */; };
+		EE7E785F1B75E42E00959AD8 /* WYBaiduImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E785E1B75E42E00959AD8 /* WYBaiduImageView.m */; };
+		EE7E78621B75EB3800959AD8 /* WYBaiduImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78611B75EB3800959AD8 /* WYBaiduImageViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,23 +104,16 @@
 		EE7E76B91B737FF900959AD8 /* WYModelApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYModelApiViewController.m; sourceTree = "<group>"; };
 		EE7E76BA1B737FF900959AD8 /* WYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNavigationController.h; sourceTree = "<group>"; };
 		EE7E76BB1B737FF900959AD8 /* WYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNavigationController.m; sourceTree = "<group>"; };
-		EE7E76BC1B737FF900959AD8 /* WYTableApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableApiViewController.h; sourceTree = "<group>"; };
-		EE7E76BD1B737FF900959AD8 /* WYTableApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableApiViewController.m; sourceTree = "<group>"; };
-		EE7E76BE1B737FF900959AD8 /* WYTableCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableCellDelegate.h; sourceTree = "<group>"; };
-		EE7E76BF1B737FF900959AD8 /* WYTableViewBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableViewBaseCell.h; sourceTree = "<group>"; };
-		EE7E76C01B737FF900959AD8 /* WYTableViewBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableViewBaseCell.m; sourceTree = "<group>"; };
 		EE7E76C21B737FF900959AD8 /* WYConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYConfig.h; sourceTree = "<group>"; };
 		EE7E76C31B737FF900959AD8 /* WYConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYConfig.m; sourceTree = "<group>"; };
 		EE7E76C41B737FF900959AD8 /* WYFileClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFileClient.h; sourceTree = "<group>"; };
 		EE7E76C51B737FF900959AD8 /* WYFileClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFileClient.m; sourceTree = "<group>"; };
 		EE7E76C61B737FF900959AD8 /* WYRequestSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRequestSender.h; sourceTree = "<group>"; };
 		EE7E76C71B737FF900959AD8 /* WYRequestSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRequestSender.m; sourceTree = "<group>"; };
-		EE7E76CB1B737FF900959AD8 /* WYHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHomeViewController.h; sourceTree = "<group>"; };
-		EE7E76CC1B737FF900959AD8 /* WYHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHomeViewController.m; sourceTree = "<group>"; };
+		EE7E76CB1B737FF900959AD8 /* WYTableHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableHomeViewController.h; sourceTree = "<group>"; };
+		EE7E76CC1B737FF900959AD8 /* WYTableHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableHomeViewController.m; sourceTree = "<group>"; };
 		EE7E76CD1B737FF900959AD8 /* WYSingleHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSingleHomeCell.h; sourceTree = "<group>"; };
 		EE7E76CE1B737FF900959AD8 /* WYSingleHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSingleHomeCell.m; sourceTree = "<group>"; };
-		EE7E76CF1B737FF900959AD8 /* WYSingleHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSingleHomeView.h; sourceTree = "<group>"; };
-		EE7E76D01B737FF900959AD8 /* WYSingleHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSingleHomeView.m; sourceTree = "<group>"; };
 		EE7E76D31B737FF900959AD8 /* FMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMLogger.h; sourceTree = "<group>"; };
 		EE7E76D41B737FF900959AD8 /* FMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMLogger.m; sourceTree = "<group>"; };
 		EE7E76D51B737FF900959AD8 /* Foundation+SafeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Foundation+SafeKit.h"; sourceTree = "<group>"; };
@@ -234,6 +234,28 @@
 		EE7E78211B73903800959AD8 /* JMStaticTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMStaticTableViewCell.m; sourceTree = "<group>"; };
 		EE7E78221B73903800959AD8 /* StaticTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTextFieldTableViewCell.h; sourceTree = "<group>"; };
 		EE7E78231B73903800959AD8 /* StaticTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		EE7E78351B73A79300959AD8 /* WYTableApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableApiViewController.h; sourceTree = "<group>"; };
+		EE7E78361B73A79300959AD8 /* WYTableApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableApiViewController.m; sourceTree = "<group>"; };
+		EE7E78371B73A79300959AD8 /* WYTableCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableCellDelegate.h; sourceTree = "<group>"; };
+		EE7E78381B73A79300959AD8 /* WYTableViewBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableViewBaseCell.h; sourceTree = "<group>"; };
+		EE7E78391B73A79300959AD8 /* WYTableViewBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableViewBaseCell.m; sourceTree = "<group>"; };
+		EE7E78411B73AACC00959AD8 /* WYCollectionApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCollectionApiViewController.h; sourceTree = "<group>"; };
+		EE7E78421B73AACC00959AD8 /* WYCollectionApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCollectionApiViewController.m; sourceTree = "<group>"; };
+		EE7E78441B75A34900959AD8 /* WYCollectionViewGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCollectionViewGridLayout.h; sourceTree = "<group>"; };
+		EE7E78451B75A34900959AD8 /* WYCollectionViewGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCollectionViewGridLayout.m; sourceTree = "<group>"; };
+		EE7E784F1B75AC2600959AD8 /* WYBaseTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaseTabbarViewController.h; sourceTree = "<group>"; };
+		EE7E78501B75AC2600959AD8 /* WYBaseTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBaseTabbarViewController.m; sourceTree = "<group>"; };
+		EE7E78511B75AC2600959AD8 /* WYMainAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMainAppViewController.h; sourceTree = "<group>"; };
+		EE7E78521B75AC2600959AD8 /* WYMainAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMainAppViewController.m; sourceTree = "<group>"; };
+		EE7E78561B75AF5F00959AD8 /* WYCollectionHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCollectionHomeViewController.h; sourceTree = "<group>"; };
+		EE7E78571B75AF5F00959AD8 /* WYCollectionHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCollectionHomeViewController.m; sourceTree = "<group>"; };
+		EE7E78591B75B9EF00959AD8 /* WYCollectViewCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCollectViewCellDelegate.h; sourceTree = "<group>"; };
+		EE7E785A1B75E39000959AD8 /* WYBaiduImageInfoDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaiduImageInfoDto.h; sourceTree = "<group>"; };
+		EE7E785B1B75E39000959AD8 /* WYBaiduImageInfoDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBaiduImageInfoDto.m; sourceTree = "<group>"; };
+		EE7E785D1B75E42E00959AD8 /* WYBaiduImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaiduImageView.h; sourceTree = "<group>"; };
+		EE7E785E1B75E42E00959AD8 /* WYBaiduImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBaiduImageView.m; sourceTree = "<group>"; };
+		EE7E78601B75EB3800959AD8 /* WYBaiduImageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaiduImageViewCell.h; sourceTree = "<group>"; };
+		EE7E78611B75EB3800959AD8 /* WYBaiduImageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBaiduImageViewCell.m; sourceTree = "<group>"; };
 		EE83F6F21B5D174A007CBF95 /* BaseTrunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseTrunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -296,6 +318,8 @@
 		EE7E76B51B737FF900959AD8 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
+				EE7E78291B73A79300959AD8 /* CollectionView */,
+				EE7E78341B73A79300959AD8 /* TableViewController */,
 				EE7E78181B73903800959AD8 /* JMStaticContentTableViewController */,
 				EE7E76B61B737FF900959AD8 /* WYBaseController.h */,
 				EE7E76B71B737FF900959AD8 /* WYBaseController.m */,
@@ -303,11 +327,6 @@
 				EE7E76B91B737FF900959AD8 /* WYModelApiViewController.m */,
 				EE7E76BA1B737FF900959AD8 /* WYNavigationController.h */,
 				EE7E76BB1B737FF900959AD8 /* WYNavigationController.m */,
-				EE7E76BC1B737FF900959AD8 /* WYTableApiViewController.h */,
-				EE7E76BD1B737FF900959AD8 /* WYTableApiViewController.m */,
-				EE7E76BE1B737FF900959AD8 /* WYTableCellDelegate.h */,
-				EE7E76BF1B737FF900959AD8 /* WYTableViewBaseCell.h */,
-				EE7E76C01B737FF900959AD8 /* WYTableViewBaseCell.m */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
@@ -330,9 +349,10 @@
 		EE7E76C81B737FF900959AD8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EE7E78551B75AF3100959AD8 /* CollectHomeViewController */,
+				EE7E784E1B75AC2600959AD8 /* MainViewController */,
 				EE7E76C91B737FF900959AD8 /* AboutViewController */,
-				EE7E76CA1B737FF900959AD8 /* HomeViewController */,
-				EE7E76D11B737FF900959AD8 /* MainTabbarController */,
+				EE7E76CA1B737FF900959AD8 /* TableHomeViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -344,24 +364,16 @@
 			path = AboutViewController;
 			sourceTree = "<group>";
 		};
-		EE7E76CA1B737FF900959AD8 /* HomeViewController */ = {
+		EE7E76CA1B737FF900959AD8 /* TableHomeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EE7E76CB1B737FF900959AD8 /* WYHomeViewController.h */,
-				EE7E76CC1B737FF900959AD8 /* WYHomeViewController.m */,
+				EE7E76CB1B737FF900959AD8 /* WYTableHomeViewController.h */,
+				EE7E76CC1B737FF900959AD8 /* WYTableHomeViewController.m */,
 				EE7E76CD1B737FF900959AD8 /* WYSingleHomeCell.h */,
 				EE7E76CE1B737FF900959AD8 /* WYSingleHomeCell.m */,
-				EE7E76CF1B737FF900959AD8 /* WYSingleHomeView.h */,
-				EE7E76D01B737FF900959AD8 /* WYSingleHomeView.m */,
 			);
+			name = TableHomeViewController;
 			path = HomeViewController;
-			sourceTree = "<group>";
-		};
-		EE7E76D11B737FF900959AD8 /* MainTabbarController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MainTabbarController;
 			sourceTree = "<group>";
 		};
 		EE7E76D21B737FF900959AD8 /* CrashFoundation */ = {
@@ -567,6 +579,8 @@
 		EE7E77911B737FF900959AD8 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				EE7E785A1B75E39000959AD8 /* WYBaiduImageInfoDto.h */,
+				EE7E785B1B75E39000959AD8 /* WYBaiduImageInfoDto.m */,
 				EE7E77941B737FF900959AD8 /* WYHomeDto.h */,
 				EE7E77951B737FF900959AD8 /* WYHomeDto.m */,
 				EE7E77961B737FF900959AD8 /* WYDataModelBase.h */,
@@ -606,6 +620,54 @@
 				EE7E78231B73903800959AD8 /* StaticTextFieldTableViewCell.m */,
 			);
 			path = JMStaticContentTableViewController;
+			sourceTree = "<group>";
+		};
+		EE7E78291B73A79300959AD8 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				EE7E78591B75B9EF00959AD8 /* WYCollectViewCellDelegate.h */,
+				EE7E78441B75A34900959AD8 /* WYCollectionViewGridLayout.h */,
+				EE7E78451B75A34900959AD8 /* WYCollectionViewGridLayout.m */,
+				EE7E78411B73AACC00959AD8 /* WYCollectionApiViewController.h */,
+				EE7E78421B73AACC00959AD8 /* WYCollectionApiViewController.m */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		EE7E78341B73A79300959AD8 /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EE7E78351B73A79300959AD8 /* WYTableApiViewController.h */,
+				EE7E78361B73A79300959AD8 /* WYTableApiViewController.m */,
+				EE7E78371B73A79300959AD8 /* WYTableCellDelegate.h */,
+				EE7E78381B73A79300959AD8 /* WYTableViewBaseCell.h */,
+				EE7E78391B73A79300959AD8 /* WYTableViewBaseCell.m */,
+			);
+			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		EE7E784E1B75AC2600959AD8 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EE7E784F1B75AC2600959AD8 /* WYBaseTabbarViewController.h */,
+				EE7E78501B75AC2600959AD8 /* WYBaseTabbarViewController.m */,
+				EE7E78511B75AC2600959AD8 /* WYMainAppViewController.h */,
+				EE7E78521B75AC2600959AD8 /* WYMainAppViewController.m */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		EE7E78551B75AF3100959AD8 /* CollectHomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EE7E78601B75EB3800959AD8 /* WYBaiduImageViewCell.h */,
+				EE7E78611B75EB3800959AD8 /* WYBaiduImageViewCell.m */,
+				EE7E785D1B75E42E00959AD8 /* WYBaiduImageView.h */,
+				EE7E785E1B75E42E00959AD8 /* WYBaiduImageView.m */,
+				EE7E78561B75AF5F00959AD8 /* WYCollectionHomeViewController.h */,
+				EE7E78571B75AF5F00959AD8 /* WYCollectionHomeViewController.m */,
+			);
+			path = CollectHomeViewController;
 			sourceTree = "<group>";
 		};
 		EE83F6E91B5D174A007CBF95 = {
@@ -741,35 +803,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE7E78531B75AC2600959AD8 /* WYBaseTabbarViewController.m in Sources */,
 				EE7E78071B737FF900959AD8 /* WYHomeDto.m in Sources */,
 				EE7E78081B737FF900959AD8 /* WYDataModelBase.m in Sources */,
 				EE7E780B1B737FF900959AD8 /* FileUtil.m in Sources */,
 				EE7E780C1B737FF900959AD8 /* Global.m in Sources */,
+				EE7E783F1B73A79300959AD8 /* WYTableApiViewController.m in Sources */,
 				EE7E77A41B737FF900959AD8 /* WYBaseController.m in Sources */,
+				EE7E78581B75AF5F00959AD8 /* WYCollectionHomeViewController.m in Sources */,
 				EE7E77F01B737FF900959AD8 /* SVWebViewControllerActivityChrome.m in Sources */,
 				EE7E77A51B737FF900959AD8 /* WYModelApiViewController.m in Sources */,
+				EE7E785C1B75E39000959AD8 /* WYBaiduImageInfoDto.m in Sources */,
 				EE7E77C11B737FF900959AD8 /* Colours.m in Sources */,
+				EE7E78621B75EB3800959AD8 /* WYBaiduImageViewCell.m in Sources */,
 				EE7E78041B737FF900959AD8 /* UIView+Addition.m in Sources */,
 				EE7E77ED1B737FF900959AD8 /* SVWebViewController.m in Sources */,
 				EE7E78021B737FF900959AD8 /* UINavigationBar+Addition.m in Sources */,
 				EE7E77FD1B737FF900959AD8 /* NSString+Additions.m in Sources */,
 				EE7E77B41B737FF900959AD8 /* NSObject+Switch.m in Sources */,
-				EE7E77A71B737FF900959AD8 /* WYTableApiViewController.m in Sources */,
 				EE7E77F61B737FF900959AD8 /* SVWebViewControllerActivity.m in Sources */,
 				EE7E77CC1B737FF900959AD8 /* SBJsonStreamParser.m in Sources */,
 				EE7E77A91B737FF900959AD8 /* WYConfig.m in Sources */,
 				EE7E77EB1B737FF900959AD8 /* SVModalWebViewController.m in Sources */,
 				EE7E77D31B737FF900959AD8 /* SBJsonTokeniser.m in Sources */,
 				EE7E77FF1B737FF900959AD8 /* UIAlertView+Addition.m in Sources */,
-				EE7E77A81B737FF900959AD8 /* WYTableViewBaseCell.m in Sources */,
 				EE7E77D41B737FF900959AD8 /* SBJsonUTF8Stream.m in Sources */,
 				EE7E77AD1B737FF900959AD8 /* WYSingleHomeCell.m in Sources */,
+				EE7E78401B73A79300959AD8 /* WYTableViewBaseCell.m in Sources */,
 				EE7E77FB1B737FF900959AD8 /* NSArray+Addition.m in Sources */,
+				EE7E78461B75A34900959AD8 /* WYCollectionViewGridLayout.m in Sources */,
 				EE7E78271B73903800959AD8 /* JMStaticTableViewCell.m in Sources */,
 				EE7E77D11B737FF900959AD8 /* SBJsonStreamWriterAccumulator.m in Sources */,
-				EE7E77AE1B737FF900959AD8 /* WYSingleHomeView.m in Sources */,
 				EE7E78101B73896200959AD8 /* WYSocketObject.m in Sources */,
-				EE7E77AC1B737FF900959AD8 /* WYHomeViewController.m in Sources */,
+				EE7E77AC1B737FF900959AD8 /* WYTableHomeViewController.m in Sources */,
 				EE7E78261B73903800959AD8 /* JMStaticContentTableViewSection.m in Sources */,
 				EE7E77AF1B737FF900959AD8 /* FMLogger.m in Sources */,
 				EE7E78251B73903800959AD8 /* JMStaticContentTableViewController.m in Sources */,
@@ -785,6 +851,7 @@
 				EE7E78011B737FF900959AD8 /* UIImage+GIF.m in Sources */,
 				EE7E77C91B737FF900959AD8 /* Reachability.m in Sources */,
 				EE7E78151B738BFF00959AD8 /* UITabBarController+hidable.m in Sources */,
+				EE7E785F1B75E42E00959AD8 /* WYBaiduImageView.m in Sources */,
 				EE7E77F41B737FF900959AD8 /* SVWebViewControllerActivitySafari.m in Sources */,
 				EE7E78281B73903800959AD8 /* StaticTextFieldTableViewCell.m in Sources */,
 				EE7E78091B737FF900959AD8 /* WYUserInfoDto.m in Sources */,
@@ -794,8 +861,10 @@
 				EE7E77B01B737FF900959AD8 /* NSArray+SafeKit.m in Sources */,
 				EE7E77CE1B737FF900959AD8 /* SBJsonStreamParserAdapter.m in Sources */,
 				EE7E77A61B737FF900959AD8 /* WYNavigationController.m in Sources */,
+				EE7E78541B75AC2600959AD8 /* WYMainAppViewController.m in Sources */,
 				EE7E77C71B737FF900959AD8 /* PlistOperation.m in Sources */,
 				EE7E77D21B737FF900959AD8 /* SBJsonStreamWriterState.m in Sources */,
+				EE7E78431B73AACC00959AD8 /* WYCollectionApiViewController.m in Sources */,
 				EE7E77CB1B737FF900959AD8 /* SBJsonParser.m in Sources */,
 				EE7E77B71B737FF900959AD8 /* main.m in Sources */,
 				EE7E780D1B737FF900959AD8 /* WYAppDelegate.m in Sources */,

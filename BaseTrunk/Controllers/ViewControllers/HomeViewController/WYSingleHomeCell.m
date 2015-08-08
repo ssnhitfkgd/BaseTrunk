@@ -13,7 +13,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.homeView = [[WYSingleHomeView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 100)];
+        self.homeView = [[WYBaiduImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 100)];
         
         [self.contentView addSubview:_homeView];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -31,6 +31,6 @@
 
 + (CGFloat)rowHeightForObject:(id)item
 {
-    return [WYSingleHomeView rowHeightForObject:item];
+    return [WYBaiduImageView rowHeightForObject:item];
 }
 @end

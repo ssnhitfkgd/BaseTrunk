@@ -108,6 +108,13 @@ typedef enum
                                                        timeoutInterval:TIME_OUT_INTERVAL];
     
     
+    //百度搜图添加httpHeader
+    if ([[self.requestUrl description] hasPrefix:URL_BAIDU_IMAGE]) {
+        [request setValue:@"http://image.baidu.com/i?tn=baiduimage" forHTTPHeaderField:@"Referer"];
+        [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146" forHTTPHeaderField:@"User-Agent"];
+    }
+    
+    
     [request setHTTPMethod:usePost?@"POST":@"GET"];
     if(usePost)
     {
@@ -280,6 +287,11 @@ typedef enum
     NSLog(@"%@", [json_string JSONValue]);
     if(json_string.length > 0)
     {
+        if([[self.requestUrl description] hasPrefix:URL_BAIDU_IMAGE])
+        {
+            id responseObject = [[json_string JSONValue] objectForKey:@"data"];
+            return responseObject;
+        }
         
         NSDictionary *dict = [json_string JSONValue];
         

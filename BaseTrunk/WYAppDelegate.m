@@ -8,7 +8,7 @@
 
 #import "WYAppDelegate.h"
 #import "iRate.h"
-#import "WYHomeViewController.h"
+#import "WYMainAppViewController.h"
 
 @interface WYAppDelegate ()
 
@@ -41,7 +41,7 @@
     
     
     //读取本地用户信息
-    WYHomeViewController *mainViewController = [WYHomeViewController new];
+    WYMainAppViewController *mainViewController = [WYMainAppViewController new];
     [self.window setRootViewController:mainViewController];
     
     [self.window makeKeyAndVisible];

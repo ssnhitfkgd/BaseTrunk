@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "WYTableCellDelegate.h"
-#import "WYSingleHomeView.h"
+#import "WYBaiduImageView.h"
 
 @interface WYSingleHomeCell : UITableViewCell<WYTableCellDelegate>
 
-@property (nonatomic, strong) WYSingleHomeView *homeView;
+@property (nonatomic, strong) WYBaiduImageView *homeView;
 @end

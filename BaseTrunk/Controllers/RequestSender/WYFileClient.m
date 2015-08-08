@@ -113,79 +113,36 @@
 }
 
 
-/**
- 主播列表
- 获取主播列表
- 
- 协议¶
- HTTP
- 
- 地址
- /resource/data/all_host.json
- 
- 请求参数
- 无
- */
-- (void)all_host:(int)limit offsetId:(NSString*)offset_id cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
-{
 
-    NSMutableDictionary *params = [self getDefaultParams];
-    [params setObject:[NSNumber numberWithInt:limit] forKey:@"limit"];
-    [params setObject:offset_id forKey:@"offset_id"];
-    NSTimeInterval since1970times = [[NSDate date] timeIntervalSince1970];
-    [params setObject:[NSString stringWithFormat:@"%ld",(long)since1970times] forKey:@"t"];
+- (void)list_image_baidu:(int)limit offsetId:(int)offset_id text:(NSString*)text cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"baiduimagejson" forKey:@"tn"];
+    [params setObject:text forKey:@"word"];
+    [params setObject:[NSNumber numberWithInt:limit]  forKey:@"rn"];
+    [params setObject:[NSNumber numberWithInt:offset_id]  forKey:@"pn"];
     
-    
-     id since = [[NSUserDefaults standardUserDefaults] objectForKey:@"since1970times"];
-    if(since)
-    {
-        [params setObject:since forKey:@"t"];
+    //Wi-Fi下请求大尺寸
+    if ([self getNetworkingType] ==2) {
+        [params setObject:@"3" forKey:@"z"];
+    }else {
+        [params setObject:@"2" forKey:@"z"];//中尺寸
     }
-    WYRequestSender *requestSender = [WYRequestSender requestSenderWithURL:[self getServerApiUrl:@"all_host.json"]
+    
+    [params setObject:@"utf-8" forKey:@"ie"];//input utf-8
+    [params setObject:@"utf-8" forKey:@"oe"];//oe=utf-8
+    
+    //[params setObject:@"iPhone" forKey:@"client_type"];
+    
+    WYRequestSender *requestSender = [WYRequestSender requestSenderWithURL:@"http://image.baidu.com/i"
                                                                    usePost:NO
                                                                      param:params
-                                                               cachePolicy:cholicy
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                                   delegate:theDelegate
                                                           completeSelector:theSelector
                                                              errorSelector:theSelectorError
                                                           selectorArgument:nil];
     [requestSender send];
-    
-}
-
-/**
- 主播列表
- 获取主播列表
- 
- 协议¶
- HTTP
- 
- 地址
- /resource/data/live_host.json
- 
- 请求参数
- 无
- */
-- (void)live_host:(int)limit offsetId:(NSString*)offset_id cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
-{
-    
-    NSMutableDictionary *params = [self getDefaultParams];
-    [params setObject:[NSNumber numberWithInt:limit] forKey:@"limit"];
-    [params setObject:offset_id forKey:@"offset_id"];
-    
-    NSTimeInterval since1970times = [[NSDate date] timeIntervalSince1970];
-    [params setObject:[NSString stringWithFormat:@"%ld",(long)since1970times] forKey:@"t"];
-
-    WYRequestSender *requestSender = [WYRequestSender requestSenderWithURL:[self getServerApiUrl:@"host_live.json"]
-                                                                   usePost:NO
-                                                                     param:params
-                                                               cachePolicy:cholicy
-                                                                  delegate:theDelegate
-                                                          completeSelector:theSelector
-                                                             errorSelector:theSelectorError
-                                                          selectorArgument:nil];
-    [requestSender send];
-    
 }
 
 ///////////////////////////////////////////////
