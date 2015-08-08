@@ -11,7 +11,7 @@
 #import "WYCollectViewCellDelegate.h"
 #import "MMDiskCacheCenter.h"
 
-@interface WYCollectionApiViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,WYCollectViewCellDelegate>
+@interface WYCollectionApiViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end
 
@@ -42,8 +42,9 @@
     [self createErrorView];
     
     // setup infinite scrolling
+    __block typeof(self) block_self = self;
     [self.collectionView addInfiniteScrollingWithActionHandler:^{
-        [self reloadFooterTableViewDataSource];
+        [block_self reloadFooterTableViewDataSource];
     }];
 
 }

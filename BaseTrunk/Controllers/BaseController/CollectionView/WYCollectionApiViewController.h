@@ -19,7 +19,7 @@
 - (Class)cellClass;
 @end
 
-@interface WYCollectionApiViewController : WYModelApiViewController<PWLoadMoreTableFooterDelegate,WYCollectionApiViewControllerDelegate>
+@interface WYCollectionApiViewController : WYModelApiViewController<WYCollectionApiViewControllerDelegate>
 {
     BOOL _headerLoading;
     BOOL _footerLoading;
