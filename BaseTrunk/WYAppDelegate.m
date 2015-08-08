@@ -36,7 +36,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-//    InstallUncaughtExceptionHandler();
+    InstallUncaughtExceptionHandler();
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
