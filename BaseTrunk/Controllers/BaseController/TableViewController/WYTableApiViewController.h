@@ -8,6 +8,7 @@
 
 #import "WYModelApiViewController.h"
 #import "PWLoadMoreTableFooterView.h"
+#import "WYTableCellDelegate.h"
 
 @interface WYTableApiViewController : WYModelApiViewController <UITableViewDelegate, UITableViewDataSource,PWLoadMoreTableFooterDelegate,WYTableCellDelegate>
 {

@@ -12,7 +12,14 @@
 #import "SVPullToRefresh.h"
 #import "WYTableCellDelegate.h"
 
-@interface WYCollectionApiViewController : WYModelApiViewController<PWLoadMoreTableFooterDelegate,WYTableCellDelegate>
+@protocol WYCollectionApiViewControllerDelegate<NSObject>
+
+@optional
+- (API_GET_TYPE)modelApi;
+- (Class)cellClass;
+@end
+
+@interface WYCollectionApiViewController : WYModelApiViewController<PWLoadMoreTableFooterDelegate,WYCollectionApiViewControllerDelegate>
 {
     BOOL _headerLoading;
     BOOL _footerLoading;

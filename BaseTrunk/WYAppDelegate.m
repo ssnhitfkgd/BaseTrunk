@@ -9,6 +9,7 @@
 #import "WYAppDelegate.h"
 #import "iRate.h"
 #import "WYMainAppViewController.h"
+#import "UncaughtExceptionHandler.h"
 
 @interface WYAppDelegate ()
 
@@ -35,10 +36,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+//    InstallUncaughtExceptionHandler();
+
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    
     
     //读取本地用户信息
     WYMainAppViewController *mainViewController = [WYMainAppViewController new];

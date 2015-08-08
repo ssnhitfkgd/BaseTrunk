@@ -59,7 +59,8 @@
 
 - (void)imageSelected:(id)sender
 {
-    if (_baiduImageInfoDto.largeTnImageUrl && ![_baiduImageInfoDto.largeTnImageUrl isEqualToString:@""]) {
+    if (_baiduImageInfoDto.largeTnImageUrl && ![_baiduImageInfoDto.largeTnImageUrl isEqualToString:@""]){
+        [self performSelector:@selector(aa) withObject:nil];
     }
 }
 
