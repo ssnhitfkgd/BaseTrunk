@@ -9,7 +9,7 @@
 #import "WYModelApiViewController.h"
 #import "PWLoadMoreTableFooterView.h"
 
-@interface WYTableApiViewController : WYModelApiViewController <UITableViewDelegate, UITableViewDataSource,PWLoadMoreTableFooterDelegate>
+@interface WYTableApiViewController : WYModelApiViewController <UITableViewDelegate, UITableViewDataSource,PWLoadMoreTableFooterDelegate,WYTableCellDelegate>
 {
     BOOL _headerLoading;
     BOOL _footerLoading;

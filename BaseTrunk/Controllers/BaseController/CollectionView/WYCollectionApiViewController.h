@@ -10,8 +10,9 @@
 #import "WYModelApiViewController.h"
 #import "PWLoadMoreTableFooterView.h"
 #import "SVPullToRefresh.h"
+#import "WYTableCellDelegate.h"
 
-@interface WYCollectionApiViewController : WYModelApiViewController<PWLoadMoreTableFooterDelegate>
+@interface WYCollectionApiViewController : WYModelApiViewController<PWLoadMoreTableFooterDelegate,WYTableCellDelegate>
 {
     BOOL _headerLoading;
     BOOL _footerLoading;

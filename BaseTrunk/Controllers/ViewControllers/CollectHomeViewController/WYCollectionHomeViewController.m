@@ -56,7 +56,7 @@
     static WYCollectionViewGridLayout *itemlayout = nil;
     if (!itemlayout) {
         WYCollectionViewGridLayout *layout = [[WYCollectionViewGridLayout alloc] init];
-        layout.numberOfItemsPerLine = 3;
+        layout.numberOfItemsPerLine = 4;
         layout.aspectRatio = 1;
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         layout.interitemSpacing = 10;
