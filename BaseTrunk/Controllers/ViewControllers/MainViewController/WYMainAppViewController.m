@@ -30,8 +30,8 @@
     [self setDelegate:self];
     
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:(@"table template") image:[UIImage imageNamed:@""] finishedSelectedImage:[UIImage imageNamed:@""] viewClass:@"WYTableHomeViewController"],
-                            [self viewControllerWithTabTitle:@"collectionView template" image:[UIImage imageNamed:@"tabbar_find.png"]  finishedSelectedImage:[UIImage imageNamed:@"tabbar_find_tape.png"] viewClass:@"WYCollectionHomeViewController"],
+                            [self viewControllerWithTabTitle:(@"table frame") image:[UIImage imageNamed:@""] finishedSelectedImage:[UIImage imageNamed:@""] viewClass:@"WYTableHomeViewController"],
+                            [self viewControllerWithTabTitle:@"collectionView frame" image:[UIImage imageNamed:@"tabbar_find.png"]  finishedSelectedImage:[UIImage imageNamed:@"tabbar_find_tape.png"] viewClass:@"WYCollectionHomeViewController"],
                             [self viewControllerWithTabTitle:(@"UIViewController") image:[UIImage imageNamed:@"tabBarContactsIcon"] finishedSelectedImage:[UIImage imageNamed:@"tabBarContactsIcon"]  viewClass:@"UIViewController"],
                             nil];
     

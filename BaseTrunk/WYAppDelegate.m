@@ -53,16 +53,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    
-    //
-    //    if ([url.absoluteString rangeOfString:ID_Wechat].location != NSNotFound) {
-    //
-    //        return [WXApi handleOpenURL:url delegate:self];
-    //
-    //    }
-    //    else if ([url.absoluteString rangeOfString:@"monstea"].location != NSNotFound){
-    //    }
-    //
+   
     return YES;
 }
 
@@ -173,10 +164,6 @@
     
 }
 
-- (void)performDealPush:(NSDictionary *)remoteDict
-{
-    
-}
 
 //
 //

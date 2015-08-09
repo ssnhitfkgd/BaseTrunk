@@ -1,6 +1,6 @@
 //
-//  WPUserInfoDto.m
-//  Whisper
+//  WYUserInfoDto.m
+//  BaseTrunk
 //
 //  Created by wangyong on 14-3-8.
 //  Copyright (c) 2014年 Whisper. All rights reserved.
@@ -145,7 +145,6 @@
     [WYUserInfoDto sharedInstance].create_time = user.create_time;
     [WYUserInfoDto sharedInstance].push_token = user.push_token;
     [WYUserInfoDto sharedInstance].device_id = user.device_id;
-    
 }
 
 + (WYUserInfoDto *)loginUserInfo

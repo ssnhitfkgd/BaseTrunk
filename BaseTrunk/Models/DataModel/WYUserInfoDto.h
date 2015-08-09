@@ -1,6 +1,6 @@
 //
-//  WPUserInfoDto.h
-//  Whisper
+//  WYUserInfoDto.h
+//  BaseTrunk
 //
 //  Created by wangyong on 14-3-8.
 //  Copyright (c) 2014年 Whisper. All rights reserved.

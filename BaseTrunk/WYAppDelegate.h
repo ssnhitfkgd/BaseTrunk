@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WYAppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
-
-
 @end
 
