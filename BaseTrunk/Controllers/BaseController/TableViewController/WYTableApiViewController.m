@@ -85,11 +85,11 @@
     if(!_activityIndicator)
     {
         // Do any additional setup after loading the view.
-        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
         [_activityIndicator setHidesWhenStopped:YES];
-        _activityIndicator.centerX = _tableView.width/2;
-        _activityIndicator.centerY = _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 +  [self getTempHeight];
+        [_activityIndicator setCenterX: _tableView.width/2];
+        [_activityIndicator setCenterY: _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 + [self getTempHeight]];
         [self.tableView addSubview:_activityIndicator];
         [self activityIndicatorAnimal:YES];
     }
@@ -101,11 +101,11 @@
 {
     if(!_errorView)
     {
-        self.errorView = [[WYErrorView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+        _errorView = [[WYErrorView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
         
         [self.tableView addSubview:_errorView];
-        _errorView.centerX = _tableView.width/2;
-        _errorView.centerY = _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 +  [self getTempHeight];
+        [_errorView setCenterX: _tableView.width/2];
+        [_errorView setCenterY: _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 + [self getTempHeight]];
         
         [_errorView setBackgroundColor:_tableView.backgroundColor];
         

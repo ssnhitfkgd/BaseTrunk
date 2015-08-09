@@ -65,11 +65,11 @@
     if(!_activityIndicator)
     {
         // Do any additional setup after loading the view.
-        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
         [_activityIndicator setHidesWhenStopped:YES];
-        _activityIndicator.centerX = self.view.centerX;
-        _activityIndicator.centerY = (self.view.height - 20)/2-20;
+        [_activityIndicator setCenterX:self.view.centerX];
+        [_activityIndicator setCenterY:(self.view.height - 20)/2-20];
         [_collectionView addSubview:_activityIndicator];
         [self activityIndicatorAnimal:YES];
     }
@@ -94,13 +94,13 @@
 {
     if(!_errorView)
     {
-        self.errorView = [[WYErrorView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+        _errorView = [[WYErrorView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
         
         [self.collectionView addSubview:_errorView];
-        _errorView.centerX = self.view.centerX;
-        _errorView.centerY = (self.view.height - 20)/2-20;
+        
+        [_errorView setCenterX:self.view.centerX];
+        [_errorView setCenterY:(self.view.height - 20)/2-20];
         [_errorView setBackgroundColor:_collectionView.backgroundColor];
-        //_collectionView.backgroundColor
         
     }
     
