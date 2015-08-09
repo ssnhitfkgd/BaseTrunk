@@ -313,7 +313,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [[self getTableView] reloadData]; //转移到didappear里了，by kevin
 }
 
 - (void)viewDidAppear:(BOOL)animated

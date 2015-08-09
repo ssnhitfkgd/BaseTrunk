@@ -280,7 +280,6 @@
     [activityIndicator stopAnimating];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
-// hidden by kevin
 //    self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     [self updateToolbarItems];
     

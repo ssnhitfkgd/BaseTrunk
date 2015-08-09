@@ -1,9 +1,9 @@
 //
-//  WPBaseTabbarViewController.h
-//  Whisper
+//  WYBaseTabbarViewController.h
+//  BaseTrunk
 //
-//  Created by wangyong on 14-2-26.
-//  Copyright (c) 2014年 Whisper. All rights reserved.
+//  Created by wangyong on 15/8/8.
+//  Copyright (c) 2015年 wang yong. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

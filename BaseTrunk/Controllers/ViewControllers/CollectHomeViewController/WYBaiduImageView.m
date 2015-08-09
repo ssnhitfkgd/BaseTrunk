@@ -24,11 +24,6 @@
 {    
     self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     
-    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.backButton.frame = self.bounds;
-    [self.backButton addTarget:self action:@selector(imageSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.backButton];
-    
     self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;

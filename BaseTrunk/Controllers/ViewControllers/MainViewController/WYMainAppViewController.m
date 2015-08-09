@@ -2,7 +2,7 @@
 //  WYMainAppViewController.m
 //  BaseTrunk
 //
-//  Created by wangyong on 15/8/6.
+//  Created by wangyong on 15/8/8.
 //  Copyright (c) 2015年 wang yong. All rights reserved.
 //
 
@@ -38,7 +38,7 @@
 //    [self addCenterButtonWithImage:[[UIImage imageNamed:@"tabbar_whisper"] imageWithColor:[UIColor appleRedColor]] highlightImage:nil callback:@selector(addCenterButtonTouchDown:)];
     
 
-    self.tabBar.tintColor = [UIColor appleRedColor];//add by kevin
+    self.tabBar.tintColor = [UIColor appleRedColor];
     
     [self setSelectedViewController: self.viewControllers[0]];
     
@@ -179,7 +179,6 @@
 
 - (void)clearItemBadge:(NSInteger)index{
     
-    //"if..." add by kevin
     if (self.viewControllers && self.viewControllers.count > index) {
         UIViewController * tempController = self.viewControllers[index];
         tempController.tabBarItem.badgeValue = nil;
