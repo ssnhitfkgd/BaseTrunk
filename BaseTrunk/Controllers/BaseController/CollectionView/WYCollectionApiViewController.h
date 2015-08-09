@@ -11,6 +11,7 @@
 #import "PWLoadMoreTableFooterView.h"
 #import "SVPullToRefresh.h"
 #import "WYTableCellDelegate.h"
+#import "WYErrorView.h"
 
 @protocol WYCollectionApiViewControllerDelegate<NSObject>
 
@@ -32,13 +33,10 @@
 @property (nonatomic, assign) BOOL enableFooter;
 @property (nonatomic, assign) BOOL hasMore;
 @property (nonatomic, strong) UIRefreshControl *refresh;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
-@property (nonatomic, retain) UIImageView *errorImageView;
-@property (nonatomic, retain) UILabel *errorLabel;
-@property (nonatomic, retain) UILabel *errorDescriptionLabel;
-@property (nonatomic, retain) UIView *errorView;
-@property (nonatomic, retain) NSNumber *loadmore;
+@property (nonatomic, strong) WYErrorView *errorView;
+@property (nonatomic, strong) NSNumber *loadmore;
 
 - (Class)cellClass;
 - (UICollectionViewLayout *)layout;

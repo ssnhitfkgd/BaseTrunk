@@ -10,129 +10,122 @@
 #import "WYCollectionViewGridLayout.h"
 #import "WYCollectViewCellDelegate.h"
 #import "MMDiskCacheCenter.h"
+#import "WYFileClient.h"
 
 @interface WYCollectionApiViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end
 
 @implementation WYCollectionApiViewController
+#pragma mark -
+#pragma mark must override
+- (UICollectionViewLayout *)layout
+{
+    NSAssert(NO, @"the method \"layout\" Must be rewritten");
+    return NULL;
+}
+
+- (Class)cellClass {
+    NSAssert(NO, @"the method \"cellClass\" Must be rewritten");
+    return NULL;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
 
+    [self setupCollectView];
+    [self setupData];
+
+}
+
+- (void)setupCollectView
+{
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.layout];
     [_collectionView registerClass:[self cellClass] forCellWithReuseIdentifier:NSStringFromClass([self cellClass])];
     [_collectionView setDelegate:self];
     [_collectionView setDataSource:self];
-    
     [_collectionView setBackgroundColor:[UIColor whiteColor]];
     [_collectionView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin];
     [_collectionView setContentMode:UIViewContentModeScaleAspectFill];
-    
     [self.view addSubview:_collectionView];
     
-    [self setEnableHeader:YES];
-    
     [self activityIndicatorAnimal:YES];
-    [self setupData];
-
     
-    [self createErrorView];
-    
+    [self setEnableHeader:YES];
     // setup infinite scrolling
     __block typeof(self) block_self = self;
     [self.collectionView addInfiniteScrollingWithActionHandler:^{
         [block_self reloadFooterTableViewDataSource];
     }];
-
 }
 
-
-- (void)createErrorView
+- (UIActivityIndicatorView*)activityIndicator
 {
-    self.errorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
-    
-    self.errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 15)];
-    [_errorLabel setCenterY:self.errorView.height/2.f+44];
-    [_errorLabel setCenterX:self.errorView.width/2.f];
-    [_errorLabel setFont:[UIFont systemFontOfSize:14.]];
-    [_errorLabel setTextColor:[UIColor colorWithRed:155./255. green:155./255. blue:155./255. alpha:1.0]];
-    [_errorLabel setTextAlignment:NSTextAlignmentCenter];
-    [_errorLabel setBackgroundColor:[UIColor clearColor]];
-    
-    self.errorDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 30)];
-    [_errorDescriptionLabel setTop:_errorLabel.bottom + 2];
-    [_errorDescriptionLabel setCenterX:self.errorView.width/2];
-    [_errorDescriptionLabel setFont:[UIFont systemFontOfSize:12.]];
-    [_errorDescriptionLabel setTextColor:[UIColor black75PercentColor]];
-    [_errorDescriptionLabel setTextAlignment:NSTextAlignmentCenter];
-    [_errorDescriptionLabel setBackgroundColor:[UIColor clearColor]];
-    [_errorDescriptionLabel setNumberOfLines:0];
-    [_errorDescriptionLabel setClipsToBounds:NO];
-    
-    //[_errorView addSubview:_errorImageView];
-    [_errorView addSubview:_errorLabel];
-    [_errorView addSubview:_errorDescriptionLabel];
-    [_errorView setBackgroundColor:_collectionView.backgroundColor];
-    
-    _activityIndicator.center = self.view.center;
-    
-}
-
-- (void)setupData
-{
-    //取缓存
-    id cache = [[MMDiskCacheCenter sharedInstance] cacheForKey:[self getCacheKey] dataType:[NSArray class]];
-    
-    if (cache && [cache isKindOfClass:[NSArray class]]) {
-        //有缓存
-        [self reloadWithCache:[[NSMutableArray alloc] initWithArray:cache]];
+    if(!_activityIndicator)
+    {
+        // Do any additional setup after loading the view.
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
-    }else {
-        //无缓存
-        [self reloadData];
+        [_activityIndicator setHidesWhenStopped:YES];
+        _activityIndicator.centerX = self.view.centerX;
+        _activityIndicator.centerY = (self.view.height - 20)/2-20;
+        [_collectionView addSubview:_activityIndicator];
+        [self activityIndicatorAnimal:YES];
     }
-}
-
-
-- (NSString *)getCacheKey
-{
-    return [NSString stringWithFormat:@"API_CACHE_%lu",(unsigned long)[self modelApi]];
-}
-
-- (void)reloadData
-{
-    self.loadmore = [NSNumber numberWithBool:NO];
-    [super reloadData];
-}
-
-- (void)reloadWithCache:(id)cache
-{
-    [self didFinishLoad:cache];
     
-    [self refreshTableView:nil];
-    
-    //    [self performSelector:@selector(activeRefresh) withObject:nil afterDelay:0.1];
+    return _activityIndicator;
 }
 
-
-
-- (void)activeRefresh
+- (void)activityIndicatorAnimal:(BOOL)animal
 {
-    [_collectionView setContentOffset:CGPointMake(0, -([_collectionView contentInset].top +60)) animated:NO];
-    [self.refresh beginRefreshing];
-    [self refreshTableView:self.refresh];
-    _headerLoading = YES;
+    if(animal)
+    {
+        [self.activityIndicator startAnimating];
+    }
+    else
+    {
+        [self.activityIndicator stopAnimating];
+    }
+    
 }
 
+- (WYErrorView *)errorView
+{
+    if(!_errorView)
+    {
+        self.errorView = [[WYErrorView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+        
+        [self.collectionView addSubview:_errorView];
+        _errorView.centerX = self.view.centerX;
+        _errorView.centerY = (self.view.height - 20)/2-20;
+        [_errorView setBackgroundColor:_collectionView.backgroundColor];
+        //_collectionView.backgroundColor
+        
+    }
+    
+    return _errorView;
+}
+
+- (void)addSubErrorView
+{
+    API_GET_TYPE api_type = [self modelApi];
+    switch (api_type) {
+        default:
+            [self.errorView setText:WhisperLocalized(@"😥暂时没有数据") detail:nil];
+            break;
+    }
+    
+    
+}
+
+#pragma mark -
+#pragma mark must refresh methods
 - (void)setEnableFooter:(BOOL)tf
 {
     _enableFooter = tf;
-    
     [_collectionView.infiniteScrollingView setEnabled:tf];
-
+    
 }
 
 - (void)setEnableHeader:(BOOL)tf
@@ -152,6 +145,46 @@
     }
 }
 
+- (NSString *)getCacheKey
+{
+    return [NSString stringWithFormat:@"API_CACHE_%lu",(unsigned long)[self modelApi]];
+}
+
+- (void)setupData
+{
+    //取缓存
+    id cache = [[MMDiskCacheCenter sharedInstance] cacheForKey:[self getCacheKey] dataType:[NSArray class]];
+    
+    if (cache && [cache isKindOfClass:[NSArray class]]) {
+        //有缓存
+        [self reloadWithCache:[[NSMutableArray alloc] initWithArray:cache]];
+        
+    }else {
+        //无缓存
+        [self reloadData];
+    }
+}
+
+- (void)reloadData
+{
+    self.loadmore = [NSNumber numberWithBool:NO];
+    [super reloadData];
+}
+
+- (void)reloadWithCache:(id)cache
+{
+    [self didFinishLoad:cache];
+    
+    [self refreshTableView:nil];
+}
+
+- (void)activeRefresh
+{
+    [_collectionView setContentOffset:CGPointMake(0, -([_collectionView contentInset].top +60)) animated:NO];
+    [self.refresh beginRefreshing];
+    [self refreshTableView:self.refresh];
+    _headerLoading = YES;
+}
 
 - (void)refreshTableView:(UIRefreshControl *)refresh
 {
@@ -159,33 +192,13 @@
     //    [self reloadHeaderTableViewDataSource];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (UICollectionViewLayout *)layout
+- (void)startLoadData:(NSNumber *)loadHeader
 {
-    NSAssert(NO, @"the method \"layout\" Must be rewritten");
-    return NULL;
+    [super startLoadData:loadHeader];
 }
 
-- (Class)cellClass {
-    NSAssert(NO, @"the method \"cellClass\" Must be rewritten");
-    return NULL;
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
+#pragma mark -
+#pragma mark UICollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -232,39 +245,8 @@
     }
 }
 
-
-#pragma mark LoadMoreDelegate
-
-- (UIActivityIndicatorView*)activityIndicator
-{
-    if(!_activityIndicator)
-    {
-        // Do any additional setup after loading the view.
-        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        
-        [_activityIndicator setHidesWhenStopped:YES];
-        _activityIndicator.center = self.view.center;
-        [_collectionView addSubview:_activityIndicator];
-        [self activityIndicatorAnimal:YES];
-    }
-    
-    return _activityIndicator;
-}
-
-- (void)activityIndicatorAnimal:(BOOL)animal
-{
-    if(animal)
-    {
-        [self.activityIndicator startAnimating];
-    }
-    else
-    {
-        [self.activityIndicator stopAnimating];
-    }
-    
-}
-
-
+#pragma mark -
+#pragma mark reload | load more
 - (void)reloadHeaderTableViewDataSource
 {
     if([self.activityIndicator isAnimating])
@@ -309,8 +291,6 @@
     }];
 }
 
-
-
 - (void)finishLoadFooterTableViewDataSource
 {
     
@@ -326,7 +306,8 @@
     
 }
 
-
+#pragma mark -
+#pragma mark request callback
 - (void)didFinishLoad:(id)array
 {
     [self dealFinishLoad:array];
@@ -334,8 +315,6 @@
     [super didFinishLoad:array];
     [_collectionView reloadData];
 }
-
-
 
 - (void)dealFinishLoad:(id)array
 {
@@ -351,7 +330,7 @@
         [self activityIndicatorAnimal:NO];
     }
     
-    [_errorView removeFromSuperview];
+    [self.errorView setHidden:YES];
     
     [self setEnableFooter:YES];
     
@@ -398,24 +377,75 @@
     }
 }
 
-- (void)addSubErrorView
+
+- (void)didFailWithError:(NSError *)error
 {
-    API_GET_TYPE api_type = [self modelApi];
-    switch (api_type) {
-        default:
-            [_errorLabel setText:WhisperLocalized(@"😥暂时没有数据")];
-            break;
+    
+    if(self.activityIndicator)
+    {
+        [self activityIndicatorAnimal:NO];
+    }
+    
+    if(_footerLoading)
+    {
+        [self performSelector:@selector(finishLoadFooterTableViewDataSource) withObject:nil afterDelay:0.01];
+    }
+    
+    if(_headerLoading)
+    {
+        [self performSelector:@selector(finishLoadHeaderTableViewDataSource) withObject:nil afterDelay:0.01];
+    }
+    
+    [self setEnableFooter:NO];
+    
+    
+    [self.errorView setHidden:YES];
+    
+    
+    NSString *strFailText = WhisperLocalized(@"网络异常，请稍后重试");
+    if ([error.domain isEqualToString:ERROR_DOMAIN]) {
+        strFailText = [error.userInfo objectForKey:@"reason"];
+    } else {
+        if([[WYFileClient sharedInstance] getNetworkingType] == 0)
+        {
+            strFailText = WhisperLocalized(@"当前没有连接到网络");
+        }
+        else if(error.code == -1001){
+            
+            strFailText = WhisperLocalized(@"连接超时，请稍后重试");
+        }
+        else if(error.code == -1202)
+        {
+            //过滤https证书得错误
+            strFailText = nil;
+        }
+        else if(error.localizedDescription)
+        {
+            strFailText = error.localizedDescription;
+        }
     }
     
     
-    [_collectionView addSubview:_errorView];
+    if(self.model && [(NSArray*)self.model count] > 0)
+    {
+        if(strFailText)
+        {
+            [SVProgressHUD showErrorWithStatus:strFailText];
+        }
+    }
+    else
+    {
+        [self.errorView setText:WhisperLocalized(@"网络异常，请稍后重试") detail:nil];
+    }
+    
+    if (error.code == -1024){
+        [self.errorView setText:WhisperLocalized(@"未获取到地理位置") detail:WhisperLocalized(@"请前往iOS系统设置>隐私>定位服务，找到悄悄话，并打开定位服务: )")];
+    }
 }
 
 
-- (void)startLoadData:(NSNumber *)loadHeader
-{
-    [super startLoadData:loadHeader];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
-
 @end

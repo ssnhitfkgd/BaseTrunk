@@ -21,11 +21,138 @@
     return NULL;
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
+#pragma mark - UIViewController
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupSubviews];
+    [self setupData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [_tableView reloadData];
+}
+
+- (void)setupTableView {
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:[self getTableViewStyle]];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin;
+    _tableView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    [self.view addSubview:_tableView];
+    
+    self.tableFooterView = [PWLoadMoreTableFooterView new];
+    self.tableFooterView.delegate = self;
+    [self.tableFooterView setPWState:PWLoadMoreNormal];
+    self.tableView.tableFooterView = self.tableFooterView;
+    
+    _headerLoading = NO;
+    _footerLoading = NO;
+    
+    _hasMore = NO;
+    
+    // Do any additional setup after loading the view.
+    
+    [self activityIndicatorAnimal:YES];
+    
+    
+    [self setEnableHeader:YES];
+    [self setEnableFooter:NO];
+}
+
+- (void)addSubErrorView
+{
+    API_GET_TYPE api_type = [self modelApi];
+    switch (api_type) {
+        default:
+            [self.errorView setText:WhisperLocalized(@"😥暂时没有数据") detail:nil];
+            break;
+    }
+}
+
+- (UIActivityIndicatorView*)activityIndicator
+{
+    if(!_activityIndicator)
+    {
+        // Do any additional setup after loading the view.
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        
+        [_activityIndicator setHidesWhenStopped:YES];
+        _activityIndicator.centerX = _tableView.width/2;
+        _activityIndicator.centerY = _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 +  [self getTempHeight];
+        [self.tableView addSubview:_activityIndicator];
+        [self activityIndicatorAnimal:YES];
+    }
+    
+    return _activityIndicator;
+}
+
+- (WYErrorView *)errorView
+{
+    if(!_errorView)
+    {
+        self.errorView = [[WYErrorView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+        
+        [self.tableView addSubview:_errorView];
+        _errorView.centerX = _tableView.width/2;
+        _errorView.centerY = _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 +  [self getTempHeight];
+        
+        [_errorView setBackgroundColor:_tableView.backgroundColor];
+        
+    }
+    
+    return _errorView;
+}
+
+- (CGFloat)getTempHeight
+{
+    return -20;
+}
+
+- (void)setupSubviews {
+    [self setupTableView];
+}
+
+
+- (void)activityIndicatorAnimal:(BOOL)animal
+{
+    if(animal)
+    {
+        [self.activityIndicator startAnimating];
+    }
+    else
+    {
+        [self.activityIndicator stopAnimating];
+    }
+    
+}
+
+- (void)setSeparatorClear
+{
+    [_tableView setSeparatorColor:[UIColor clearColor]];
+}
+
+- (UITableViewStyle)getTableViewStyle
+{
+    return UITableViewStylePlain;
+}
+
+- (BOOL)getCacheWithRefresh
+{
+    return YES;
+}
+
+#pragma mark - request callback
 - (void)didFailWithError:(NSError *)error
 {
     
@@ -47,8 +174,9 @@
     [self setEnableFooter:NO];
 
     
-    [_errorView removeFromSuperview];
+    [self.errorView setHidden:YES];
 
+    
     NSString *strFailText = WhisperLocalized(@"网络异常，请稍后重试");
     if ([error.domain isEqualToString:ERROR_DOMAIN]) {
         strFailText = [error.userInfo objectForKey:@"reason"];
@@ -82,16 +210,11 @@
     }
     else
     {
-        [_errorDescriptionLabel setText:@""];
-        [_errorLabel setText:strFailText?strFailText:WhisperLocalized(@"网络异常，请稍后重试")];
-        [_errorImageView setImage:[UIImage imageNamed:@"dd"]];
-        [_tableView addSubview:_errorView];
+        [self.errorView setText:WYNetworkingErrorInfo detail:nil];
     }
 
     if (error.code == -1024){
-        [_errorImageView setImage:[UIImage imageNamed:@"dd"]];
-        [_errorLabel setText:WhisperLocalized(@"未获取到地理位置")];
-        [_errorDescriptionLabel setText:WhisperLocalized(@"请前往iOS系统设置>隐私>定位服务，找到悄悄话，并打开定位服务: )")];
+        [self.errorView setText:WhisperLocalized(@"未获取到地理位置") detail:WhisperLocalized(@"请前往iOS系统设置>隐私>定位服务，找到悄悄话，并打开定位服务: )")];
     }
 }
 
@@ -109,7 +232,10 @@
         [self activityIndicatorAnimal:NO];
     }
     
-    [_errorView removeFromSuperview];
+    if(![self.errorView isHidden])
+    {
+        [self.errorView setHidden:YES];
+    }
     
     [self setEnableFooter:YES];
     
@@ -164,120 +290,12 @@
     [_tableView reloadData];
 }
 
-- (void)addSubErrorView
-{
-    API_GET_TYPE api_type = [self modelApi];
-    switch (api_type) {
-        default:
-            [_errorLabel setText:WhisperLocalized(@"😥暂时没有数据")];
-            break;
-    }
-    
-   
-    [_tableView addSubview:_errorView];
-}
 
-#pragma mark - UIViewController
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self setupSubviews];
-    [self setupData];
-}
-
-- (void)setupTableView {
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:[self getTableViewStyle]];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin;
-    _tableView.contentMode = UIViewContentModeScaleAspectFill;
-    
-    [self.view addSubview:_tableView];
-    
-    self.tableFooterView = [PWLoadMoreTableFooterView new];
-    self.tableFooterView.delegate = self;
-    [self.tableFooterView setPWState:PWLoadMoreNormal];
-    self.tableView.tableFooterView = self.tableFooterView;
-    
-    _headerLoading = NO;
-    _footerLoading = NO;
-    
-    _hasMore = NO;
-    
-    // Do any additional setup after loading the view.
-   
-    [self activityIndicatorAnimal:YES];
-    
-    
-    [self createErrorView];
-    
-    [self setEnableHeader:YES];
-    [self setEnableFooter:NO];
-}
-
-- (UIActivityIndicatorView*)activityIndicator
-{
-    if(!_activityIndicator)
-    {
-        // Do any additional setup after loading the view.
-        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        
-        [_activityIndicator setHidesWhenStopped:YES];
-        _activityIndicator.centerX = _tableView.width/2;
-        _activityIndicator.centerY = _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 +  [self getTempHeight];
-        [self.tableView addSubview:_activityIndicator];
-        [self activityIndicatorAnimal:YES];
-    }
-    
-    return _activityIndicator;
-}
-
-- (CGFloat)getTempHeight
-{
-    return -44;
-}
-
-- (void)setupSubviews {
-    [self setupTableView];
-}
 
 - (void)refreshTableView:(UIRefreshControl *)refresh
 {
     [self performSelector:@selector(reloadHeaderTableViewDataSource) withObject:nil afterDelay:0.0];
 //    [self reloadHeaderTableViewDataSource];
-}
-
-- (void)createErrorView
-{
-    self.errorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
-    
-    self.errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 15)];
-    [_errorLabel setCenterY:self.errorView.height/2.f+44];
-    [_errorLabel setCenterX:self.errorView.width/2.f];
-    [_errorLabel setFont:[UIFont systemFontOfSize:14.]];
-    [_errorLabel setTextColor:[UIColor colorWithRed:155./255. green:155./255. blue:155./255. alpha:1.0]];
-    [_errorLabel setTextAlignment:NSTextAlignmentCenter];
-    [_errorLabel setBackgroundColor:[UIColor clearColor]];
-    
-    self.errorDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 30)];
-    [_errorDescriptionLabel setTop:_errorLabel.bottom + 2];
-    [_errorDescriptionLabel setCenterX:self.errorView.width/2];
-    [_errorDescriptionLabel setFont:[UIFont systemFontOfSize:12.]];
-    [_errorDescriptionLabel setTextColor:[UIColor black75PercentColor]];
-    [_errorDescriptionLabel setTextAlignment:NSTextAlignmentCenter];
-    [_errorDescriptionLabel setBackgroundColor:[UIColor clearColor]];
-    [_errorDescriptionLabel setNumberOfLines:0];
-    [_errorDescriptionLabel setClipsToBounds:NO];
-    
-    //[_errorView addSubview:_errorImageView];
-    [_errorView addSubview:_errorLabel];
-    [_errorView addSubview:_errorDescriptionLabel];
-    [_errorView setBackgroundColor:_tableView.backgroundColor];
-    
-    _activityIndicator.centerX = _tableView.width/2;
-    _activityIndicator.centerY = _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 +  [self getTempHeight];
-    
 }
 
 - (void)setupData
@@ -306,55 +324,10 @@
     [self didFinishLoad:cache];
     
     [self refreshTableView:nil];
-    
-//    [self performSelector:@selector(activeRefresh) withObject:nil afterDelay:0.1];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [_tableView reloadData];
-}
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-
-}
-
-- (void)activityIndicatorAnimal:(BOOL)animal
-{
-    if(animal)
-    {
-        [self.activityIndicator startAnimating];
-    }
-    else
-    {
-        [self.activityIndicator stopAnimating];
-    }
-    
-}
-
-- (void)setSeparatorClear
-{
-    [_tableView setSeparatorColor:[UIColor clearColor]];
-}
-
-- (UITableViewStyle)getTableViewStyle
-{
-    return UITableViewStylePlain;
-}
-
-- (BOOL)getCacheWithRefresh
-{
-    return YES;
-}
 
 - (NSString *)getCacheKey
 {
@@ -363,8 +336,6 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(self.model== nil)
         return 0;
@@ -464,7 +435,8 @@
     }
 }
 
-
+#pragma mark -
+#pragma mark UIScrollView delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if ([[WYFileClient sharedInstance] getNetworkingType] > 0) {
@@ -508,7 +480,8 @@
     return YES;
 }
 
-#pragma mark LoadMoreDelegate
+#pragma mark -
+#pragma mark loadmore delegate
 - (void)pwLoadMore
 {
     [self reloadFooterTableViewDataSource];
@@ -586,10 +559,6 @@
 {
     self.tableFooterView.delegate = nil;
     self.tableFooterView = nil;
-    
-    self.errorImageView = nil;
-    self.errorLabel = nil;
-    self.errorDescriptionLabel = nil;
     self.errorView = nil;
     self.activityIndicator = nil;
     

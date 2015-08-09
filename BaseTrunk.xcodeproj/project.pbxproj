@@ -88,6 +88,8 @@
 		EE7E78621B75EB3800959AD8 /* WYBaiduImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78611B75EB3800959AD8 /* WYBaiduImageViewCell.m */; };
 		EE7E78651B75F63800959AD8 /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78641B75F63800959AD8 /* UncaughtExceptionHandler.m */; };
 		EE7E786B1B75FCFE00959AD8 /* WYCrashFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786A1B75FCFE00959AD8 /* WYCrashFoundation.m */; };
+		EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786D1B777B9B00959AD8 /* WYErrorView.m */; };
+		EE7E78721B778BA700959AD8 /* if_ch_string.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE7E78711B778BA700959AD8 /* if_ch_string.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -249,6 +251,9 @@
 		EE7E78641B75F63800959AD8 /* UncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		EE7E78691B75FCFE00959AD8 /* WYCrashFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCrashFoundation.h; sourceTree = "<group>"; };
 		EE7E786A1B75FCFE00959AD8 /* WYCrashFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCrashFoundation.m; sourceTree = "<group>"; };
+		EE7E786C1B777B9B00959AD8 /* WYErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYErrorView.h; sourceTree = "<group>"; };
+		EE7E786D1B777B9B00959AD8 /* WYErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYErrorView.m; sourceTree = "<group>"; };
+		EE7E78711B778BA700959AD8 /* if_ch_string.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = if_ch_string.strings; sourceTree = "<group>"; };
 		EE83F6F21B5D174A007CBF95 /* BaseTrunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseTrunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -294,6 +299,7 @@
 				EE7E76E31B737FF900959AD8 /* Models */,
 				EE7E77A11B737FF900959AD8 /* WYAppDelegate.h */,
 				EE7E77A21B737FF900959AD8 /* WYAppDelegate.m */,
+				EE7E78711B778BA700959AD8 /* if_ch_string.strings */,
 			);
 			path = BaseTrunk;
 			sourceTree = "<group>";
@@ -320,6 +326,8 @@
 				EE7E76B91B737FF900959AD8 /* WYModelApiViewController.m */,
 				EE7E76BA1B737FF900959AD8 /* WYNavigationController.h */,
 				EE7E76BB1B737FF900959AD8 /* WYNavigationController.m */,
+				EE7E786C1B777B9B00959AD8 /* WYErrorView.h */,
+				EE7E786D1B777B9B00959AD8 /* WYErrorView.m */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
@@ -748,6 +756,7 @@
 				EE7E77A31B737FF900959AD8 /* LaunchScreen.xib in Resources */,
 				EE7E77B51B737FF900959AD8 /* Images.xcassets in Resources */,
 				EE7E77B61B737FF900959AD8 /* Info.plist in Resources */,
+				EE7E78721B778BA700959AD8 /* if_ch_string.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +853,7 @@
 				EE7E78091B737FF900959AD8 /* WYUserInfoDto.m in Sources */,
 				EE7E77CF1B737FF900959AD8 /* SBJsonStreamParserState.m in Sources */,
 				EE7E77AA1B737FF900959AD8 /* WYFileClient.m in Sources */,
+				EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */,
 				EE7E77AB1B737FF900959AD8 /* WYRequestSender.m in Sources */,
 				EE7E77CE1B737FF900959AD8 /* SBJsonStreamParserAdapter.m in Sources */,
 				EE7E77A61B737FF900959AD8 /* WYNavigationController.m in Sources */,

@@ -9,6 +9,7 @@
 #import "WYModelApiViewController.h"
 #import "PWLoadMoreTableFooterView.h"
 #import "WYTableCellDelegate.h"
+#import "WYErrorView.h"
 
 @interface WYTableApiViewController : WYModelApiViewController <UITableViewDelegate, UITableViewDataSource,PWLoadMoreTableFooterDelegate>
 {
@@ -17,22 +18,18 @@
     BOOL _reloading;
 }
 
-@property (nonatomic, retain) UITableView *tableView;
-@property (nonatomic, retain) UIImageView *errorImageView;
-@property (nonatomic, retain) UILabel *errorLabel;
-@property (nonatomic, retain) UILabel *errorDescriptionLabel;
-@property (nonatomic, retain) UIView *errorView;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) WYErrorView *errorView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) PWLoadMoreTableFooterView *tableFooterView;
 
 @property (nonatomic, assign) BOOL enableHeader;
 @property (nonatomic, assign) BOOL enableFooter;
 @property (nonatomic, assign) BOOL hasMore;
 
-@property (nonatomic, retain) NSNumber *loadmore;
+@property (nonatomic, strong) NSNumber *loadmore;
 @property (nonatomic, strong) UIRefreshControl *refresh;
 
-- (void)createErrorView;
 
 - (Class)cellClass;
 - (void)setSeparatorClear;
