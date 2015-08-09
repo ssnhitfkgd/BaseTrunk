@@ -27,9 +27,9 @@
     self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
+ 
     [self addSubview:_imageView];
 
-    [self setUserInteractionEnabled:YES];
 }
 
 + (CGFloat)rowHeightForObject:(id)item
@@ -46,8 +46,8 @@
         }
         
         if([_baiduImageInfoDto parseData:item])
-        {            
-            [_imageView sd_setImageWithURL:[NSURL URLWithString:_baiduImageInfoDto.thumbUrl] completed:nil];
+        {
+            [_imageView sd_setImageWithURL:[NSURL URLWithString:_baiduImageInfoDto.thumbUrl] placeholderImage:nil options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
         }
     }
 }

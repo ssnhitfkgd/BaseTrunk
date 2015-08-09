@@ -19,7 +19,7 @@
     [viewController.tabBarItem setSelectedImage:finishedSelectedImage];
     [viewController.tabBarItem setImage:image];
     [viewController.tabBarItem setImageInsets:UIEdgeInsetsMake(6, 0, -6, 0)];
-    
+    [viewController.tabBarItem setTitle:nil];
     WYNavigationController *navigationController = [[WYNavigationController alloc] initWithRootViewController:viewController];
     
     //    NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:1. green:102./225. blue:0 alpha:1.] forKey:NSForegroundColorAttributeName];
