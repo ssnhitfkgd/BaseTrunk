@@ -14,9 +14,9 @@
 - (NSString*)serverURL
 {
 #ifndef __OPTIMIZE__
-    return @"http://42.96.186.99:1025/";
+    return @"http://****/";
 #else
-    return @"https://api.71ao.cn/yoyo/";
+    return @"https://******/";
 #endif
     
 }

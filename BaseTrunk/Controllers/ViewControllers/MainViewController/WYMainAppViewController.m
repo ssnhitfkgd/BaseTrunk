@@ -30,9 +30,9 @@
     [self setDelegate:self];
     
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:WhisperLocalized(@"table template") image:[UIImage imageNamed:@""] finishedSelectedImage:[UIImage imageNamed:@""] viewClass:@"WYTableHomeViewController"],
+                            [self viewControllerWithTabTitle:(@"table template") image:[UIImage imageNamed:@""] finishedSelectedImage:[UIImage imageNamed:@""] viewClass:@"WYTableHomeViewController"],
                             [self viewControllerWithTabTitle:@"collectionView template" image:[UIImage imageNamed:@"tabbar_find.png"]  finishedSelectedImage:[UIImage imageNamed:@"tabbar_find_tape.png"] viewClass:@"WYCollectionHomeViewController"],
-                            [self viewControllerWithTabTitle:WhisperLocalized(@"UIViewController") image:[UIImage imageNamed:@"tabBarContactsIcon"] finishedSelectedImage:[UIImage imageNamed:@"tabBarContactsIcon"]  viewClass:@"UIViewController"],
+                            [self viewControllerWithTabTitle:(@"UIViewController") image:[UIImage imageNamed:@"tabBarContactsIcon"] finishedSelectedImage:[UIImage imageNamed:@"tabBarContactsIcon"]  viewClass:@"UIViewController"],
                             nil];
     
 //    [self addCenterButtonWithImage:[[UIImage imageNamed:@"tabbar_whisper"] imageWithColor:[UIColor appleRedColor]] highlightImage:nil callback:@selector(addCenterButtonTouchDown:)];

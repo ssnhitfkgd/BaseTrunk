@@ -75,7 +75,7 @@
     API_GET_TYPE api_type = [self modelApi];
     switch (api_type) {
         default:
-            [self.errorView setText:WhisperLocalized(@"😥暂时没有数据") detail:nil];
+            [self.errorView setText:NSLocalizedString(@"no data",nil) detail:nil];
             break;
     }
 }
@@ -177,17 +177,16 @@
     [self.errorView setHidden:YES];
 
     
-    NSString *strFailText = WhisperLocalized(@"网络异常，请稍后重试");
+    NSString *strFailText = NSLocalizedString(@"networking_disconnect", nil);
     if ([error.domain isEqualToString:ERROR_DOMAIN]) {
         strFailText = [error.userInfo objectForKey:@"reason"];
     } else {
         if([[WYFileClient sharedInstance] getNetworkingType] == 0)
         {
-            strFailText = WhisperLocalized(@"当前没有连接到网络");
+            strFailText = NSLocalizedString(@"networking_timeout", nil);
         }
         else if(error.code == -1001){
-            
-            strFailText = WhisperLocalized(@"连接超时，请稍后重试");
+            strFailText = NSLocalizedString(@"networking_timeout", nil);
         }
         else if(error.code == -1202)
         {
@@ -210,12 +209,9 @@
     }
     else
     {
-        [self.errorView setText:WYNetworkingErrorInfo detail:nil];
+        [self.errorView setText:NSLocalizedString(@"networking_disconnect", nil)   detail:nil];
     }
 
-    if (error.code == -1024){
-        [self.errorView setText:WhisperLocalized(@"未获取到地理位置") detail:WhisperLocalized(@"请前往iOS系统设置>隐私>定位服务，找到悄悄话，并打开定位服务: )")];
-    }
 }
 
 - (void)dealFinishLoad:(id)array

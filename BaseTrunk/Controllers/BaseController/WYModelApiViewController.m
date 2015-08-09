@@ -155,32 +155,6 @@
 - (void)didFailWithError:(NSError*)error
 {
     
-    NSString *strFailText = WhisperLocalized(@"网络异常，请稍后重试");
-    if ([error.domain isEqualToString:ERROR_DOMAIN]) {
-        strFailText = [error.userInfo objectForKey:@"reason"];
-    } else {
-        if([[WYFileClient sharedInstance] getNetworkingType] == 0)
-        {
-            strFailText = WhisperLocalized(@"当前没有连接到网络");
-        }
-        else if(error.code == -1001){
-            
-            strFailText = WhisperLocalized(@"连接超时，请稍后重试");
-        }
-        else if(error.code == -1202)
-        {
-            //过滤https证书得错误
-            strFailText = @"未知";
-        }
-        else if(error.localizedDescription)
-        {
-            strFailText = error.localizedDescription;
-        }
-    }
-    
-    
-    NSLog(@"%@",strFailText);
-    
     
 }
 

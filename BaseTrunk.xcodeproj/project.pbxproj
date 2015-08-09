@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		75572DBAA9F92939A6E96CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BEF68BD30BC1DBCC490B15 /* libPods.a */; };
+		EE3E9F381B779649000B397A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE3E9F3A1B779649000B397A /* Localizable.strings */; };
 		EE7E77A31B737FF900959AD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE7E76B11B737FF900959AD8 /* LaunchScreen.xib */; };
 		EE7E77A41B737FF900959AD8 /* WYBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76B71B737FF900959AD8 /* WYBaseController.m */; };
 		EE7E77A51B737FF900959AD8 /* WYModelApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76B91B737FF900959AD8 /* WYModelApiViewController.m */; };
@@ -89,13 +90,15 @@
 		EE7E78651B75F63800959AD8 /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78641B75F63800959AD8 /* UncaughtExceptionHandler.m */; };
 		EE7E786B1B75FCFE00959AD8 /* WYCrashFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786A1B75FCFE00959AD8 /* WYCrashFoundation.m */; };
 		EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786D1B777B9B00959AD8 /* WYErrorView.m */; };
-		EE7E78721B778BA700959AD8 /* if_ch_string.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE7E78711B778BA700959AD8 /* if_ch_string.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00ACBB2F509E8A0A2098A9A6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		48BEF68BD30BC1DBCC490B15 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA3AD6BC5E4992D6EC9C08E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		EE3E9F391B779649000B397A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EE3E9F3B1B77964B000B397A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EE3E9F3C1B77964C000B397A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EE7E76B21B737FF900959AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EE7E76B31B737FF900959AD8 /* BaseTrunk-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseTrunk-Prefix.pch"; sourceTree = "<group>"; };
 		EE7E76B61B737FF900959AD8 /* WYBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaseController.h; sourceTree = "<group>"; };
@@ -253,7 +256,6 @@
 		EE7E786A1B75FCFE00959AD8 /* WYCrashFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCrashFoundation.m; sourceTree = "<group>"; };
 		EE7E786C1B777B9B00959AD8 /* WYErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYErrorView.h; sourceTree = "<group>"; };
 		EE7E786D1B777B9B00959AD8 /* WYErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYErrorView.m; sourceTree = "<group>"; };
-		EE7E78711B778BA700959AD8 /* if_ch_string.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = if_ch_string.strings; sourceTree = "<group>"; };
 		EE83F6F21B5D174A007CBF95 /* BaseTrunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseTrunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -299,7 +301,6 @@
 				EE7E76E31B737FF900959AD8 /* Models */,
 				EE7E77A11B737FF900959AD8 /* WYAppDelegate.h */,
 				EE7E77A21B737FF900959AD8 /* WYAppDelegate.m */,
-				EE7E78711B778BA700959AD8 /* if_ch_string.strings */,
 			);
 			path = BaseTrunk;
 			sourceTree = "<group>";
@@ -669,6 +670,7 @@
 		EE83F6E91B5D174A007CBF95 = {
 			isa = PBXGroup;
 			children = (
+				EE3E9F3A1B779649000B397A /* Localizable.strings */,
 				EE7E76B01B737FF900959AD8 /* BaseTrunk */,
 				EE83F6F31B5D174A007CBF95 /* Products */,
 				4B570B4152E5B1A91A7EEB56 /* Pods */,
@@ -746,6 +748,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE7E77EF1B737FF900959AD8 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
+				EE3E9F381B779649000B397A /* Localizable.strings in Resources */,
 				EE7E77F11B737FF900959AD8 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				EE7E77EC1B737FF900959AD8 /* SVWebViewController.bundle in Resources */,
 				EE7E77F51B737FF900959AD8 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
@@ -756,7 +759,6 @@
 				EE7E77A31B737FF900959AD8 /* LaunchScreen.xib in Resources */,
 				EE7E77B51B737FF900959AD8 /* Images.xcassets in Resources */,
 				EE7E77B61B737FF900959AD8 /* Info.plist in Resources */,
-				EE7E78721B778BA700959AD8 /* if_ch_string.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +878,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		EE3E9F3A1B779649000B397A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EE3E9F391B779649000B397A /* Base */,
+				EE3E9F3B1B77964B000B397A /* en */,
+				EE3E9F3C1B77964C000B397A /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		EE7E76B11B737FF900959AD8 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
