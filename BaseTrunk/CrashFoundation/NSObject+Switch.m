@@ -1,11 +1,10 @@
 //
 //  NSObject+Switch.m
-//  
+//  BaseTrunk
 //
-//  Created by wangyong on 15/7/20.
+//  Created by wangyong on 15/8/8.
 //  Copyright (c) 2015年 wang yong. All rights reserved.
 //
-
 
 #import "NSObject+Switch.h"
 #import <objc/runtime.h>

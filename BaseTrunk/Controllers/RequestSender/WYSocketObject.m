@@ -1,9 +1,9 @@
 //
 //  WYSocketObject.m
-//  
+//  BaseTrunk
 //
-//  Created by wangyong on 13-7-12.
-//
+//  Created by wangyong on 15/8/8.
+//  Copyright (c) 2015年 wang yong. All rights reserved.
 //
 
 #import "WYSocketObject.h"
