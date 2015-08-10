@@ -25,7 +25,6 @@
 		EE7E77B71B737FF900959AD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76E21B737FF900959AD8 /* main.m */; };
 		EE7E77C11B737FF900959AD8 /* Colours.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76FB1B737FF900959AD8 /* Colours.m */; };
 		EE7E77C21B737FF900959AD8 /* MMDiskCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E76FE1B737FF900959AD8 /* MMDiskCacheCenter.m */; };
-		EE7E77C71B737FF900959AD8 /* PlistOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E770A1B737FF900959AD8 /* PlistOperation.m */; };
 		EE7E77C81B737FF900959AD8 /* PWLoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E770D1B737FF900959AD8 /* PWLoadMoreTableFooterView.m */; };
 		EE7E77C91B737FF900959AD8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E77101B737FF900959AD8 /* Reachability.m */; };
 		EE7E77CA1B737FF900959AD8 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E77131B737FF900959AD8 /* NSObject+SBJson.m */; };
@@ -128,8 +127,6 @@
 		EE7E76FB1B737FF900959AD8 /* Colours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colours.m; sourceTree = "<group>"; };
 		EE7E76FD1B737FF900959AD8 /* MMDiskCacheCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDiskCacheCenter.h; sourceTree = "<group>"; };
 		EE7E76FE1B737FF900959AD8 /* MMDiskCacheCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDiskCacheCenter.m; sourceTree = "<group>"; };
-		EE7E77091B737FF900959AD8 /* PlistOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistOperation.h; sourceTree = "<group>"; };
-		EE7E770A1B737FF900959AD8 /* PlistOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistOperation.m; sourceTree = "<group>"; };
 		EE7E770C1B737FF900959AD8 /* PWLoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWLoadMoreTableFooterView.h; sourceTree = "<group>"; };
 		EE7E770D1B737FF900959AD8 /* PWLoadMoreTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWLoadMoreTableFooterView.m; sourceTree = "<group>"; };
 		EE7E770F1B737FF900959AD8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -410,7 +407,6 @@
 			children = (
 				EE7E76F91B737FF900959AD8 /* Colours */,
 				EE7E76FC1B737FF900959AD8 /* DiskCacheCenter */,
-				EE7E77081B737FF900959AD8 /* PlistOperation */,
 				EE7E770B1B737FF900959AD8 /* PWLoadMore */,
 				EE7E770E1B737FF900959AD8 /* Reachability */,
 				EE7E77111B737FF900959AD8 /* SBJSON */,
@@ -435,15 +431,6 @@
 				EE7E76FE1B737FF900959AD8 /* MMDiskCacheCenter.m */,
 			);
 			path = DiskCacheCenter;
-			sourceTree = "<group>";
-		};
-		EE7E77081B737FF900959AD8 /* PlistOperation */ = {
-			isa = PBXGroup;
-			children = (
-				EE7E77091B737FF900959AD8 /* PlistOperation.h */,
-				EE7E770A1B737FF900959AD8 /* PlistOperation.m */,
-			);
-			path = PlistOperation;
 			sourceTree = "<group>";
 		};
 		EE7E770B1B737FF900959AD8 /* PWLoadMore */ = {
@@ -860,7 +847,6 @@
 				EE7E77CE1B737FF900959AD8 /* SBJsonStreamParserAdapter.m in Sources */,
 				EE7E77A61B737FF900959AD8 /* WYNavigationController.m in Sources */,
 				EE7E78541B75AC2600959AD8 /* WYMainAppViewController.m in Sources */,
-				EE7E77C71B737FF900959AD8 /* PlistOperation.m in Sources */,
 				EE7E77D21B737FF900959AD8 /* SBJsonStreamWriterState.m in Sources */,
 				EE7E78431B73AACC00959AD8 /* WYCollectionApiViewController.m in Sources */,
 				EE7E77CB1B737FF900959AD8 /* SBJsonParser.m in Sources */,

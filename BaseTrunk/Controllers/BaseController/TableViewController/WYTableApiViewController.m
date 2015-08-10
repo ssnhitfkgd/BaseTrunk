@@ -48,7 +48,6 @@
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin;
     _tableView.contentMode = UIViewContentModeScaleAspectFill;
-    
     [self.view addSubview:_tableView];
     
     self.tableFooterView = [PWLoadMoreTableFooterView new];

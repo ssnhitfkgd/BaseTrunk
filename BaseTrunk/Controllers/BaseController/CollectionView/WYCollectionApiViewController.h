@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WYModelApiViewController.h"
-#import "PWLoadMoreTableFooterView.h"
 #import "SVPullToRefresh.h"
-#import "WYTableCellDelegate.h"
 #import "WYErrorView.h"
 
 @protocol WYCollectionApiViewControllerDelegate<NSObject>
