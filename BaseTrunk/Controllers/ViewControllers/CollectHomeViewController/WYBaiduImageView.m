@@ -28,6 +28,7 @@
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
  
+
     [self addSubview:_imageView];
 
 }

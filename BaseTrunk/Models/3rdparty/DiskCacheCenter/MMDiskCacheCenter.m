@@ -57,7 +57,7 @@ NS_INLINE NSString * getCacheDir(){
     }
     
     
-    if([key rangeOfString:@"_WHISPER_ID_"].location != NSNotFound)
+    if([key rangeOfString:@"API_CACHE_"].location != NSNotFound)
     {
         NSString *updateTime = [DateUtil getFormatTime:[NSDate date]];//@"yyyy-MM-dd HH:mm:ss"
         if(updateTime && key)
@@ -98,7 +98,7 @@ NS_INLINE NSString * getCacheDir(){
     NSString *filename;
     while ((filename = [e nextObject])) {
         
-        if ([filename rangeOfString:@"_WY_ID_"].location != NSNotFound) {
+        if ([filename rangeOfString:@"API_CACHE_"].location != NSNotFound) {
 
             id obj = [[NSUserDefaults standardUserDefaults] objectForKey:filename];
             

@@ -22,7 +22,7 @@
 
 @property (nonatomic) CGPoint origin;
 @property (nonatomic) CGSize size;
-
+- (UIBezierPath *)framePath;
 @end
 
 @interface UIView (Shadow)

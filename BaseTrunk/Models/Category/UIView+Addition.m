@@ -10,6 +10,26 @@
 
 @implementation UIView (Addition)
 
+//mask路径
+- (UIBezierPath *)framePath
+{
+
+    CGFloat arrowWidth = 14;
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGRect rectangle = CGRectInset(CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetWidth(self.bounds)), 3,3);
+    CGPoint p[3] = {
+        {CGRectGetMidX(self.bounds)-arrowWidth/2, CGRectGetWidth(self.bounds)-6},
+        {CGRectGetMidX(self.bounds)+arrowWidth/2, CGRectGetWidth(self.bounds)-6},
+        {CGRectGetMidX(self.bounds), CGRectGetHeight(self.bounds)-4}
+    };
+    CGPathAddRoundedRect(path, NULL, rectangle, 5, 5);
+    CGPathAddLines(path, NULL, p, 3);
+    CGPathCloseSubpath(path);
+    UIBezierPath *framePath = [UIBezierPath bezierPathWithCGPath:path];
+    CGPathRelease(path);
+    return framePath;
+}
+
 - (CGFloat)left {
     return self.frame.origin.x;
 }

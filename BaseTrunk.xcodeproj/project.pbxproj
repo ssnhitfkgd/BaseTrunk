@@ -89,6 +89,7 @@
 		EE7E78651B75F63800959AD8 /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E78641B75F63800959AD8 /* UncaughtExceptionHandler.m */; };
 		EE7E786B1B75FCFE00959AD8 /* WYCrashFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786A1B75FCFE00959AD8 /* WYCrashFoundation.m */; };
 		EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786D1B777B9B00959AD8 /* WYErrorView.m */; };
+		EEB23A481B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -254,6 +255,8 @@
 		EE7E786C1B777B9B00959AD8 /* WYErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYErrorView.h; sourceTree = "<group>"; };
 		EE7E786D1B777B9B00959AD8 /* WYErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYErrorView.m; sourceTree = "<group>"; };
 		EE83F6F21B5D174A007CBF95 /* BaseTrunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseTrunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEB23A461B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGWaterfallHeaderReusableView.h; sourceTree = "<group>"; };
+		EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGWaterfallHeaderReusableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -645,6 +648,8 @@
 		EE7E78551B75AF3100959AD8 /* CollectHomeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EEB23A461B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.h */,
+				EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */,
 				EE7E78601B75EB3800959AD8 /* WYBaiduImageViewCell.h */,
 				EE7E78611B75EB3800959AD8 /* WYBaiduImageViewCell.m */,
 				EE7E785D1B75E42E00959AD8 /* WYBaiduImageView.h */,
@@ -853,6 +858,7 @@
 				EE7E77B71B737FF900959AD8 /* main.m in Sources */,
 				EE7E780D1B737FF900959AD8 /* WYAppDelegate.m in Sources */,
 				EE7E78651B75F63800959AD8 /* UncaughtExceptionHandler.m in Sources */,
+				EEB23A481B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m in Sources */,
 				EE7E78031B737FF900959AD8 /* UINavigationController+TRVSNavigationControllerTransition.m in Sources */,
 				EE7E77C81B737FF900959AD8 /* PWLoadMoreTableFooterView.m in Sources */,
 				EE7E77CA1B737FF900959AD8 /* NSObject+SBJson.m in Sources */,

@@ -53,11 +53,11 @@
     [self activityIndicatorAnimal:YES];
     
     [self setEnableHeader:YES];
-    // setup infinite scrolling
-    __block typeof(self) block_self = self;
-    [self.collectionView addInfiniteScrollingWithActionHandler:^{
-        [block_self reloadFooterTableViewDataSource];
-    }];
+//    // setup infinite scrolling
+//    __block typeof(self) block_self = self;
+//    [self.collectionView addInfiniteScrollingWithActionHandler:^{
+//        [block_self reloadFooterTableViewDataSource];
+//    }];
 }
 
 - (UIActivityIndicatorView*)activityIndicator
@@ -201,7 +201,7 @@
 #pragma mark UICollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
     
 }
 
