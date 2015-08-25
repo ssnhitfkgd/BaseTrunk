@@ -15,9 +15,8 @@
 #import "FileUtil.h"
 
 
-static const float TIME_OUT_INTERVAL = 30.0f;
+static const float TIME_OUT_INTERVAL = 10.0f;
 
-/********************************添加api 以追加得方式 向下拓展**********************************/
 
 typedef enum
 {
@@ -27,7 +26,6 @@ typedef enum
     ERROR_CODE_BLOCKED,
 
 }API_GET_CODE;
-/********************************添加api 以追加得方式 向下拓展**********************************/
 
 @implementation WYRequestSender
 @synthesize progressSelector;
@@ -104,7 +102,7 @@ typedef enum
     }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.requestUrl]
-                                                           cachePolicy:self.cachePolicy//NSURLRequestUseProtocolCachePolicy
+                                                           cachePolicy:self.cachePolicy//
                                                        timeoutInterval:TIME_OUT_INTERVAL];
     
     
@@ -113,6 +111,7 @@ typedef enum
         [request setValue:@"http://image.baidu.com/i?tn=baiduimage" forHTTPHeaderField:@"Referer"];
         [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146" forHTTPHeaderField:@"User-Agent"];
     }
+    
     
     
     [request setHTTPMethod:usePost?@"POST":@"GET"];
