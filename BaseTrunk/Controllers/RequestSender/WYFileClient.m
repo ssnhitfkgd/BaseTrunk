@@ -132,7 +132,7 @@
     
     //[params setObject:@"iPhone" forKey:@"client_type"];
     
-    WYRequestSender *requestSender = [WYRequestSender requestSenderWithURL:@"http://image.baidu.com/i"
+    WYRequestSender *requestSender = [WYRequestSender requestSenderWithURL:URL_BAIDU_IMAGE
                                                                    usePost:NO
                                                                      param:params
                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
