@@ -90,6 +90,7 @@
 		EE7E786B1B75FCFE00959AD8 /* WYCrashFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786A1B75FCFE00959AD8 /* WYCrashFoundation.m */; };
 		EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786D1B777B9B00959AD8 /* WYErrorView.m */; };
 		EEB23A481B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */; };
+		EEED17D91B96F0DD007560F6 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -257,6 +258,8 @@
 		EE83F6F21B5D174A007CBF95 /* BaseTrunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseTrunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB23A461B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGWaterfallHeaderReusableView.h; sourceTree = "<group>"; };
 		EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGWaterfallHeaderReusableView.m; sourceTree = "<group>"; };
+		EEED17D71B96F0DD007560F6 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
+		EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -648,6 +651,8 @@
 		EE7E78551B75AF3100959AD8 /* CollectHomeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EEED17D71B96F0DD007560F6 /* CustomSearchBar.h */,
+				EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */,
 				EEB23A461B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.h */,
 				EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */,
 				EE7E78601B75EB3800959AD8 /* WYBaiduImageViewCell.h */,
@@ -804,6 +809,7 @@
 				EE7E78581B75AF5F00959AD8 /* WYCollectionHomeViewController.m in Sources */,
 				EE7E77F01B737FF900959AD8 /* SVWebViewControllerActivityChrome.m in Sources */,
 				EE7E77A51B737FF900959AD8 /* WYModelApiViewController.m in Sources */,
+				EEED17D91B96F0DD007560F6 /* CustomSearchBar.m in Sources */,
 				EE7E785C1B75E39000959AD8 /* WYBaiduImageInfoDto.m in Sources */,
 				EE7E77C11B737FF900959AD8 /* Colours.m in Sources */,
 				EE7E78621B75EB3800959AD8 /* WYBaiduImageViewCell.m in Sources */,

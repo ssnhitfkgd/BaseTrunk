@@ -197,11 +197,15 @@
     [super startLoadData:loadHeader];
 }
 
+- (CGFloat)getTempHeight
+{
+    return 0;
+}
 #pragma mark -
 #pragma mark UICollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 1;
     
 }
 
@@ -244,6 +248,7 @@
         }
     }
 }
+
 
 #pragma mark -
 #pragma mark reload | load more

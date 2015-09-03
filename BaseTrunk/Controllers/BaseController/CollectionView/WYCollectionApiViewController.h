@@ -36,6 +36,8 @@
 @property (nonatomic, strong) WYErrorView *errorView;
 @property (nonatomic, strong) NSNumber *loadmore;
 
+
+- (CGFloat)getTempHeight;
 - (Class)cellClass;
 - (UICollectionViewLayout *)layout;
 @end
