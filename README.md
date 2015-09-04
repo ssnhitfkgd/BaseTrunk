@@ -4,6 +4,7 @@ IOS the underlying framework, the network layer, protocol layer, data layer
 If you believe you have identified a vulnerability with BaseTrunk, you should report it as soon as possible via email to ssnhgd@163.com. Please do not post it to a public issue tracker.
 
 
+
 ![Software architecture](https://github.com/ssnhitfkgd/BaseTrunk/blob/master/B3B9BE15-0BB4-4DFC-8F01-0C17E914BD20.jpg "Software architecture")
 
 
@@ -51,3 +52,7 @@ ARC.
 > WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 > ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 > OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+### Contact
+ssnhgd@163.com
