@@ -17,18 +17,18 @@ If you believe you have identified a vulnerability with BaseTrunk, you should re
 
 ## Requirements
 
-Xcode 5.1<br />
-Cocoapods<br />
-iOS 7.0 or higher.
-ARC.
+* Xcode 5.1<br />
+* Cocoapods<br />
+* iOS 7.0 or higher.
+* ARC.
 
 ## Credits
- 'AFNetworking 2.0'<br />
- 'SDWebImage'<br />
- 'SVProgressHUD'<br />
- 'SSKeychain'<br />
- 'iRate'<br />
- 'CocoaAsyncSocket'<br />
+ * 'AFNetworking 2.0'<br />
+ * 'SDWebImage'<br />
+ * 'SVProgressHUD'<br />
+ * 'SSKeychain'<br />
+ * 'iRate'<br />
+ * 'CocoaAsyncSocket'<br />
 
 ## License
 
