@@ -11,8 +11,10 @@ If you believe you have identified a vulnerability with BaseTrunk, you should re
 
 ## Installation
 
-pod install<br />
-open BaseTrunk.xcworkspace
+> pod install<br />
+> open BaseTrunk.xcworkspace
+
+
 ## Requirements
 
 Xcode 5.1<br />
