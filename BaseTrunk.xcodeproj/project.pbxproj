@@ -91,6 +91,7 @@
 		EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786D1B777B9B00959AD8 /* WYErrorView.m */; };
 		EEB23A481B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */; };
 		EEED17D91B96F0DD007560F6 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */; };
+		EEED17E21B9AC3B9007560F6 /* WYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED17E11B9AC3B9007560F6 /* WYSettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -260,6 +261,8 @@
 		EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGWaterfallHeaderReusableView.m; sourceTree = "<group>"; };
 		EEED17D71B96F0DD007560F6 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
 		EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBar.m; sourceTree = "<group>"; };
+		EEED17E01B9AC3B9007560F6 /* WYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingViewController.h; sourceTree = "<group>"; };
+		EEED17E11B9AC3B9007560F6 /* WYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +369,8 @@
 		EE7E76C91B737FF900959AD8 /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EEED17E01B9AC3B9007560F6 /* WYSettingViewController.h */,
+				EEED17E11B9AC3B9007560F6 /* WYSettingViewController.m */,
 			);
 			path = AboutViewController;
 			sourceTree = "<group>";
@@ -832,6 +837,7 @@
 				EE7E78271B73903800959AD8 /* JMStaticTableViewCell.m in Sources */,
 				EE7E77D11B737FF900959AD8 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				EE7E78101B73896200959AD8 /* WYSocketObject.m in Sources */,
+				EEED17E21B9AC3B9007560F6 /* WYSettingViewController.m in Sources */,
 				EE7E77AC1B737FF900959AD8 /* WYTableHomeViewController.m in Sources */,
 				EE7E78261B73903800959AD8 /* JMStaticContentTableViewSection.m in Sources */,
 				EE7E77AF1B737FF900959AD8 /* FMLogger.m in Sources */,

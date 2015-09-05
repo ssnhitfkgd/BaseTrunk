@@ -25,9 +25,9 @@
     self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     
     self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.imageView.clipsToBounds = YES;
- 
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    _imageView.clipsToBounds = YES;
+    [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
 
     [self addSubview:_imageView];
 
@@ -35,7 +35,7 @@
 
 + (CGFloat)rowHeightForObject:(id)item
 {
-    return 100.;
+    return 300.;
 }
 
 - (void)setObject:(id)item
@@ -51,6 +51,13 @@
             [_imageView sd_setImageWithURL:[NSURL URLWithString:_baiduImageInfoDto.thumbUrl] placeholderImage:nil options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
         }
     }
+    
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews
+{
+    self.height = self.superview.height;
 }
 
 - (void)imageSelected:(id)sender
