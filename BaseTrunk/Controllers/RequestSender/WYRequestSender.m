@@ -141,6 +141,10 @@ typedef enum
                         [self.delegate performSelector:self.completeSelector withObject:object];
                     }
                 }
+                else if(self.errorSelector)
+                {
+                    [self.delegate performSelector:self.errorSelector withObject:(NSError *)object];
+                }
 #pragma clang diagnostic pop
             }
         }
