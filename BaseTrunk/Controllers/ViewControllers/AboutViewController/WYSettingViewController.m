@@ -50,9 +50,7 @@
             staticContentCell.cellStyle = UITableViewCellStyleValue1;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryNone;
-			cell.textLabel.text = (@"uid");
-            [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-//            cell.detailTextLabel.text = [WYUserInfoDto sharedInstance].uid;
+			cell.textLabel.text = (@"text");
 		} ];
     }];
     
@@ -61,11 +59,11 @@
         [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
             staticContentCell.cellHeight = 60;
             staticContentCell.reuseIdentifier = reuseIdentifier;
-            staticContentCell.cellStyle = UITableViewCellStyleDefault;
+            staticContentCell.cellStyle = UITableViewCellStyleValue1;
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-            [cell.textLabel setText: (@"token")];
+            [cell.textLabel setText: (@"text")];
             [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-//            cell.detailTextLabel.text = [WYUserInfoDto sharedInstance].token;
+            cell.detailTextLabel.text = @"detail";
 
         } whenSelected:^(NSIndexPath *indexPath) {
         }];
@@ -73,13 +71,13 @@
 
     
     [self addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
-        section.title = (@"新消息通知");
+        section.title = (@"section header");
         NSString *reuseIdentifier = @"push";
         
         [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
             staticContentCell.reuseIdentifier = reuseIdentifier;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.text = (@"收到私信");
+            cell.textLabel.text = (@"text");
             
             UISwitch *respond_switch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, UISwitchWidth, UISwitchHeight)];
             respond_switch.tag = 9;
@@ -93,7 +91,7 @@
         [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
             staticContentCell.reuseIdentifier = reuseIdentifier;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.text = (@"收到回应");
+            cell.textLabel.text = (@"text");
             
             UISwitch *respond_switch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, UISwitchWidth, UISwitchHeight)];
             respond_switch.tag = 2;
@@ -114,7 +112,7 @@
             
             staticContentCell.cellStyle = UITableViewCellStyleDefault;
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-            cell.textLabel.text = (@"功能介绍");
+            cell.textLabel.text = (@"text");
             [cell.textLabel setBackgroundColor:[UIColor clearColor]];
             cell.detailTextLabel.text = @"";
         } whenSelected:^(NSIndexPath *indexPath) {
@@ -131,10 +129,14 @@
             staticContentCell.reuseIdentifier = reuseIdentifier;
             staticContentCell.cellStyle = UITableViewCellStyleDefault;
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-            [cell.textLabel setText: (@"评价我们")];
+            [cell.textLabel setText: (@"text")];
             [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+            [imageView setImage:[[UIImage imageNamed:@"8"] imageWithColor:[UIColor redColor]]];
+            [cell setAccessoryView:imageView];
         } whenSelected:^(NSIndexPath *indexPath) {
-            [[iRate sharedInstance] openRatingsPageInAppStore];
+//            [[iRate sharedInstance] openRatingsPageInAppStore];
         }];
         
         
