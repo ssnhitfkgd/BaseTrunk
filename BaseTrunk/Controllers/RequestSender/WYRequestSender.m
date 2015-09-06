@@ -31,8 +31,8 @@ typedef enum
 @synthesize progressSelector;
 @synthesize requestUrl;
 @synthesize usePost;
-@synthesize dictParam;
-@synthesize delegate;
+@synthesize requestParamDictionary;
+@synthesize requestDelegate;
 @synthesize completeSelector;
 @synthesize errorSelector;
 @synthesize cachePolicy;
@@ -49,35 +49,35 @@ typedef enum
     return sharedInstance;
 }
 
-+ (id)requestSenderWithURL:(NSString *)theUrl
++ (id)requestSenderWithURL:(NSString *)url
                    usePost:(BOOL)isPost
-                     param:(NSDictionary *)dictParam
+                     param:(NSDictionary *)requestParams
                cachePolicy:(NSURLRequestCachePolicy)cholicy
-                  delegate:(id)theDelegate
-          completeSelector:(SEL)theCompleteSelector
-             errorSelector:(SEL)theErrorSelector
-          selectorArgument:(id)theSelectorArgument
+                  delegate:(id)requestDelegate
+          completeSelector:(SEL)completeSelector
+             errorSelector:(SEL)errorSelector
+          selectorArgument:(id)selectorArgument
 {
     WYRequestSender *requestSender = [[WYRequestSender alloc] init];
-    requestSender.requestUrl = theUrl;
+    requestSender.requestUrl = url;
     requestSender.usePost = isPost;
-    requestSender.dictParam = dictParam;
-    requestSender.delegate = theDelegate;
-    requestSender.completeSelector = theCompleteSelector;
-    requestSender.errorSelector = theErrorSelector;
+    requestSender.requestParamDictionary = requestParams;
+    requestSender.requestDelegate = requestDelegate;
+    requestSender.completeSelector = completeSelector;
+    requestSender.errorSelector = errorSelector;
     requestSender.cachePolicy = cholicy;
-    NSLog(@"%@ \n %@", theUrl, dictParam);
+    NSLog(@"%@ \n %@", url, requestParams);
     return requestSender;
     
 }
 
 - (void)send
 {
-    NSMutableString *queryStr = [[NSMutableString alloc] init];
-    for (int i = 0; i < [dictParam count]; i++)
+    NSMutableString *bodyString = [[NSMutableString alloc] init];
+    for (int i = 0; i < [requestParamDictionary count]; i++)
     {
-        NSString *key = [dictParam allKeys][i];
-        NSString *value = [dictParam allValues][i];
+        NSString *key = [requestParamDictionary allKeys][i];
+        NSString *value = [requestParamDictionary allValues][i];
         
         if(value && [value isKindOfClass:[NSString class]])
         {
@@ -86,19 +86,19 @@ typedef enum
                                                                                                   NULL,
                                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                                   kCFStringEncodingUTF8);
-            [queryStr appendFormat:@"&%@=%@", key, encodedValue];
+            [bodyString appendFormat:@"&%@=%@", key, encodedValue];
             
         }
         else
         {
-            [queryStr appendFormat:@"&%@=%@", key, value];
+            [bodyString appendFormat:@"&%@=%@", key, value];
         }
     }
     
   
     if(!usePost)
     {
-        self.requestUrl = [self.requestUrl stringByAppendingString:[NSString stringWithFormat:@"?%@",queryStr]];
+        self.requestUrl = [self.requestUrl stringByAppendingString:[NSString stringWithFormat:@"?%@",bodyString]];
     }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.requestUrl]
@@ -117,16 +117,16 @@ typedef enum
     [request setHTTPMethod:usePost?@"POST":@"GET"];
     if(usePost)
     {
-        [request setHTTPBody:[queryStr dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
     }
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.securityPolicy.allowInvalidCertificates = YES;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if(self.delegate && self.completeSelector)
+        if(self.requestDelegate && self.completeSelector)
         {
-            if([self.delegate respondsToSelector:self.completeSelector])
+            if([self.requestDelegate respondsToSelector:self.completeSelector])
             {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -136,14 +136,14 @@ typedef enum
                 
                 if (object) {
                     if ([object isKindOfClass:[NSError class]]) {
-                        [self.delegate performSelector:self.errorSelector withObject:(NSError *)object];
+                        [self.requestDelegate performSelector:self.errorSelector withObject:(NSError *)object];
                     }else{
-                        [self.delegate performSelector:self.completeSelector withObject:object];
+                        [self.requestDelegate performSelector:self.completeSelector withObject:object];
                     }
                 }
                 else if(self.errorSelector)
                 {
-                    [self.delegate performSelector:self.errorSelector withObject:(NSError *)object];
+                    [self.requestDelegate performSelector:self.errorSelector withObject:(NSError *)object];
                 }
 #pragma clang diagnostic pop
             }
@@ -151,9 +151,9 @@ typedef enum
         
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        if(self.delegate && self.errorSelector)
+        if(self.requestDelegate && self.errorSelector)
         {
-            if([self.delegate respondsToSelector:self.errorSelector])
+            if([self.requestDelegate respondsToSelector:self.errorSelector])
             {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -163,12 +163,12 @@ typedef enum
                     [reasonDict setObject:self.timesp forKey:@"timesp"];
                     
                     NSError *errorr = [NSError errorWithDomain:ERROR_DOMAIN code:error.code userInfo:[NSDictionary dictionaryWithObject:reasonDict forKey:@"reason"]];
-                    [self.delegate performSelector:self.errorSelector withObject:errorr];
+                    [self.requestDelegate performSelector:self.errorSelector withObject:errorr];
                     
                 }
                 else
                 {
-                    [self.delegate performSelector:self.errorSelector withObject:error];
+                    [self.requestDelegate performSelector:self.errorSelector withObject:error];
                     
                 }
 #pragma clang diagnostic pop
@@ -183,11 +183,11 @@ typedef enum
 
 - (void)uploadData:(UploadType)type
 {
-    NSMutableString *queryStr = [[NSMutableString alloc] init];
-    for (int i = 0; i < [dictParam count]; ++i)
+    NSMutableString *bodyString = [[NSMutableString alloc] init];
+    for (int i = 0; i < [requestParamDictionary count]; ++i)
     {
-        NSString *key = [dictParam allKeys][i];
-        NSString *value = [dictParam allValues][i];
+        NSString *key = [requestParamDictionary allKeys][i];
+        NSString *value = [requestParamDictionary allValues][i];
         
         if(value && [value isKindOfClass:[NSString class]])
         {
@@ -196,12 +196,12 @@ typedef enum
                                                                                                   NULL,
                                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                                   kCFStringEncodingUTF8);
-            [queryStr appendFormat:@"&%@=%@", key, encodedValue];
+            [bodyString appendFormat:@"&%@=%@", key, encodedValue];
             
         }
         else
         {
-            [queryStr appendFormat:@"&%@=%@", key, value];
+            [bodyString appendFormat:@"&%@=%@", key, value];
             
         }
         
@@ -214,7 +214,7 @@ typedef enum
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     // formData是遵守了AFMultipartFormData的对象
-    [manager POST:[self.requestUrl stringByAppendingFormat:@"?%@",queryStr] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[self.requestUrl stringByAppendingFormat:@"?%@",bodyString] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
             switch (type) {
                 case UploadTypePicture:
@@ -234,7 +234,7 @@ typedef enum
             }
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if(self.delegate && self.completeSelector)
+        if(self.requestDelegate && self.completeSelector)
         {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -244,9 +244,9 @@ typedef enum
 
             if (object) {
                 if ([object isKindOfClass:[NSError class]]) {
-                    [self.delegate performSelector:self.errorSelector withObject:(NSError *)object];
+                    [self.requestDelegate performSelector:self.errorSelector withObject:(NSError *)object];
                 }else{
-                    [self.delegate performSelector:self.completeSelector withObject:object];
+                    [self.requestDelegate performSelector:self.completeSelector withObject:object];
                 }
             }
 #pragma clang diagnostic pop
@@ -255,7 +255,7 @@ typedef enum
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error : %@",error);
 
-        if(self.delegate && self.errorSelector){
+        if(self.requestDelegate && self.errorSelector){
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
@@ -265,12 +265,12 @@ typedef enum
                 [reasonDict setObject:self.timesp forKey:@"timesp"];
 
                 NSError *errorr = [NSError errorWithDomain:ERROR_DOMAIN code:error.code userInfo:[NSDictionary dictionaryWithObject:reasonDict forKey:@"reason"]];
-                [self.delegate performSelector:self.errorSelector withObject:errorr];
+                [self.requestDelegate performSelector:self.errorSelector withObject:errorr];
 
             }
             else
             {
-                [self.delegate performSelector:self.errorSelector withObject:error];
+                [self.requestDelegate performSelector:self.errorSelector withObject:error];
 
             }
             
@@ -285,57 +285,57 @@ typedef enum
 ///////////////
 - (id)transitionData:(NSData*)data cache:(BOOL)cache
 {
-    NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
-    NSLog(@"%@", [json_string JSONValue]);
-    if(json_string.length > 0)
+    NSLog(@"%@", [jsonString JSONValue]);
+    if(jsonString.length > 0)
     {
         if([[self.requestUrl description] hasPrefix:URL_BAIDU_IMAGE])
         {
-            id responseObject = [[json_string JSONValue] objectForKey:@"data"];
+            id responseObject = [[jsonString JSONValue] objectForKey:@"data"];
             return responseObject;
         }
         
-        NSDictionary *dict = [json_string JSONValue];
+        NSDictionary *dict = [jsonString JSONValue];
         
         NSString *code = [dict objectForKey:@"code"];
         if (code && ERROR_CODE_NEED_AUTH == [code intValue]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:AgainLoginNotification object:nil];
         }else if ((code && ERROR_CODE_BLOCKED == [code intValue])) {
-            NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE_BLOCKED userInfo:[NSDictionary dictionaryWithObject:[[json_string JSONValue] objectForKey:@"data"] forKey:@"reason"]];
+            NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE_BLOCKED userInfo:[NSDictionary dictionaryWithObject:[dict objectForKey:@"data"] forKey:@"reason"]];
             
             return error;
         }else if (code && ERROR_CODE_NORMAL == [code intValue]) {
             
             if(self.timesp)
             {
-                NSMutableDictionary *reasonDict = [NSMutableDictionary dictionaryWithDictionary:[json_string JSONValue]];
-                if(self.timesp && reasonDict && [reasonDict isKindOfClass:[NSDictionary class]])
+                NSMutableDictionary *reasonDictionary = [NSMutableDictionary dictionaryWithDictionary:dict];
+                if(self.timesp && reasonDictionary && [reasonDictionary isKindOfClass:[NSDictionary class]])
                 {
-                    [reasonDict setObject:self.timesp forKey:@"timesp"];
+                    [reasonDictionary setObject:self.timesp forKey:@"timesp"];
                 }
                 
-                NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:[code intValue] userInfo:[NSDictionary dictionaryWithObject:reasonDict forKey:@"reason"]];
+                NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:[code intValue] userInfo:[NSDictionary dictionaryWithObject:reasonDictionary forKey:@"reason"]];
 
                 return error;
             }
             
             
-            NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:[code intValue] userInfo:[NSDictionary dictionaryWithObject:[[json_string JSONValue] objectForKey:@"data"] forKey:@"reason"]];
+            NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:[code intValue] userInfo:[NSDictionary dictionaryWithObject:[dict objectForKey:@"data"] forKey:@"reason"]];
             
             return error;
         }else if (code && ERROR_CODE_SUCCESS == [code intValue]){
-            id responseObject = [[json_string JSONValue] objectForKey:@"data"];
+            id responseObject = [dict objectForKey:@"data"];
             if(responseObject && [responseObject isKindOfClass:[NSDictionary class]])
             {
-                NSMutableDictionary *reasonDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
-                if(self.timesp && reasonDict && [reasonDict isKindOfClass:[NSDictionary class]])
+                NSMutableDictionary *reasonDictionary = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+                if(self.timesp && reasonDictionary && [reasonDictionary isKindOfClass:[NSDictionary class]])
                 {
-                    [reasonDict setObject:self.timesp forKey:@"timesp"];
+                    [reasonDictionary setObject:self.timesp forKey:@"timesp"];
                 }
                 
-                [reasonDict setObject:[NSNumber numberWithBool:cache] forKey:@"cache"];
-                return reasonDict;
+                [reasonDictionary setObject:[NSNumber numberWithBool:cache] forKey:@"cache"];
+                return reasonDictionary;
             }
 
             if(self.timesp && [self.timesp length] > 0)
@@ -356,7 +356,7 @@ typedef enum
 
             return responseObject;
         }else{
-            NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:1024 userInfo:[NSDictionary dictionaryWithObject:json_string forKey:@"reason"]];
+            NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:1024 userInfo:[NSDictionary dictionaryWithObject:jsonString forKey:@"reason"]];
             
             return error;
         }

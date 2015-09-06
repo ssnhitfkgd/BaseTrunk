@@ -12,12 +12,12 @@
 #import "WYFileClient.h"
 
 @interface WYModelApiViewController()
-@property (nonatomic, strong) id model;
+@property (nonatomic, strong) id arrangedObjects;
 @end
 
 
 @implementation WYModelApiViewController
-@synthesize model;
+@synthesize arrangedObjects;
 
 
 #pragma mark subclass override
@@ -50,47 +50,46 @@
 #pragma mark data handling methods
 - (void)clearArrangedObjects
 {
-    self.model = nil;
+    self.arrangedObjects = nil;
 }
 
 - (id)arrangedObjects
 {
-    return self.model;
+    return self.arrangedObjects;
 }
 
 - (id)objectInArrangedObjectAtIndexPath:(NSIndexPath*)indexpath
 {
     id item = nil;
-    if(self.model != nil && [self.model isKindOfClass:[NSArray class]])
-        item = [self.model objectAtIndex:indexpath.row];
-    else if(self.model != nil && [self.model isKindOfClass:[NSDictionary class]])
-        item = self.model;
+    if(self.arrangedObjects != nil && [self.arrangedObjects isKindOfClass:[NSArray class]])
+        item = [self.arrangedObjects objectAtIndex:indexpath.row];
+    else if(self.arrangedObjects != nil && [self.arrangedObjects isKindOfClass:[NSDictionary class]])
+        item = self.arrangedObjects;
     
     return item;
 }
 
 - (NSInteger)countOfArrangedObjects
 {
-    if(self.model== nil)
+    if(self.arrangedObjects == nil)
         return 0;
-    if([self.model isKindOfClass:[NSDictionary class]])
+    if([self.arrangedObjects isKindOfClass:[NSDictionary class]])
         return 1;
     
-    return [self.model count];
+    return [self.arrangedObjects count];
 }
 
 #pragma mark request methods
 - (NSURLRequestCachePolicy)getPolicy
 {
-    NSURLRequestCachePolicy getPolicy = NSURLRequestReloadRevalidatingCacheData;
-    return getPolicy;
+    return NSURLRequestReloadRevalidatingCacheData;
 }
 
 - (void)reloadData {
     
     if (![self isLoading])
     {
-        self.model = nil;
+        [self clearArrangedObjects];
         [self loadData:NSURLRequestReloadIgnoringCacheData more:NO];
     }
 }
@@ -111,14 +110,14 @@
     _loading = YES;
     
     WYFileClient *client = [WYFileClient sharedInstance];
-    int pageSize = [self getPageSize];//MODEL_PAGE_SIZE;
+    NSInteger pageSize = [self getPageSize];//MODEL_PAGE_SIZE;
     NSString *offset_id = more?_offsetID:@"";
     _loadMore = more;
     
     
     switch (api_type) {            
         case API_SEARCH_IMAGE_BAIDU_LIST:
-            [client list_image_baidu:pageSize offsetId:more?((int)([self.model count])):0 text:@"haha" cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
+            [client list_image_baidu:pageSize offsetId:more?((int)([self.arrangedObjects count])):0 text:@"haha" cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
             break;
        
         default:
@@ -143,7 +142,7 @@
             
             if([data objectForKey:@"cache"] && !_loadMore)
             {
-                self.model = nil;
+                self.arrangedObjects = nil;
             }
             
             [self didFinishLoad:obj];
@@ -157,6 +156,7 @@
     [self didFailWithError:error];
 }
 
+
 - (void)didFailWithError:(NSError*)error
 {
     
@@ -165,16 +165,16 @@
 
 - (void)didFinishLoad:(id)object {
     
-    if(object && [object isEqual: model])
+    if(object && [object isEqual: arrangedObjects])
     {
         return;
     }
     
-    if (model) {
+    if (arrangedObjects) {
         // is loading more here
-        [self.model addObjectsFromArray:object];
+        [self.arrangedObjects addObjectsFromArray:object];
     } else {
-        self.model = object;
+        self.arrangedObjects = object;
     }
 }
 
@@ -197,22 +197,20 @@
     return pageName;
 }
 
-
-- (int)getPageSize
+- (NSInteger)getPageSize
 {
     return MODEL_PAGE_SIZE;
 }
 
 - (NSString*)getOffsetID
 {
-    return _offsetID?_offsetID:@"";
+    return _offsetID?:@"";
 }
 
 - (void)setOffsetID:(NSString*)offset
 {
     _offsetID = offset;
 }
-
 
 #pragma mark didReceiveMemoryWarning
 - (void)didReceiveMemoryWarning

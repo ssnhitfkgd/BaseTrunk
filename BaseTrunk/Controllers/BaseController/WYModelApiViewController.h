@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, API_GET_CODE)
 
 - (NSString*)getOffsetID;
 - (void)setOffsetID:(NSString*)offset;
-- (int)getPageSize;
+- (NSInteger)getPageSize;
 
 // subclass to override
 - (API_REQUEST_TYPE)modelApi;

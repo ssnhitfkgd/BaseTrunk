@@ -112,13 +112,13 @@
 
 
 
-- (void)list_image_baidu:(int)limit offsetId:(int)offset_id text:(NSString*)text cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
+- (void)list_image_baidu:(NSInteger)limit offsetId:(NSInteger)offset_id text:(NSString*)text cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"baiduimagejson" forKey:@"tn"];
     [params setObject:text forKey:@"word"];
-    [params setObject:[NSNumber numberWithInt:limit]  forKey:@"rn"];
-    [params setObject:[NSNumber numberWithInt:offset_id]  forKey:@"pn"];
+    [params setObject:[NSNumber numberWithInteger:limit]  forKey:@"rn"];
+    [params setObject:[NSNumber numberWithInteger:offset_id]  forKey:@"pn"];
     
     //Wi-Fi下请求大尺寸
     if ([self getNetworkingType] ==2) {

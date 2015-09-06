@@ -10,19 +10,18 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-
 //uploadtype
-typedef enum{
+typedef NS_ENUM(NSUInteger, UploadType){
     
 	UploadTypePicture = 0,
 
-} UploadType;
+};
 
 @interface WYRequestSender : AFHTTPRequestOperationManager
 
 @property (nonatomic, copy) NSString *requestUrl;
-@property (nonatomic, strong) NSDictionary *dictParam;
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, strong) NSDictionary *requestParamDictionary;
+@property (nonatomic, weak) id requestDelegate;
 @property (nonatomic) SEL completeSelector;
 @property (nonatomic) SEL errorSelector;
 @property (nonatomic) SEL progressSelector;
@@ -33,14 +32,14 @@ typedef enum{
 @property (nonatomic, strong)NSString *filePath;
 @property (nonatomic, strong)NSString *timesp;
 
-+ (id)requestSenderWithURL:(NSString *)theUrl
++ (id)requestSenderWithURL:(NSString *)url
                    usePost:(BOOL)isPost
-                     param:(NSDictionary *)dictParam
+                     param:(NSDictionary *)requestParams
                cachePolicy:(NSURLRequestCachePolicy)cholicy
-                  delegate:(id)theDelegate
-          completeSelector:(SEL)theCompleteSelector
-             errorSelector:(SEL)theErrorSelector
-          selectorArgument:(id)theSelectorArgument;
+                  delegate:(id)requestDelegate
+          completeSelector:(SEL)completeSelector
+             errorSelector:(SEL)errorSelector
+          selectorArgument:(id)selectorArgument;
 
 - (void)send;
 - (void)uploadData:(UploadType)type;
