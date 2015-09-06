@@ -197,7 +197,7 @@
     [super startLoadData:loadHeader];
 }
 
-- (CGFloat)getTempHeight
+- (CGFloat)headerHeight
 {
     return 0;
 }

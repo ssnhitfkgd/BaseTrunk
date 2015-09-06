@@ -12,12 +12,12 @@
 #import "WYFileClient.h"
 
 @interface WYModelApiViewController()
-@property (nonatomic, strong) id arrangedObjects;
+@property (nonatomic, strong) id model;
 @end
 
 
 @implementation WYModelApiViewController
-@synthesize arrangedObjects;
+@synthesize model;
 
 
 #pragma mark subclass override
@@ -50,33 +50,33 @@
 #pragma mark data handling methods
 - (void)clearArrangedObjects
 {
-    self.arrangedObjects = nil;
+    self.model = nil;
 }
 
 - (id)arrangedObjects
 {
-    return self.arrangedObjects;
+    return self.model;
 }
 
 - (id)objectInArrangedObjectAtIndexPath:(NSIndexPath*)indexpath
 {
     id item = nil;
-    if(self.arrangedObjects != nil && [self.arrangedObjects isKindOfClass:[NSArray class]])
-        item = [self.arrangedObjects objectAtIndex:indexpath.row];
-    else if(self.arrangedObjects != nil && [self.arrangedObjects isKindOfClass:[NSDictionary class]])
-        item = self.arrangedObjects;
+    if(self.model != nil && [self.model isKindOfClass:[NSArray class]])
+        item = [self.model objectAtIndex:indexpath.row];
+    else if(self.model != nil && [self.model isKindOfClass:[NSDictionary class]])
+        item = self.model;
     
     return item;
 }
 
 - (NSInteger)countOfArrangedObjects
 {
-    if(self.arrangedObjects == nil)
+    if(self.model == nil)
         return 0;
-    if([self.arrangedObjects isKindOfClass:[NSDictionary class]])
+    if([self.model isKindOfClass:[NSDictionary class]])
         return 1;
     
-    return [self.arrangedObjects count];
+    return [self.model count];
 }
 
 #pragma mark request methods
@@ -142,7 +142,7 @@
             
             if([data objectForKey:@"cache"] && !_loadMore)
             {
-                self.arrangedObjects = nil;
+                self.model = nil;
             }
             
             [self didFinishLoad:obj];
@@ -165,16 +165,16 @@
 
 - (void)didFinishLoad:(id)object {
     
-    if(object && [object isEqual: arrangedObjects])
+    if(object && [object isEqual: model])
     {
         return;
     }
     
-    if (arrangedObjects) {
+    if (model) {
         // is loading more here
-        [self.arrangedObjects addObjectsFromArray:object];
+        [self.model addObjectsFromArray:object];
     } else {
-        self.arrangedObjects = object;
+        self.model = object;
     }
 }
 

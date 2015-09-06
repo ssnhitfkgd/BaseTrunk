@@ -88,7 +88,7 @@
         
         [_activityIndicator setHidesWhenStopped:YES];
         [_activityIndicator setCenterX: _tableView.width/2];
-        [_activityIndicator setCenterY: _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 + [self getTempHeight]];
+        [_activityIndicator setCenterY: _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 + [self headerHeight]];
         [self.tableView addSubview:_activityIndicator];
         [self activityIndicatorAnimal:YES];
     }
@@ -104,7 +104,7 @@
         
         [self.tableView addSubview:_errorView];
         [_errorView setCenterX: _tableView.width/2];
-        [_errorView setCenterY: _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 + [self getTempHeight]];
+        [_errorView setCenterY: _tableView.tableHeaderView.height + (_tableView.height - _tableView.tableHeaderView.height)/2 + [self headerHeight]];
         
         [_errorView setBackgroundColor:_tableView.backgroundColor];
         
@@ -113,7 +113,7 @@
     return _errorView;
 }
 
-- (CGFloat)getTempHeight
+- (CGFloat)headerHeight
 {
     return -20;
 }
@@ -319,9 +319,6 @@
     
     [self refreshTableView:nil];
 }
-
-
-
 
 - (NSString *)getCacheKey
 {

@@ -37,7 +37,7 @@
 @property (nonatomic, strong) NSNumber *loadmore;
 
 
-- (CGFloat)getTempHeight;
+- (CGFloat)headerHeight;
 - (Class)cellClass;
 - (UICollectionViewLayout *)layout;
 @end
