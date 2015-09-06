@@ -221,9 +221,9 @@ static WYSocketObject* _sharedInstance = nil;
             id obj = [httpResponse JSONValue];
             if(obj && [obj isKindOfClass:[NSDictionary class]])
             {
-                id resID = [WYDataModelBase getStrValue:[obj objectForKey:@"id"]];//1408161430060
+                id resID = [WYItemParseBase getStrValue:[obj objectForKey:@"id"]];//1408161430060
                 //NSLog(@"socket_id:           %@",resID);
-                id resType = [WYDataModelBase getStrValue:[obj objectForKey:@"type"]];
+                id resType = [WYItemParseBase getStrValue:[obj objectForKey:@"type"]];
                 
                 if([resType isEqualToString:@"error"])
                 {

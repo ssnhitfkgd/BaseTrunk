@@ -1,5 +1,5 @@
 //
-//  WYDataModelBase.h
+//  WYItemParseBase.h
 //
 //
 //  Created by wangyong on 15/7/20.
@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WYDataModelBase : NSObject {
+@interface WYItemParseBase : NSObject {
     NSMutableDictionary *resultDictnary;
 }
 

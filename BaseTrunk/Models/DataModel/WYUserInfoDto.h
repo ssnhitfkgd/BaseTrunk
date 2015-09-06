@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WYDataModelBase.h"
+#import "WYItemParseBase.h"
 #import <MapKit/MapKit.h>
 
-@interface WYUserInfoDto : WYDataModelBase
+@interface WYUserInfoDto : WYItemParseBase
 
 @property (nonatomic, copy) NSString *user_id;
 @property (nonatomic, copy) NSString *status;

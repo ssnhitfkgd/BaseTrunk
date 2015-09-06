@@ -7,9 +7,9 @@
 //
 
 
-#import "WYDataModelBase.h"
+#import "WYItemParseBase.h"
 
-@interface WYHomeDto : WYDataModelBase
+@interface WYHomeDto : WYItemParseBase
 
 @property (nonatomic, assign) NSInteger familyId;
 @property (nonatomic, assign) NSInteger goodNum;

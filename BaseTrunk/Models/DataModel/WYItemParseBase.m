@@ -1,5 +1,5 @@
 //
-//  WYDataModelBase.m
+//  WYItemParseBase.m
 //
 //
 //  Created by wangyong on 15/7/20.
@@ -7,12 +7,12 @@
 //
 
 
-#import "WYDataModelBase.h"
+#import "WYItemParseBase.h"
 #import "SBJson.h"
 #import <objc/runtime.h>
 
 
-@implementation WYDataModelBase
+@implementation WYItemParseBase
 //@synthesize dtoResult = _dtoResult;
 
 - (id)init:(NSString *)str
@@ -138,7 +138,6 @@
     resultDictnary = (NSMutableDictionary*)result;
     else resultDictnary = [[NSMutableDictionary alloc] initWithDictionary:result];
 }
-
 
 
 - (BOOL)parseData:(NSDictionary *)result

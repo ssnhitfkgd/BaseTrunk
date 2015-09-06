@@ -8,7 +8,7 @@
 
 #import "WYMainAppViewController.h"
 #import "WYUserInfoDto.h"
-#import "WYDataModelBase.h"
+#import "WYItemParseBase.h"
 #import "iRate.h"
 #import "WYSocketObject.h"
 
@@ -110,13 +110,13 @@
 - (void)appUpdate:(NSDictionary *)appUpdateInfo
 {
     if (appUpdateInfo && [appUpdateInfo isKindOfClass:[NSDictionary class]]) {
-        BOOL update = [WYDataModelBase getBoolValue:[appUpdateInfo objectForKey:@"update"]];
+        BOOL update = [WYItemParseBase getBoolValue:[appUpdateInfo objectForKey:@"update"]];
         if (update) {
             //need update
-            NSString *update_version = [WYDataModelBase getStrValue:[appUpdateInfo objectForKey:@"version"]];
+            NSString *update_version = [WYItemParseBase getStrValue:[appUpdateInfo objectForKey:@"version"]];
             BOOL reminded = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"Reminded_version_%@",update_version]] boolValue];
             if (reminded == NO) {
-                NSString *update_log = [WYDataModelBase getStrValue:[appUpdateInfo objectForKey:@"update_log"]];
+                NSString *update_log = [WYItemParseBase getStrValue:[appUpdateInfo objectForKey:@"update_log"]];
                 
                 UIAlertView *updateAlert = [UIAlertView alertViewWithTitle:@"发现新版本"
                                                                    message:update_log
@@ -154,7 +154,7 @@
         
         if (payload && [payload isKindOfClass:[NSDictionary class]]) {
             
-            NSString *type = [WYDataModelBase getStrValue:[payload objectForKey:@"type"]];
+            NSString *type = [WYItemParseBase getStrValue:[payload objectForKey:@"type"]];
             if (type && ![type isEqualToString:@""]) {
                 
                 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 wang yong. All rights reserved.
 //
 
-#import "WYDataModelBase.h"
+#import "WYItemParseBase.h"
 
-@interface WYBaiduImageInfoDto : WYDataModelBase
+@interface WYBaiduImageInfoDto : WYItemParseBase
 @property (nonatomic, copy) NSString *thumbUrl;
 @property (nonatomic, copy) NSString *largeTnImageUrl;
 

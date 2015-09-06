@@ -63,7 +63,7 @@
 		EE7E78031B737FF900959AD8 /* UINavigationController+TRVSNavigationControllerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E778C1B737FF900959AD8 /* UINavigationController+TRVSNavigationControllerTransition.m */; };
 		EE7E78041B737FF900959AD8 /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E778E1B737FF900959AD8 /* UIView+Addition.m */; };
 		EE7E78071B737FF900959AD8 /* WYHomeDto.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E77951B737FF900959AD8 /* WYHomeDto.m */; };
-		EE7E78081B737FF900959AD8 /* WYDataModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E77971B737FF900959AD8 /* WYDataModelBase.m */; };
+		EE7E78081B737FF900959AD8 /* WYItemParseBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E77971B737FF900959AD8 /* WYItemParseBase.m */; };
 		EE7E78091B737FF900959AD8 /* WYUserInfoDto.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E77991B737FF900959AD8 /* WYUserInfoDto.m */; };
 		EE7E780A1B737FF900959AD8 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E779C1B737FF900959AD8 /* DateUtil.m */; };
 		EE7E780B1B737FF900959AD8 /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E779E1B737FF900959AD8 /* FileUtil.m */; };
@@ -202,8 +202,8 @@
 		EE7E778E1B737FF900959AD8 /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
 		EE7E77941B737FF900959AD8 /* WYHomeDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHomeDto.h; sourceTree = "<group>"; };
 		EE7E77951B737FF900959AD8 /* WYHomeDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHomeDto.m; sourceTree = "<group>"; };
-		EE7E77961B737FF900959AD8 /* WYDataModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDataModelBase.h; sourceTree = "<group>"; };
-		EE7E77971B737FF900959AD8 /* WYDataModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDataModelBase.m; sourceTree = "<group>"; };
+		EE7E77961B737FF900959AD8 /* WYItemParseBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYItemParseBase.h; sourceTree = "<group>"; };
+		EE7E77971B737FF900959AD8 /* WYItemParseBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYItemParseBase.m; sourceTree = "<group>"; };
 		EE7E77981B737FF900959AD8 /* WYUserInfoDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUserInfoDto.h; sourceTree = "<group>"; };
 		EE7E77991B737FF900959AD8 /* WYUserInfoDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUserInfoDto.m; sourceTree = "<group>"; };
 		EE7E779B1B737FF900959AD8 /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
@@ -589,8 +589,8 @@
 				EE7E785B1B75E39000959AD8 /* WYBaiduImageInfoDto.m */,
 				EE7E77941B737FF900959AD8 /* WYHomeDto.h */,
 				EE7E77951B737FF900959AD8 /* WYHomeDto.m */,
-				EE7E77961B737FF900959AD8 /* WYDataModelBase.h */,
-				EE7E77971B737FF900959AD8 /* WYDataModelBase.m */,
+				EE7E77961B737FF900959AD8 /* WYItemParseBase.h */,
+				EE7E77971B737FF900959AD8 /* WYItemParseBase.m */,
 				EE7E77981B737FF900959AD8 /* WYUserInfoDto.h */,
 				EE7E77991B737FF900959AD8 /* WYUserInfoDto.m */,
 			);
@@ -825,7 +825,7 @@
 			files = (
 				EE7E78531B75AC2600959AD8 /* WYBaseTabbarViewController.m in Sources */,
 				EE7E78071B737FF900959AD8 /* WYHomeDto.m in Sources */,
-				EE7E78081B737FF900959AD8 /* WYDataModelBase.m in Sources */,
+				EE7E78081B737FF900959AD8 /* WYItemParseBase.m in Sources */,
 				EE7E780B1B737FF900959AD8 /* FileUtil.m in Sources */,
 				EE7E780C1B737FF900959AD8 /* Global.m in Sources */,
 				EE7E783F1B73A79300959AD8 /* WYTableApiViewController.m in Sources */,
