@@ -7,17 +7,12 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "tabbar_find@2x-1.png"
+      "filename" : "tabbar_find@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "tabbar_find@2x.png",
-      "unassigned" : true,
-      "scale" : "2x"
+      "scale" : "3x",
+      "filename" : "tabbar_find@3x.png"
     }
   ],
   "info" : {

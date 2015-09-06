@@ -111,7 +111,7 @@
     
     WYFileClient *client = [WYFileClient sharedInstance];
     NSInteger pageSize = [self getPageSize];//MODEL_PAGE_SIZE;
-    NSString *offset_id = more?_offsetID:@"";
+//    NSString *offset_id = more?_offsetID:@"";
     _loadMore = more;
     
     
