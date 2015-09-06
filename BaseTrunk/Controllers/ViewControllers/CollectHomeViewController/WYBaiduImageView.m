@@ -8,6 +8,7 @@
 
 #import "WYBaiduImageView.h"
 #import "UIImageView+WebCache.h"
+#import "SJAvatarBrowser.h"
 
 @implementation WYBaiduImageView
 
@@ -24,12 +25,15 @@
 {    
     self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.8];
     
-    self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    _imageView.contentMode = UIViewContentModeScaleAspectFill;
-    _imageView.clipsToBounds = YES;
-    [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    [imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
 
-    [self addSubview:_imageView];
+    [imageView setUserInteractionEnabled:YES];
+    [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageSelected:)]];
+    self.imageView = imageView;
+    [self addSubview:imageView];
 
 }
 
@@ -60,8 +64,9 @@
     self.height = self.superview.height;
 }
 
-- (void)imageSelected:(id)sender
+- (void)imageSelected:(UIGestureRecognizer*)sender
 {
+    [SJAvatarBrowser showImage:_imageView];
 }
 
 @end

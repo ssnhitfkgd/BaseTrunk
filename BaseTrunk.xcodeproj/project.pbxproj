@@ -90,6 +90,7 @@
 		EE7E786B1B75FCFE00959AD8 /* WYCrashFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786A1B75FCFE00959AD8 /* WYCrashFoundation.m */; };
 		EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786D1B777B9B00959AD8 /* WYErrorView.m */; };
 		EEB23A481B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */; };
+		EED8C2B21B9C1F31006C4AA6 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = EED8C2B11B9C1F31006C4AA6 /* SJAvatarBrowser.m */; };
 		EEED17D91B96F0DD007560F6 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */; };
 		EEED17E21B9AC3B9007560F6 /* WYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED17E11B9AC3B9007560F6 /* WYSettingViewController.m */; };
 /* End PBXBuildFile section */
@@ -259,6 +260,8 @@
 		EE83F6F21B5D174A007CBF95 /* BaseTrunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseTrunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB23A461B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGWaterfallHeaderReusableView.h; sourceTree = "<group>"; };
 		EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGWaterfallHeaderReusableView.m; sourceTree = "<group>"; };
+		EED8C2B01B9C1F31006C4AA6 /* SJAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAvatarBrowser.h; sourceTree = "<group>"; };
+		EED8C2B11B9C1F31006C4AA6 /* SJAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAvatarBrowser.m; sourceTree = "<group>"; };
 		EEED17D71B96F0DD007560F6 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
 		EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBar.m; sourceTree = "<group>"; };
 		EEED17E01B9AC3B9007560F6 /* WYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingViewController.h; sourceTree = "<group>"; };
@@ -416,6 +419,7 @@
 		EE7E76E41B737FF900959AD8 /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				EED8C2AF1B9C1F31006C4AA6 /* SJAvatarBrowser */,
 				EE7E76F91B737FF900959AD8 /* Colours */,
 				EE7E76FC1B737FF900959AD8 /* DiskCacheCenter */,
 				EE7E770B1B737FF900959AD8 /* PWLoadMore */,
@@ -688,6 +692,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EED8C2AF1B9C1F31006C4AA6 /* SJAvatarBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				EED8C2B01B9C1F31006C4AA6 /* SJAvatarBrowser.h */,
+				EED8C2B11B9C1F31006C4AA6 /* SJAvatarBrowser.m */,
+			);
+			path = SJAvatarBrowser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -823,6 +836,7 @@
 				EE7E78021B737FF900959AD8 /* UINavigationBar+Addition.m in Sources */,
 				EE7E77FD1B737FF900959AD8 /* NSString+Additions.m in Sources */,
 				EE7E77B41B737FF900959AD8 /* NSObject+Switch.m in Sources */,
+				EED8C2B21B9C1F31006C4AA6 /* SJAvatarBrowser.m in Sources */,
 				EE7E77F61B737FF900959AD8 /* SVWebViewControllerActivity.m in Sources */,
 				EE7E77CC1B737FF900959AD8 /* SBJsonStreamParser.m in Sources */,
 				EE7E77A91B737FF900959AD8 /* WYConfig.m in Sources */,
