@@ -117,7 +117,7 @@
     
     switch (api_type) {            
         case API_SEARCH_IMAGE_BAIDU_LIST:
-            [client list_image_baidu:pageSize offsetId:more?((int)([self.arrangedObjects count])):0 text:@"haha" cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
+            [client list_image_baidu:pageSize offsetId:more?((int)([self.arrangedObjects count])):0 text:@"搞笑" cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
             break;
        
         default:
