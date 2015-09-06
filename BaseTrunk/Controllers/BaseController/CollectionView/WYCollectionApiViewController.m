@@ -109,7 +109,7 @@
 
 - (void)addSubErrorView
 {
-    API_GET_TYPE api_type = [self modelApi];
+    API_REQUEST_TYPE api_type = [self modelApi];
     switch (api_type) {
         default:
             [self.errorView setText:NSLocalizedString(@"nodata",nil) detail:nil];
@@ -211,12 +211,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if(self.model== nil)
-        return 0;
-    if([self.model isKindOfClass:[NSDictionary class]])
-        return 1;
-    
-    return [(NSArray*)self.model count];
+    return [self countOfArrangedObjects];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -236,14 +231,9 @@
 - (void)setDisplayCell:(id)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell respondsToSelector:@selector(setObject:)]) {
-        if([(NSArray*)self.model count] > indexPath.row)
+        if([self countOfArrangedObjects] > indexPath.row)
         {
-            id item = nil;
-            if(self.model != nil && [self.model isKindOfClass:[NSArray class]])
-                item = [self.model objectAtIndex:indexPath.row];
-            else if(self.model != nil && [self.model isKindOfClass:[NSDictionary class]])
-                item = self.model;
-            
+            id item = [self objectInArrangedObjectAtIndexPath:indexPath];
             [cell setObject:item];
         }
     }
@@ -341,7 +331,7 @@
     
     if([(NSArray*)array count] == 0)
     {
-        if(self.model == nil)
+        if([self arrangedObjects] == nil)
         {
             //list 为空
             
@@ -351,7 +341,7 @@
             
             if(_headerLoading)
             {
-                self.model = nil;
+                [self clearArrangedObjects];
                 [self performSelector:@selector(finishLoadHeaderTableViewDataSource) withObject:nil afterDelay:0.01];
             }
             
@@ -377,7 +367,7 @@
     
     if(_headerLoading)
     {
-        self.model = nil;
+        [self clearArrangedObjects];
         [self performSelector:@selector(finishLoadHeaderTableViewDataSource) withObject:nil afterDelay:0.01];
     }
 }
@@ -431,7 +421,7 @@
     }
     
     
-    if(self.model && [(NSArray*)self.model count] > 0)
+    if([self countOfArrangedObjects] > 0)
     {
         if(strFailText)
         {

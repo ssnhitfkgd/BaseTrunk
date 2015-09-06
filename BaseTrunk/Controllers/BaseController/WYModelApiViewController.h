@@ -12,7 +12,7 @@
 
 
 /********************************添加api 以追加得方式 向下拓展 否则缓存数据会错乱**********************************/
-typedef NS_ENUM(NSUInteger, API_GET_TYPE)
+typedef NS_ENUM(NSUInteger, API_REQUEST_TYPE)
 {
     API_SEARCH_IMAGE_BAIDU_LIST,
 
@@ -36,9 +36,13 @@ typedef NS_ENUM(NSUInteger, API_GET_CODE)
     BOOL _loading;
 }
 
-@property (nonatomic, strong) id model;
 
-- (API_GET_TYPE)modelApi;
+- (void)clearArrangedObjects;
+- (id)arrangedObjects;
+- (id)objectInArrangedObjectAtIndexPath:(NSIndexPath*)indexpath;
+- (NSInteger)countOfArrangedObjects;
+
+
 - (void)reloadData;
 
 - (void)loadData:(NSURLRequestCachePolicy)cachePolicy more:(BOOL)more;
@@ -46,13 +50,14 @@ typedef NS_ENUM(NSUInteger, API_GET_CODE)
 
 - (void)didFinishLoad:(id)object;
 - (void)didFailWithError:(NSError *)error;
+
 - (void)requestDidFinishLoad:(NSData*)data;
 - (void)requestDidError:(NSError*)error;
 
-- (void)relogin;
-// subclass to override
 - (NSString*)getOffsetID;
 - (void)setOffsetID:(NSString*)offset;
 - (int)getPageSize;
 
+// subclass to override
+- (API_REQUEST_TYPE)modelApi;
 @end

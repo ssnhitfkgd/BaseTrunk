@@ -71,7 +71,7 @@
 
 - (void)addSubErrorView
 {
-    API_GET_TYPE api_type = [self modelApi];
+    API_REQUEST_TYPE api_type = [self modelApi];
     switch (api_type) {
         default:
             [self.errorView setText:NSLocalizedString(@"no data",nil) detail:nil];
@@ -199,7 +199,7 @@
     }
     
     
-    if(self.model && [(NSArray*)self.model count] > 0)
+    if([self countOfArrangedObjects] > 0)
     {
         if(strFailText)
         {
@@ -236,17 +236,16 @@
     
     if([(NSArray*)array count] == 0)
     {
-        if(self.model == nil)
+        if([self arrangedObjects] == nil)
         {
-            //list 为空
-            
+            //list 为空            
             [self addSubErrorView];
             [_tableView reloadData];
             [self setEnableFooter:NO];
             
             if(_headerLoading)
             {
-                self.model = nil;
+                [self clearArrangedObjects];
                 [self performSelector:@selector(finishLoadHeaderTableViewDataSource) withObject:nil afterDelay:0.01];
             }
             
@@ -272,7 +271,7 @@
     
     if(_headerLoading)
     {
-        self.model = nil;
+        [self clearArrangedObjects];
         [self performSelector:@selector(finishLoadHeaderTableViewDataSource) withObject:nil afterDelay:0.01];
     }
 }
@@ -332,12 +331,7 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.model== nil)
-        return 0;
-    if([self.model isKindOfClass:[NSDictionary class]])
-        return 1;
-    
-    return [(NSArray*)self.model count];
+    return [self countOfArrangedObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -357,14 +351,9 @@
 - (void)setDisplayCell:(id)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell respondsToSelector:@selector(setObject:)]) {
-        if([(NSArray*)self.model count] > indexPath.row)
+        if([self countOfArrangedObjects] > indexPath.row)
         {
-            id item = nil;
-            if(self.model != nil && [self.model isKindOfClass:[NSArray class]])
-                item = [self.model objectAtIndex:indexPath.row];
-            else if(self.model != nil && [self.model isKindOfClass:[NSDictionary class]])
-                item = self.model;
-            
+            id item = [self objectInArrangedObjectAtIndexPath:indexPath];
             [cell setObject:item];
         }
     }
@@ -374,11 +363,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    id item = nil;
-    if(self.model != nil && [self.model isKindOfClass:[NSArray class]])
-        item = [self.model objectAtIndex:indexPath.row];
-    else if(self.model != nil && [self.model isKindOfClass:[NSDictionary class]])
-        item = self.model;
+    id item = [self objectInArrangedObjectAtIndexPath:indexPath];
+    
     Class cls = [self cellClass];
     if ([cls respondsToSelector:@selector(rowHeightForObject:)]) {
         return [cls rowHeightForObject:item];

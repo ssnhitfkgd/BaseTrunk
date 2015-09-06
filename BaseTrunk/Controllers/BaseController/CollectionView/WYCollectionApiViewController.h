@@ -14,7 +14,7 @@
 @protocol WYCollectionApiViewControllerDelegate<NSObject>
 
 @optional
-- (API_GET_TYPE)modelApi;
+- (API_REQUEST_TYPE)modelApi;
 - (Class)cellClass;
 @end
 

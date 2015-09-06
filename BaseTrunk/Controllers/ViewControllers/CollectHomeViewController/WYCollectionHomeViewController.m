@@ -46,7 +46,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (API_GET_TYPE)modelApi
+- (API_REQUEST_TYPE)modelApi
 {
     return API_SEARCH_IMAGE_BAIDU_LIST;
 }

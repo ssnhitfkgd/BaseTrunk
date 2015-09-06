@@ -11,10 +11,21 @@
 #import "SBJson.h"
 #import "WYFileClient.h"
 
+@interface WYModelApiViewController()
+@property (nonatomic, strong) id model;
+@end
+
 
 @implementation WYModelApiViewController
 @synthesize model;
 
+
+#pragma mark subclass override
+- (API_REQUEST_TYPE)modelApi
+{
+    NSAssert(NO, @"the method \"modelApi\" Must be rewritten");
+    return -1;
+}
 
 - (id)init{
     self = [super init]; 
@@ -25,17 +36,63 @@
     return self;
 }
 
-// --- ---
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //    [MobClick endLogPageView:[self getPageName]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+#pragma mark data handling methods
+- (void)clearArrangedObjects
+{
+    self.model = nil;
+}
+
+- (id)arrangedObjects
+{
+    return self.model;
+}
+
+- (id)objectInArrangedObjectAtIndexPath:(NSIndexPath*)indexpath
+{
+    id item = nil;
+    if(self.model != nil && [self.model isKindOfClass:[NSArray class]])
+        item = [self.model objectAtIndex:indexpath.row];
+    else if(self.model != nil && [self.model isKindOfClass:[NSDictionary class]])
+        item = self.model;
+    
+    return item;
+}
+
+- (NSInteger)countOfArrangedObjects
+{
+    if(self.model== nil)
+        return 0;
+    if([self.model isKindOfClass:[NSDictionary class]])
+        return 1;
+    
+    return [self.model count];
+}
+
+#pragma mark request methods
 - (NSURLRequestCachePolicy)getPolicy
 {
     NSURLRequestCachePolicy getPolicy = NSURLRequestReloadRevalidatingCacheData;
     return getPolicy;
 }
 
-- (API_GET_TYPE)modelApi
-{
-    NSAssert(NO, @"the method \"modelApi\" Must be rewritten");
-    return -1;
+- (void)reloadData {
+    
+    if (![self isLoading])
+    {
+        self.model = nil;
+        [self loadData:NSURLRequestReloadIgnoringCacheData more:NO];
+    }
 }
 
 - (void)startLoadData:(NSNumber *)loadHeader
@@ -46,10 +103,11 @@
               more:loadMore];
 }
 
+
 - (void)loadData:(NSURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
     
-    API_GET_TYPE api_type = [self modelApi];
+    API_REQUEST_TYPE api_type = [self modelApi];
     _loading = YES;
     
     WYFileClient *client = [WYFileClient sharedInstance];
@@ -68,71 +126,12 @@
     }
 }
 
-- (void)didFinishLoad:(id)object {
-    
-    if(object && [object isEqual: model])
-    {
-        return;
-    }
-    
-    if (model) {
-        // is loading more here
-        [self.model addObjectsFromArray:object];
-    } else {
-        self.model = object;
-    }
-}
-
-#pragma mark -
-- (void)reloadData {
-    
-    if (![self isLoading])
-    {
-        self.model = nil;
-        [self loadData:NSURLRequestReloadIgnoringCacheData more:NO];
-    }
-}
-
-- (BOOL)isLoading
-{
-    return _loading;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-//    [MobClick endLogPageView:[self getPageName]];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (NSString*)getPageName
-{
-    API_GET_TYPE api_type = [self modelApi];
-    NSString *pageName = @"未知";
-        
-    switch (api_type) {
-          
-        default:
-            break;
-    }
-    
-    return pageName;
-}
-
-- (void)relogin
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:AgainLoginNotification object:nil];
-}
-
 - (void)requestDidFinishLoad:(id)data
 {
     _loading = NO;
     if(data && [data isKindOfClass:[NSDictionary class]])
     {
-
+        
         id obj = [data objectForKey:@"list"];
         if(obj && [obj isKindOfClass:[NSArray class]])
         {
@@ -152,19 +151,53 @@
     }
 }
 
-- (void)didFailWithError:(NSError*)error
-{
-    
-    
-}
-
 - (void)requestDidError:(NSError*)error
 {
     _loading = NO;
     [self didFailWithError:error];
 }
 
-#pragma mark subclass override
+- (void)didFailWithError:(NSError*)error
+{
+    
+    
+}
+
+- (void)didFinishLoad:(id)object {
+    
+    if(object && [object isEqual: model])
+    {
+        return;
+    }
+    
+    if (model) {
+        // is loading more here
+        [self.model addObjectsFromArray:object];
+    } else {
+        self.model = object;
+    }
+}
+
+- (BOOL)isLoading
+{
+    return _loading;
+}
+
+- (NSString*)getPageName
+{
+    API_REQUEST_TYPE api_type = [self modelApi];
+    NSString *pageName = @"未知";
+        
+    switch (api_type) {
+          
+        default:
+            break;
+    }
+    
+    return pageName;
+}
+
+
 - (int)getPageSize
 {
     return MODEL_PAGE_SIZE;
@@ -181,7 +214,7 @@
 }
 
 
-#pragma mark
+#pragma mark didReceiveMemoryWarning
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
