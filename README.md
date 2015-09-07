@@ -9,7 +9,7 @@ If you believe you have identified a vulnerability with BaseTrunk, you should re
 
 
 
-![Data architecture](https://github.com/ssnhitfkgd/BaseTrunk/blob/master/6FB318C8-ACD1-4B5B-ACC1-4C99083CF5BF.jpg "Data architecture")
+![Data architecture](https://github.com/ssnhitfkgd/BaseTrunk/blob/master/6FB318C8-ACD1-4B5B-ACC1-4C99083CF5BF.png "Data architecture")
 
 
 ## Installation
