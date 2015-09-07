@@ -90,7 +90,7 @@
 
 - (void)_replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject
 {
-    if ((index < [self count])&&anObject) {
+    if ((index < [self count]) && anObject) {
         [self _replaceObjectAtIndex:index withObject:anObject];
     }
 }

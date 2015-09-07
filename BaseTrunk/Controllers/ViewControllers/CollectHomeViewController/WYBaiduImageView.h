@@ -10,7 +10,7 @@
 
 @interface WYBaiduImageView : UIView
 
-@property (nonatomic, strong) UIImageView* imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) WYBaiduImageInfoDto *baiduImageInfoDto;
 @property (nonatomic, strong) UIButton *backButton;
 
