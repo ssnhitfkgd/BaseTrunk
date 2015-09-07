@@ -14,9 +14,8 @@
 
 @implementation UIImageView (Addition)
 
-- (void)fillCircleLayer:(UIColor*)color
+- (void)fillCircleLayer:(UIColor*)color radius:(NSInteger)radius
 {
-    NSInteger radius = (self.width)/2;
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-2, -2, self.width+4, self.height+4) cornerRadius:0];
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius) cornerRadius:radius];
     [path appendPath:circlePath];

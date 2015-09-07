@@ -10,6 +10,6 @@
 
 @interface UIImageView (Addition)
 
-- (void)fillCircleLayer:(UIColor*)color;
+- (void)fillCircleLayer:(UIColor*)color radius:(NSInteger)radius;
 - (void)setHighlightedColor:(UIColor*)color;
 @end
