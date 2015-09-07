@@ -91,6 +91,7 @@
 		EE7E786E1B777B9B00959AD8 /* WYErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7E786D1B777B9B00959AD8 /* WYErrorView.m */; };
 		EEB23A481B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB23A471B7F964B00F9CA90 /* FRGWaterfallHeaderReusableView.m */; };
 		EED8C2B21B9C1F31006C4AA6 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = EED8C2B11B9C1F31006C4AA6 /* SJAvatarBrowser.m */; };
+		EED8C4251B9DDF25006C4AA6 /* UIImageView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = EED8C4241B9DDF25006C4AA6 /* UIImageView+Addition.m */; };
 		EEED17D91B96F0DD007560F6 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */; };
 		EEED17E21B9AC3B9007560F6 /* WYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED17E11B9AC3B9007560F6 /* WYSettingViewController.m */; };
 /* End PBXBuildFile section */
@@ -265,6 +266,8 @@
 		EED8C40B1B9C39D8006C4AA6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EED8C40D1B9C39ED006C4AA6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EED8C40F1B9C39FC006C4AA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EED8C4231B9DDF25006C4AA6 /* UIImageView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Addition.h"; sourceTree = "<group>"; };
+		EED8C4241B9DDF25006C4AA6 /* UIImageView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Addition.m"; sourceTree = "<group>"; };
 		EEED17D71B96F0DD007560F6 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
 		EEED17D81B96F0DD007560F6 /* CustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBar.m; sourceTree = "<group>"; };
 		EEED17E01B9AC3B9007560F6 /* WYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingViewController.h; sourceTree = "<group>"; };
@@ -556,6 +559,8 @@
 		EE7E777A1B737FF900959AD8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				EED8C4231B9DDF25006C4AA6 /* UIImageView+Addition.h */,
+				EED8C4241B9DDF25006C4AA6 /* UIImageView+Addition.m */,
 				EE7E78111B738BFF00959AD8 /* UITabBarController+hidable.h */,
 				EE7E78121B738BFF00959AD8 /* UITabBarController+hidable.m */,
 				EE7E777B1B737FF900959AD8 /* NSArray+Addition.h */,
@@ -850,6 +855,7 @@
 				EE7E77D31B737FF900959AD8 /* SBJsonTokeniser.m in Sources */,
 				EE7E77FF1B737FF900959AD8 /* UIAlertView+Addition.m in Sources */,
 				EE7E77D41B737FF900959AD8 /* SBJsonUTF8Stream.m in Sources */,
+				EED8C4251B9DDF25006C4AA6 /* UIImageView+Addition.m in Sources */,
 				EE7E77AD1B737FF900959AD8 /* WYSingleHomeCell.m in Sources */,
 				EE7E78401B73A79300959AD8 /* WYTableViewBaseCell.m in Sources */,
 				EE7E77FB1B737FF900959AD8 /* NSArray+Addition.m in Sources */,

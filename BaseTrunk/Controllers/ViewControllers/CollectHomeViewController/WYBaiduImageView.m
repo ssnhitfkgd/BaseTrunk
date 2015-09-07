@@ -9,6 +9,7 @@
 #import "WYBaiduImageView.h"
 #import "UIImageView+WebCache.h"
 #import "SJAvatarBrowser.h"
+#import "UIImageView+Addition.h"
 
 @implementation WYBaiduImageView
 
@@ -29,10 +30,11 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
     [imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
-
     [imageView setUserInteractionEnabled:YES];
     [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageSelected:)]];
     self.imageView = imageView;
+//    [imageView fillCircleLayer:[UIColor whiteColor]];
+
     [self addSubview:imageView];
 
 }
@@ -66,7 +68,7 @@
 
 - (void)imageSelected:(UIGestureRecognizer*)sender
 {
-    [SJAvatarBrowser showImage:_imageView];
+    [SJAvatarBrowser showImage:(UIImageView*)sender.view];
 }
 
 @end

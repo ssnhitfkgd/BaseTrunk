@@ -8,7 +8,7 @@
 
 #include "WYBaseController.h"
 
-#define MODEL_PAGE_SIZE 30
+#define MODEL_PAGE_SIZE 100
 
 
 /********************************添加api 以追加得方式 向下拓展 否则缓存数据会错乱**********************************/
