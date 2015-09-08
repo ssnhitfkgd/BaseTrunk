@@ -21,19 +21,12 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) WYErrorView *errorView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, strong) PWLoadMoreTableFooterView *tableFooterView;
 
-@property (nonatomic, assign) BOOL enableHeader;
-@property (nonatomic, assign) BOOL enableFooter;
-@property (nonatomic, assign) BOOL hasMore;
-
-@property (nonatomic, strong) NSNumber *loadmore;
-@property (nonatomic, strong) UIRefreshControl *refresh;
 
 
 - (Class)cellClass;
 - (void)setSeparatorClear;
-- (void)setupSubviews;
+
 
 - (void)didFinishLoad:(id)array;
 - (void)didFailWithError:(NSError *)error;
@@ -41,17 +34,11 @@
 
 //OVERRIDE
 - (void)activeRefresh;
-- (void)reloadHeaderTableViewDataSource;
-- (void)reloadFooterTableViewDataSource;
-- (void)finishLoadHeaderTableViewDataSource;
-- (void)finishLoadFooterTableViewDataSource;
+- (void)setEnableHeader:(BOOL)tf;
 - (void)setEnableFooter:(BOOL)tf;
 - (void)dealFinishLoad:(id)array;
-- (void)refreshTableView:(UIRefreshControl *)refresh;
 
-- (void)setEnableHeader:(BOOL)tf;
 - (void)setupData;
-- (void)setupTableView;
 - (UITableViewStyle)getTableViewStyle;
 
 - (void)reloadWithCache:(id)cache;//使用缓存时，使用的reload方法 //有特殊需要的子类可以复写此方法，例如detailVC

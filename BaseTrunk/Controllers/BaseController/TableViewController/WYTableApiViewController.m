@@ -9,10 +9,25 @@
 #import "WYTableApiViewController.h"
 #import "WYTableCellDelegate.h"
 #import "WYFileClient.h"
-
 #import "MMDiskCacheCenter.h"
 
-#define IOS7 (__IPHONE_OS_VERSION_MIN_REQUIRED >= 70000)
+
+@interface WYTableApiViewController()
+@property (nonatomic, strong) PWLoadMoreTableFooterView *tableFooterView;
+@property (nonatomic, assign) BOOL enableHeader;
+@property (nonatomic, assign) BOOL enableFooter;
+@property (nonatomic, assign) BOOL hasMore;
+@property (nonatomic, strong) NSNumber *loadmore;
+@property (nonatomic, strong) UIRefreshControl *refresh;
+
+- (void)setupSubviews;
+- (void)reloadHeaderTableViewDataSource;
+- (void)reloadFooterTableViewDataSource;
+- (void)finishLoadHeaderTableViewDataSource;
+- (void)finishLoadFooterTableViewDataSource;
+- (void)refreshTableView:(UIRefreshControl *)refresh;
+- (void)setupTableView;
+@end
 
 @implementation WYTableApiViewController
 

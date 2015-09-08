@@ -33,7 +33,7 @@
     [imageView setUserInteractionEnabled:YES];
     [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageSelected:)]];
     self.imageView = imageView;
-//    [imageView fillCircleLayer:[UIColor whiteColor]];
+//    [imageView fillCircleLayer:[UIColor whiteColor] radius:imageView.height/2];
 
     [self addSubview:imageView];
 
