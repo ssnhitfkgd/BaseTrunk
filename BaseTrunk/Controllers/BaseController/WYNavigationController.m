@@ -24,7 +24,7 @@
 //        self.navigationBar.barTintColor = [UIColor bRedColor];
 //        self.navigationBar.tintColor = [UIColor whiteColor];
         
-//        NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];//:[NSArray arrayWithObjects:[UIColor whiteColor] ,[UIFont systemFontOfSizeFit:15], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSFontAttributeName, nil]];
+//        NSDictionary *dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];//:[NSArray arrayWithObjects:[UIColor whiteColor] ,[UIFont systemFontOfSizeFit:15], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSFontAttributeName, nil]];
 //        
 //        self.navigationBar.titleTextAttributes = dict;
 ////        

@@ -13,6 +13,7 @@
 #import "SBJson.h"
 #import "FMLogger.h"
 #import "FileUtil.h"
+#import <objc/runtime.h>
 
 
 static const float TIME_OUT_INTERVAL = 10.0f;
@@ -28,15 +29,11 @@ typedef enum
 }API_GET_CODE;
 
 @implementation WYRequestSender
-@synthesize progressSelector;
-@synthesize requestUrl;
-@synthesize usePost;
-@synthesize requestParamDictionary;
+@synthesize argumentSelector;
 @synthesize requestDelegate;
 @synthesize completeSelector;
 @synthesize errorSelector;
 @synthesize cachePolicy;
-@synthesize filePath;
 
 + (instancetype)currentClient
 {
@@ -49,73 +46,49 @@ typedef enum
     return sharedInstance;
 }
 
-+ (id)requestSenderWithURL:(NSString *)url
-                   usePost:(BOOL)isPost
-                     param:(NSDictionary *)requestParams
-               cachePolicy:(NSURLRequestCachePolicy)cholicy
-                  delegate:(id)requestDelegate
-          completeSelector:(SEL)completeSelector
-             errorSelector:(SEL)errorSelector
-          selectorArgument:(id)selectorArgument
++ (id)requestSenderWithParams:(id)params
+                  cachePolicy:(NSURLRequestCachePolicy)cachePolicy
+                     delegate:(id)requestDelegate
+             completeSelector:(SEL)completeSelector
+                errorSelector:(SEL)errorSelector
+             argumentSelector:(SEL)argumentSelector;
 {
     WYRequestSender *requestSender = [[WYRequestSender alloc] init];
-    requestSender.requestUrl = url;
-    requestSender.usePost = isPost;
-    requestSender.requestParamDictionary = requestParams;
     requestSender.requestDelegate = requestDelegate;
     requestSender.completeSelector = completeSelector;
     requestSender.errorSelector = errorSelector;
-    requestSender.cachePolicy = cholicy;
-    NSLog(@"%@ \n %@", url, requestParams);
+    requestSender.argumentSelector = argumentSelector;
+    requestSender.cachePolicy = cachePolicy;
+    requestSender.paramsObject = params;
     return requestSender;
     
 }
 
 - (void)send
 {
-    NSMutableString *bodyString = [[NSMutableString alloc] init];
-    for (int i = 0; i < [requestParamDictionary count]; i++)
+    NSString *bodyString = [self httpBodyString:self.paramsObject];
+    NSString *url = self.paramsObject.url;
+    
+    if(!self.paramsObject.post)
     {
-        NSString *key = [requestParamDictionary allKeys][i];
-        NSString *value = [requestParamDictionary allValues][i];
-        
-        if(value && [value isKindOfClass:[NSString class]])
-        {
-            NSString *encodedValue = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                                  (CFStringRef)value,
-                                                                                                  NULL,
-                                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                                  kCFStringEncodingUTF8);
-            [bodyString appendFormat:@"&%@=%@", key, encodedValue];
-            
-        }
-        else
-        {
-            [bodyString appendFormat:@"&%@=%@", key, value];
-        }
+        url = [self.paramsObject.url stringByAppendingString:[NSString stringWithFormat:@"?%@",bodyString]];
     }
     
-  
-    if(!usePost)
-    {
-        self.requestUrl = [self.requestUrl stringByAppendingString:[NSString stringWithFormat:@"?%@",bodyString]];
-    }
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.requestUrl]
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
                                                            cachePolicy:self.cachePolicy//
                                                        timeoutInterval:TIME_OUT_INTERVAL];
     
     
     //百度搜图添加httpHeader
-    if ([[self.requestUrl description] hasPrefix:URL_BAIDU_IMAGE]) {
+    if ([[url description] hasPrefix:URL_BAIDU_IMAGE]) {
         [request setValue:@"http://image.baidu.com/i?tn=baiduimage" forHTTPHeaderField:@"Referer"];
         [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146" forHTTPHeaderField:@"User-Agent"];
     }
     
     
     
-    [request setHTTPMethod:usePost?@"POST":@"GET"];
-    if(usePost)
+    [request setHTTPMethod:self.paramsObject.post?@"POST":@"GET"];
+    if(self.paramsObject.post)
     {
         [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
     }
@@ -130,7 +103,7 @@ typedef enum
             {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-         
+                
                 //去皮
                 id object = [self transitionData:responseObject cache:NO];
                 
@@ -149,18 +122,18 @@ typedef enum
             }
         }
         
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         if(self.requestDelegate && self.errorSelector)
         {
             if([self.requestDelegate respondsToSelector:self.errorSelector])
             {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                if(self.timesp)
+                if(self.paramsObject.timesp)
                 {
                     NSMutableDictionary *reasonDict = [NSMutableDictionary dictionaryWithDictionary:error.userInfo];
-                    [reasonDict setObject:self.timesp forKey:@"timesp"];
+                    [reasonDict setObject:self.paramsObject.timesp forKey:@"timesp"];
                     
                     NSError *errorr = [NSError errorWithDomain:ERROR_DOMAIN code:error.code userInfo:[NSDictionary dictionaryWithObject:reasonDict forKey:@"reason"]];
                     [self.requestDelegate performSelector:self.errorSelector withObject:errorr];
@@ -176,37 +149,16 @@ typedef enum
             }
         }
         
-	}];
-	
-	[operation start];
+    }];
+    
+    [operation start];
 }
+
 
 - (void)uploadData:(UploadType)type
 {
-    NSMutableString *bodyString = [[NSMutableString alloc] init];
-    for (int i = 0; i < [requestParamDictionary count]; ++i)
-    {
-        NSString *key = [requestParamDictionary allKeys][i];
-        NSString *value = [requestParamDictionary allValues][i];
-        
-        if(value && [value isKindOfClass:[NSString class]])
-        {
-            NSString *encodedValue = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                                  (CFStringRef)value,
-                                                                                                  NULL,
-                                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                                  kCFStringEncodingUTF8);
-            [bodyString appendFormat:@"&%@=%@", key, encodedValue];
-            
-        }
-        else
-        {
-            [bodyString appendFormat:@"&%@=%@", key, value];
-            
-        }
-        
-        
-    }
+    NSString *bodyString = [self httpBodyString:self.paramsObject];
+    NSString *url = self.paramsObject.url;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.securityPolicy.allowInvalidCertificates = YES;
@@ -214,15 +166,15 @@ typedef enum
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     // formData是遵守了AFMultipartFormData的对象
-    [manager POST:[self.requestUrl stringByAppendingFormat:@"?%@",bodyString] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[url stringByAppendingFormat:@"?%@",bodyString] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
             switch (type) {
                 case UploadTypePicture:
                 {
                     //悄悄话 图片压缩至100kb以内
-                    NSData * data = UIImageJPEGRepresentation(self.image, 1.0);
+                    NSData * data = UIImageJPEGRepresentation(self.paramsObject.file, 1.0);
                     for (float i = 1.0; [data length] > 102400 && i > 0.0; i = i-0.1) {
-                        data = UIImageJPEGRepresentation(self.image, i);
+                        data = UIImageJPEGRepresentation(self.paramsObject.file, i);
                     }
 
                     [formData appendPartWithFileData:data name:@"photo" fileName:@"image.jpg" mimeType:@"image/jpeg"];
@@ -259,10 +211,10 @@ typedef enum
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
-            if(self.timesp)
+            if(self.paramsObject.timesp)
             {
                 NSMutableDictionary *reasonDict = [NSMutableDictionary dictionaryWithDictionary:error.userInfo];
-                [reasonDict setObject:self.timesp forKey:@"timesp"];
+                [reasonDict setObject:self.paramsObject.timesp forKey:@"timesp"];
 
                 NSError *errorr = [NSError errorWithDomain:ERROR_DOMAIN code:error.code userInfo:[NSDictionary dictionaryWithObject:reasonDict forKey:@"reason"]];
                 [self.requestDelegate performSelector:self.errorSelector withObject:errorr];
@@ -286,11 +238,11 @@ typedef enum
 - (id)transitionData:(NSData*)data cache:(BOOL)cache
 {
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
+    jsonString = [self removeUnescapedCharacter:jsonString];
     NSLog(@"%@", [jsonString JSONValue]);
     if(jsonString.length > 0)
     {
-        if([[self.requestUrl description] hasPrefix:URL_BAIDU_IMAGE])
+        if([[self.paramsObject.url description] hasPrefix:URL_BAIDU_IMAGE])
         {
             id responseObject = [[jsonString JSONValue] objectForKey:@"data"];
             return responseObject;
@@ -307,12 +259,12 @@ typedef enum
             return error;
         }else if (code && ERROR_CODE_NORMAL == [code intValue]) {
             
-            if(self.timesp)
+            if(self.paramsObject.timesp)
             {
                 NSMutableDictionary *reasonDictionary = [NSMutableDictionary dictionaryWithDictionary:dict];
-                if(self.timesp && reasonDictionary && [reasonDictionary isKindOfClass:[NSDictionary class]])
+                if(self.paramsObject.timesp && reasonDictionary && [reasonDictionary isKindOfClass:[NSDictionary class]])
                 {
-                    [reasonDictionary setObject:self.timesp forKey:@"timesp"];
+                    [reasonDictionary setObject:self.paramsObject.timesp forKey:@"timesp"];
                 }
                 
                 NSError *error = [NSError errorWithDomain:ERROR_DOMAIN code:[code intValue] userInfo:[NSDictionary dictionaryWithObject:reasonDictionary forKey:@"reason"]];
@@ -329,22 +281,22 @@ typedef enum
             if(responseObject && [responseObject isKindOfClass:[NSDictionary class]])
             {
                 NSMutableDictionary *reasonDictionary = [NSMutableDictionary dictionaryWithDictionary:responseObject];
-                if(self.timesp && reasonDictionary && [reasonDictionary isKindOfClass:[NSDictionary class]])
+                if(self.paramsObject.timesp && reasonDictionary && [reasonDictionary isKindOfClass:[NSDictionary class]])
                 {
-                    [reasonDictionary setObject:self.timesp forKey:@"timesp"];
+                    [reasonDictionary setObject:self.paramsObject.timesp forKey:@"timesp"];
                 }
                 
                 [reasonDictionary setObject:[NSNumber numberWithBool:cache] forKey:@"cache"];
                 return reasonDictionary;
             }
 
-            if(self.timesp && [self.timesp length] > 0)
+            if(self.paramsObject.timesp && [self.paramsObject.timesp length] > 0)
             {
                 if(responseObject && [responseObject isKindOfClass:[NSArray class]])
                 {
                     NSMutableDictionary *mutableDictionary = [NSMutableDictionary new];
                     {
-                        [mutableDictionary setObject:self.timesp forKey:@"timesp"];
+                        [mutableDictionary setObject:self.paramsObject.timesp forKey:@"timesp"];
                         [mutableDictionary setObject:responseObject forKey:@"data"];
 
                     }
@@ -365,4 +317,53 @@ typedef enum
     return nil;
 }
 
+//return http body
+- (NSString *)httpBodyString:(id)params
+{
+    NSMutableString *bodyString = [[NSMutableString alloc] init];
+    
+    Class cls = [params class];
+    
+    unsigned int ivarsCnt = 0;
+    objc_property_t *propertys = class_copyPropertyList(cls, &ivarsCnt);
+    
+    for (const objc_property_t *p = propertys; p < propertys + ivarsCnt; ++p)
+    {
+        objc_property_t const ivar = *p;
+        
+        NSString *key = [NSString stringWithUTF8String:property_getName(ivar)];
+        id value = [params valueForKey:key];
+        if(value && [value isKindOfClass:[NSString class]])
+        {
+            NSString *encodedValue = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                                  (CFStringRef)value,
+                                                                                                  NULL,
+                                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                                  kCFStringEncodingUTF8);
+            [bodyString appendFormat:@"&%@=%@", key, encodedValue];
+            
+        }
+    }
+    
+    return bodyString;
+}
+
+- (NSString *)removeUnescapedCharacter:(NSString *)inputStr{
+    NSCharacterSet *controlChars = [NSCharacterSet controlCharacterSet];
+    //获取那些特殊字符
+    NSRange range = [inputStr rangeOfCharacterFromSet:controlChars];
+    //寻找字符串中有没有这些特殊字符
+    if (range.location != NSNotFound)
+    {
+        NSMutableString *mutable = [NSMutableString stringWithString:inputStr];
+        while (range.location != NSNotFound)
+        {
+            [mutable deleteCharactersInRange:range];
+            //去掉这些特殊字符
+            range = [mutable rangeOfCharacterFromSet:controlChars];
+        }
+        return mutable;
+    }
+    return inputStr;}
+    
 @end

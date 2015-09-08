@@ -36,6 +36,12 @@
     return NULL;
 }
 
+#pragma mark - option 
+- (NSString *)errorDescription
+{
+    return @"";
+}
+
 #pragma mark - UIViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -84,13 +90,16 @@
     [self setEnableFooter:NO];
 }
 
-- (void)addSubErrorView
+- (void)updateErrorDescription
 {
-    API_REQUEST_TYPE api_type = [self modelApi];
-    switch (api_type) {
-        default:
-            [self.errorView setText:NSLocalizedString(@"no data",nil) detail:nil];
-            break;
+    NSString *description = [self errorDescription];
+    if(description && description.length > 0)
+    {
+        [self.errorView setText:description detail:nil];
+    }
+    else
+    {
+        [self.errorView setText:NSLocalizedString(@"no data",nil) detail:nil];
     }
 }
 
@@ -254,7 +263,7 @@
         if([self arrangedObjects] == nil)
         {
             //list 为空            
-            [self addSubErrorView];
+            [self updateErrorDescription];
             [_tableView reloadData];
             [self setEnableFooter:NO];
             
@@ -294,17 +303,14 @@
 - (void)didFinishLoad:(id)array
 {
     [self dealFinishLoad:array];
-
     [super didFinishLoad:array];
     [_tableView reloadData];
 }
 
 
-
 - (void)refreshTableView:(UIRefreshControl *)refresh
 {
     [self performSelector:@selector(reloadHeaderTableViewDataSource) withObject:nil afterDelay:0.0];
-//    [self reloadHeaderTableViewDataSource];
 }
 
 - (void)setupData
@@ -331,13 +337,7 @@
 - (void)reloadWithCache:(id)cache
 {
     [self didFinishLoad:cache];
-    
     [self refreshTableView:nil];
-}
-
-- (NSString *)getCacheKey
-{
-    return [NSString stringWithFormat:@"API_CACHE_%lu",(unsigned long)[self modelApi]];
 }
 
 #pragma mark -
@@ -375,11 +375,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    id item = [self objectInArrangedObjectAtIndexPath:indexPath];
-    
-    Class cls = [self cellClass];
-    if ([cls respondsToSelector:@selector(rowHeightForObject:)]) {
-        return [cls rowHeightForObject:item];
+    if([self countOfArrangedObjects] > indexPath.row)
+    {
+        id item = [self objectInArrangedObjectAtIndexPath:indexPath];
+        
+        Class cls = [self cellClass];
+        if ([cls respondsToSelector:@selector(rowHeightForObject:)]) {
+            return [cls rowHeightForObject:item];
+        }
     }
     return tableView.rowHeight; // failover
 }

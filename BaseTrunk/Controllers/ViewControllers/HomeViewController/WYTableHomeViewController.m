@@ -10,6 +10,7 @@
 #import "WYSingleHomeCell.h"
 #import "WYFileClient.h"
 #import "WYHomeDto.h"
+#import "WYBaiduImageObject.h"
 
 @interface WYTableHomeViewController ()
 
@@ -44,9 +45,21 @@
     }
 }
 
-- (API_REQUEST_TYPE)modelApi
+- (id)paramsObject:(BOOL)more
 {
-    return API_SEARCH_IMAGE_BAIDU_LIST;
+    
+    WYBaiduImageObject *model = [WYBaiduImageObject new];
+    model.url = URL_BAIDU_IMAGE;
+    model.post = NO;
+    model.version = @"1.0";
+    model.tn = @"baiduimagejson";
+    model.word = @"搞笑";
+    model.z = @"2";
+    model.ie = @"utf-8";
+    model.oe = @"utf-8";
+    model.rn = [NSString stringWithFormat:@"%ld",[self getPageSize]];
+    model.pn = [NSString stringWithFormat:@"%ld",more?[self countOfArrangedObjects]:0];
+    return model;
 }
 
 - (Class)cellClass

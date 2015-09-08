@@ -14,7 +14,6 @@
 @protocol WYCollectionApiViewControllerDelegate<NSObject>
 
 @optional
-- (API_REQUEST_TYPE)modelApi;
 - (Class)cellClass;
 @end
 
@@ -39,4 +38,5 @@
 - (CGFloat)headerHeight;
 - (Class)cellClass;
 - (UICollectionViewLayout *)layout;
+- (void)updateErrorDescription;
 @end

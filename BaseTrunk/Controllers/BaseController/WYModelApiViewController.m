@@ -10,6 +10,7 @@
 #import "WYModelApiViewController.h"
 #import "SBJson.h"
 #import "WYFileClient.h"
+#import "WYParamsBaseObject.h"
 
 @interface WYModelApiViewController()
 @property (nonatomic, strong) id model;
@@ -19,12 +20,16 @@
 @implementation WYModelApiViewController
 @synthesize model;
 
+- (NSString *)getPageName
+{
+    return self.title;
+}
 
 #pragma mark subclass override
-- (API_REQUEST_TYPE)modelApi
+- (id)paramsObject:(BOOL)more
 {
-    NSAssert(NO, @"the method \"modelApi\" Must be rewritten");
-    return -1;
+    NSAssert(NO, @"the method \"getParamsBaseModel\" Must be rewritten");
+    return nil;
 }
 
 - (id)init{
@@ -40,7 +45,12 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    NSString *pageName = [self getPageName];
+    if(pageName)
+    {
     //    [MobClick endLogPageView:[self getPageName]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,27 +120,21 @@
               more:loadMore];
 }
 
-
 - (void)loadData:(NSURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
-    
-    API_REQUEST_TYPE api_type = [self modelApi];
     _loading = YES;
     
-    WYFileClient *client = [WYFileClient sharedInstance];
     NSInteger pageSize = [self getPageSize];//MODEL_PAGE_SIZE;
-//    NSString *offset_id = more?_offsetID:@"";
+    NSString *offset_id = more?_offsetID:@"";
     _loadMore = more;
     
+    WYParamsBaseObject *params = [self paramsObject:_loadMore];
+    params.offset_id = offset_id;
+    params.page_size = pageSize;
     
-    switch (api_type) {            
-        case API_SEARCH_IMAGE_BAIDU_LIST:
-            [client list_image_baidu:pageSize offsetId:more?((int)([self.arrangedObjects count])):0 text:@"搞笑" cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
-            break;
-       
-        default:
-            break;
-    }
+    
+    WYFileClient *client = [WYFileClient sharedInstance];
+    [client request_send:params cachePolicy:cachePolicy delegate:self selector:@selector(requestDidFinishLoad:) selectorError:@selector(requestDidError:)];
 }
 
 - (void)requestDidFinishLoad:(id)data
@@ -150,7 +154,7 @@
             
             if([data objectForKey:@"cache"] && !_loadMore)
             {
-                self.model = nil;
+                [self clearArrangedObjects];
             }
             
             [self didFinishLoad:obj];
@@ -167,8 +171,7 @@
 
 - (void)didFailWithError:(NSError*)error
 {
-    
-    
+
 }
 
 - (void)didFinishLoad:(id)object {
@@ -191,20 +194,6 @@
     return _loading;
 }
 
-- (NSString*)getPageName
-{
-    API_REQUEST_TYPE api_type = [self modelApi];
-    NSString *pageName = @"未知";
-        
-    switch (api_type) {
-          
-        default:
-            break;
-    }
-    
-    return pageName;
-}
-
 - (NSInteger)getPageSize
 {
     return MODEL_PAGE_SIZE;
@@ -218,6 +207,12 @@
 - (void)setOffsetID:(NSString*)offset
 {
     _offsetID = offset;
+}
+
+- (NSString *)getCacheKey
+{
+    NSString *key = [NSStringFromClass([self class]) md5Value];
+    return [NSString stringWithFormat:@"%@",key];
 }
 
 #pragma mark didReceiveMemoryWarning

@@ -1,14 +1,19 @@
 //
-//  WYBaiduImageInfoDto.m
+//  BaiduImageModel.m
 //  BaseTrunk
 //
-//  Created by wangyong on 15/8/8.
+//  Created by wangyong on 15/9/8.
 //  Copyright (c) 2015年 wang yong. All rights reserved.
 //
 
-#import "WYBaiduImageInfoDto.h"
+#import "WYBaiduImageObject.h"
 
-@implementation WYBaiduImageInfoDto
+@implementation WYBaiduImageObject
+
+@end
+
+
+@implementation WYBaiduImageInfoObject
 @synthesize thumbUrl = _thumbUrl;
 @synthesize largeTnImageUrl = _largeTnImageUrl;
 

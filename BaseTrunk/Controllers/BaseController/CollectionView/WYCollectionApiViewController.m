@@ -30,6 +30,12 @@
     return NULL;
 }
 
+#pragma mark - option
+- (NSString *)errorDescription
+{
+    return @"";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -107,18 +113,6 @@
     return _errorView;
 }
 
-- (void)addSubErrorView
-{
-    API_REQUEST_TYPE api_type = [self modelApi];
-    switch (api_type) {
-        default:
-            [self.errorView setText:NSLocalizedString(@"nodata",nil) detail:nil];
-            break;
-    }
-    
-    
-}
-
 #pragma mark -
 #pragma mark must refresh methods
 - (void)setEnableFooter:(BOOL)tf
@@ -145,11 +139,6 @@
     }
 }
 
-- (NSString *)getCacheKey
-{
-    return [NSString stringWithFormat:@"API_CACHE_%lu",(unsigned long)[self modelApi]];
-}
-
 - (void)setupData
 {
     //取缓存
@@ -174,7 +163,6 @@
 - (void)reloadWithCache:(id)cache
 {
     [self didFinishLoad:cache];
-    
     [self refreshTableView:nil];
 }
 
@@ -306,7 +294,6 @@
 - (void)didFinishLoad:(id)array
 {
     [self dealFinishLoad:array];
-    
     [super didFinishLoad:array];
     [_collectionView reloadData];
 }
@@ -335,7 +322,7 @@
         {
             //list 为空
             
-            [self addSubErrorView];
+            [self updateErrorDescription];
             [_collectionView reloadData];
             [self setEnableFooter:NO];
             
@@ -372,6 +359,18 @@
     }
 }
 
+- (void)updateErrorDescription
+{
+    NSString *description = [self errorDescription];
+    if(description && description.length > 0)
+    {
+        [self.errorView setText:description detail:nil];
+    }
+    else
+    {
+        [self.errorView setText:NSLocalizedString(@"no data",nil) detail:nil];
+    }
+}
 
 - (void)didFailWithError:(NSError *)error
 {

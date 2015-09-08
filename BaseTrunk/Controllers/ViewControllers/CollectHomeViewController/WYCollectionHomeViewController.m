@@ -10,6 +10,7 @@
 #import "WYCollectionViewGridLayout.h"
 #import "WYBaiduImageViewCell.h"
 #import "FRGWaterfallHeaderReusableView.h"
+#import "WYBaiduImageObject.h"
 
 @interface WYCollectionHomeViewController ()
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -46,11 +47,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (API_REQUEST_TYPE)modelApi
-{
-    return API_SEARCH_IMAGE_BAIDU_LIST;
-}
-
 - (Class)cellClass
 {
     return [WYBaiduImageViewCell class];
@@ -62,7 +58,7 @@
     if (!itemlayout) {
  
         WYCollectionViewGridLayout *layout = [[WYCollectionViewGridLayout alloc] init];
-        layout.numberOfItemsPerLine = 3;
+        layout.numberOfItemsPerLine = 2;
         layout.aspectRatio = 1;
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         layout.interitemSpacing = 10;
@@ -70,6 +66,23 @@
         itemlayout = layout;
     }
     return itemlayout;
+}
+
+- (id)paramsObject:(BOOL)more
+{
+    
+    WYBaiduImageObject *model = [WYBaiduImageObject new];
+    model.url = URL_BAIDU_IMAGE;
+    model.post = NO;
+    model.version = @"1.0";
+    model.tn = @"baiduimagejson";
+    model.word = @"搞笑";
+    model.z = @"2";
+    model.ie = @"utf-8";
+    model.oe = @"utf-8";
+    model.rn = [NSString stringWithFormat:@"%ld",[self getPageSize]];
+    model.pn = [NSString stringWithFormat:@"%ld",more?[self countOfArrangedObjects]:0];
+    return model;
 }
 
 

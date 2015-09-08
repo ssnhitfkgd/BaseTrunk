@@ -151,7 +151,6 @@
 {
 //    NSString *realDeviceToken = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     
-    //    [[WPFileClient sharedInstance] push_bind:realDeviceToken cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData delegate:self selector:nil selectorError:nil];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

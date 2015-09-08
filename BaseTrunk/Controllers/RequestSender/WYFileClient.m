@@ -83,66 +83,17 @@
     return params;
 }
 
-/**
- *推送绑定
- 
- *请求地址
- *push_token
- */
-- (void)push_bind:(NSString*)push_token cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
+
+- (void)request_send:(WYParamsBaseObject*)model cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
 {
-//    NSString *token = [self getToken];
-//    if(token)
-    {
-        NSMutableDictionary *params = [self getDefaultParams];
-//        [params setObject:token forKey:@"token"];
-        [params setObject:push_token forKey:@"push_token"];
-        
-        WYRequestSender *requestSender = [WYRequestSender requestSenderWithURL:[self getServerApiUrl:@"push_bind"]
-                                                                       usePost:YES
-                                                                         param:params
-                                                                   cachePolicy:cholicy
-                                                                      delegate:theDelegate
-                                                              completeSelector:theSelector
-                                                                 errorSelector:theSelectorError
-                                                              selectorArgument:nil];
-        [requestSender send];
-    }
-}
-
-
-
-- (void)list_image_baidu:(NSInteger)limit offsetId:(NSInteger)offset_id text:(NSString*)text cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError
-{
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"baiduimagejson" forKey:@"tn"];
-    [params setObject:text forKey:@"word"];
-    [params setObject:[NSNumber numberWithInteger:limit]  forKey:@"rn"];
-    [params setObject:[NSNumber numberWithInteger:offset_id]  forKey:@"pn"];
-    
-    //Wi-Fi下请求大尺寸
-    if ([self getNetworkingType] ==2) {
-        [params setObject:@"3" forKey:@"z"];
-    }else {
-        [params setObject:@"2" forKey:@"z"];//中尺寸
-    }
-    
-    [params setObject:@"utf-8" forKey:@"ie"];//input utf-8
-    [params setObject:@"utf-8" forKey:@"oe"];//oe=utf-8
-    
-    //[params setObject:@"iPhone" forKey:@"client_type"];
-    
-    WYRequestSender *requestSender = [WYRequestSender requestSenderWithURL:URL_BAIDU_IMAGE
-                                                                   usePost:NO
-                                                                     param:params
-                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+    WYRequestSender *requestSender = [WYRequestSender requestSenderWithParams:model
+                                                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                                   delegate:theDelegate
                                                           completeSelector:theSelector
                                                              errorSelector:theSelectorError
-                                                          selectorArgument:nil];
+                                                          argumentSelector:nil];
     [requestSender send];
 }
-
 ///////////////////////////////////////////////
 - (void)dealloc
 {

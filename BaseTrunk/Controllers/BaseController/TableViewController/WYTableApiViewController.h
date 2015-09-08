@@ -28,7 +28,7 @@
 - (void)setSeparatorClear;
 
 
-- (void)didFinishLoad:(id)array;
+
 - (void)didFailWithError:(NSError *)error;
 - (void)activityIndicatorAnimal:(BOOL)animal;
 
@@ -41,10 +41,9 @@
 - (void)setupData;
 - (UITableViewStyle)getTableViewStyle;
 
-- (void)reloadWithCache:(id)cache;//使用缓存时，使用的reload方法 //有特殊需要的子类可以复写此方法，例如detailVC
-- (NSString *)getCacheKey;//有特殊需要的子类可以复写此方法，例如detailVC
+- (void)reloadWithCache:(id)cache;
 - (void)setDisplayCell:(id)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (void)addSubErrorView;
+- (void)updateErrorDescription;
 @end
 
 

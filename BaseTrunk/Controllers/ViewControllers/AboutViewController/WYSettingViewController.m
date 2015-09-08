@@ -66,6 +66,7 @@
             cell.detailTextLabel.text = @"detail";
 
         } whenSelected:^(NSIndexPath *indexPath) {
+            
         }];
     }];
 

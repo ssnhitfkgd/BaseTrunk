@@ -55,35 +55,21 @@ NS_INLINE NSString * getCacheDir(){
         
         NSLog(@"save cache %@ error",key);
     }
-    
-    
-    if([key rangeOfString:@"API_CACHE_"].location != NSNotFound)
-    {
-        NSString *updateTime = [DateUtil getFormatTime:[NSDate date]];//@"yyyy-MM-dd HH:mm:ss"
-        if(updateTime && key)
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:updateTime forKey:key];
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                [self clearCacheByDateTime];
-            });
-            
-        }
-    }
 }
 
 - (void)clearCache
 {
-    NSString *cacheDir = getCacheDir();
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSArray *contents = [fileManager contentsOfDirectoryAtPath:cacheDir error:NULL];
-    NSEnumerator *e = [contents objectEnumerator];
-    NSString *filename;
-    while ((filename = [e nextObject])) {
-        if ([filename rangeOfString:@"API_CACHE_"].location != NSNotFound) {
-            [fileManager removeItemAtPath:[cacheDir stringByAppendingPathComponent:filename] error:NULL];
-        }
-    }
+//    NSString *cacheDir = getCacheDir();
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    
+//    NSArray *contents = [fileManager contentsOfDirectoryAtPath:cacheDir error:NULL];
+//    NSEnumerator *e = [contents objectEnumerator];
+//    NSString *filename;
+//    while ((filename = [e nextObject])) {
+//        if ([filename rangeOfString:@"API_CACHE_"].location != NSNotFound) {
+//            [fileManager removeItemAtPath:[cacheDir stringByAppendingPathComponent:filename] error:NULL];
+//        }
+//    }
 
 }
 

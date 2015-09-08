@@ -1,6 +1,6 @@
 //
 //  UIViewAdditions.h
-//  lebo
+//  BaseTrunk
 //
 //  Created by yong wang on 13-3-22.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.

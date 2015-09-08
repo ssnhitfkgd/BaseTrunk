@@ -10,26 +10,6 @@
 
 #define MODEL_PAGE_SIZE 30
 
-
-/********************************添加api 以追加得方式 向下拓展 否则缓存数据会错乱**********************************/
-typedef NS_ENUM(NSUInteger, API_REQUEST_TYPE)
-{
-    API_SEARCH_IMAGE_BAIDU_LIST,
-
-};
-/********************************添加api 以追加得方式 向下拓展 否则缓存数据会错乱**********************************/
-
-
-
-typedef NS_ENUM(NSUInteger, API_GET_CODE)
-{
-    ERROR_CODE_SUCCESS = 0,
-    ERROR_CODE_NORMAL,
-    ERROR_CODE_NEED_AUTH,
-};
-
-
-
 @interface WYModelApiViewController : WYBaseController  {
     NSString *_offsetID;
     BOOL _loadMore;
@@ -45,10 +25,12 @@ typedef NS_ENUM(NSUInteger, API_GET_CODE)
 
 - (void)reloadData;
 
+
 - (void)loadData:(NSURLRequestCachePolicy)cachePolicy more:(BOOL)more;
 - (void)startLoadData:(NSNumber *)loadHeader;
 
 - (void)didFinishLoad:(id)object;
+- (void)updateTableView:(id)object;
 - (void)didFailWithError:(NSError *)error;
 
 - (void)requestDidFinishLoad:(NSData*)data;
@@ -57,7 +39,10 @@ typedef NS_ENUM(NSUInteger, API_GET_CODE)
 - (NSString*)getOffsetID;
 - (void)setOffsetID:(NSString*)offset;
 - (NSInteger)getPageSize;
+- (NSString *)getCacheKey;
 
 // subclass to override
-- (API_REQUEST_TYPE)modelApi;
+- (id)paramsObject:(BOOL)more;
+//option
+- (NSString*)getPageName;
 @end

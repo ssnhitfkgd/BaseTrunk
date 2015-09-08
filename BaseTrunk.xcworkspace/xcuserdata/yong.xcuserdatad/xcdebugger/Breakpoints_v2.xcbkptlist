@@ -4,38 +4,18 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BaseTrunk/Controllers/RequestSender/WYRequestSender.m"
-            timestampString = "463235701.668712"
+            filePath = "BaseTrunk/Controllers/BaseController/WYModelApiViewController.m"
+            timestampString = "463418585.734151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "-transitionData:cache:"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "-getCacheKey"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -45,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BaseTrunk/Controllers/ViewControllers/CollectHomeViewController/WYBaiduImageView.m"
-            timestampString = "463389070.474283"
+            filePath = "BaseTrunk/Controllers/BaseController/TableViewController/WYTableApiViewController.m"
+            timestampString = "463418585.734151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-setObject:"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "-updateTableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -61,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BaseTrunk/Controllers/ViewControllers/CollectHomeViewController/WYBaiduImageView.m"
-            timestampString = "463389097.867159"
+            filePath = "BaseTrunk/Controllers/BaseController/TableViewController/WYTableApiViewController.m"
+            timestampString = "463417938.284057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "-setObject:"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "-dealFinishLoad:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -77,13 +57,93 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BaseTrunk/Controllers/ViewControllers/CollectHomeViewController/WYBaiduImageView.m"
-            timestampString = "463389226.389578"
+            filePath = "BaseTrunk/Controllers/BaseController/WYModelApiViewController.m"
+            timestampString = "463418585.734151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-imageSelected:"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "-loadData:more:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BaseTrunk/Controllers/BaseController/WYModelApiViewController.m"
+            timestampString = "463418585.734151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "-requestDidFinishLoad:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BaseTrunk/Controllers/BaseController/TableViewController/WYTableApiViewController.m"
+            timestampString = "463418585.734151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "-setupData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BaseTrunk/Controllers/BaseController/CollectionView/WYCollectionApiViewController.m"
+            timestampString = "463418079.984187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-setupData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BaseTrunk/Controllers/BaseController/CollectionView/WYCollectionApiViewController.m"
+            timestampString = "463418134.518651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-reloadWithCache:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BaseTrunk/Controllers/BaseController/TableViewController/WYTableApiViewController.m"
+            timestampString = "463418585.734151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
+            landmarkName = "-reloadWithCache:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

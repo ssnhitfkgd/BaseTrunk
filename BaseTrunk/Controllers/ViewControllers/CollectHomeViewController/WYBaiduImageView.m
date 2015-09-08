@@ -48,13 +48,13 @@
 {
     if(item && [item isKindOfClass:[NSDictionary class]])
     {
-        if (!self.baiduImageInfoDto) {
-            self.baiduImageInfoDto = [[WYBaiduImageInfoDto alloc] init];
+        if (!self.baiduImageInfoObject) {
+            self.baiduImageInfoObject = [[WYBaiduImageInfoObject alloc] init];
         }
         
-        if([_baiduImageInfoDto parseData:item])
+        if([_baiduImageInfoObject parseData:item])
         {
-            [_imageView sd_setImageWithURL:[NSURL URLWithString:_baiduImageInfoDto.thumbUrl] placeholderImage:nil options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
+            [_imageView sd_setImageWithURL:[NSURL URLWithString:_baiduImageInfoObject.thumbUrl] placeholderImage:nil options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
         }
     }
     
@@ -68,7 +68,7 @@
 
 - (void)imageSelected:(UIGestureRecognizer*)sender
 {
-    [_baiduImageInfoDto.dtoResult setObject:@"1" forKey:@"like"];
+    [_baiduImageInfoObject.dtoResult setObject:@"1" forKey:@"like"];
     [SJAvatarBrowser showImage:(UIImageView*)sender.view];
 }
 

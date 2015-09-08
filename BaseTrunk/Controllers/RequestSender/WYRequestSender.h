@@ -9,37 +9,29 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
+#import "WYParamsBaseObject.h"
 
 //uploadtype
 typedef NS_ENUM(NSUInteger, UploadType){
-    
 	UploadTypePicture = 0,
-
 };
 
 @interface WYRequestSender : AFHTTPRequestOperationManager
 
-@property (nonatomic, copy) NSString *requestUrl;
-@property (nonatomic, strong) NSDictionary *requestParamDictionary;
-@property (nonatomic, weak) id requestDelegate;
+@property (nonatomic, weak)   id requestDelegate;
+@property (nonatomic, assign) NSURLRequestCachePolicy cachePolicy;
+@property (nonatomic, strong) WYParamsBaseObject *paramsObject;
+
 @property (nonatomic) SEL completeSelector;
 @property (nonatomic) SEL errorSelector;
-@property (nonatomic) SEL progressSelector;
-@property (nonatomic, assign) BOOL usePost;
-@property (nonatomic, assign)NSURLRequestCachePolicy cachePolicy;
+@property (nonatomic) SEL argumentSelector;
 
-@property (nonatomic, strong)UIImage *image;
-@property (nonatomic, strong)NSString *filePath;
-@property (nonatomic, strong)NSString *timesp;
-
-+ (id)requestSenderWithURL:(NSString *)url
-                   usePost:(BOOL)isPost
-                     param:(NSDictionary *)requestParams
-               cachePolicy:(NSURLRequestCachePolicy)cholicy
-                  delegate:(id)requestDelegate
-          completeSelector:(SEL)completeSelector
-             errorSelector:(SEL)errorSelector
-          selectorArgument:(id)selectorArgument;
++ (id)requestSenderWithParams:(id)params
+                       cachePolicy:(NSURLRequestCachePolicy)cachePolicy
+                          delegate:(id)requestDelegate
+                  completeSelector:(SEL)completeSelector
+                     errorSelector:(SEL)errorSelector
+                  argumentSelector:(SEL)argumentSelector;
 
 - (void)send;
 - (void)uploadData:(UploadType)type;

@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "WYRequestSender.h"
 #import "WYConfig.h"
-
+#import "WYParamsBaseObject.h"
 
 @interface WYFileClient : WYConfig
 {
@@ -20,16 +20,9 @@
 + (instancetype)sharedInstance;
 - (int)getNetworkingType;
 
-/**
- *推送绑定
- 
- *请求地址
- *push_token
- */
-- (void)push_bind:(NSString*)push_token cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError;
 
+- (void)request_send:(WYParamsBaseObject*)model cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError;
 
-- (void)list_image_baidu:(NSInteger)limit offsetId:(NSInteger)offset_id text:(NSString*)text cachePolicy:(NSURLRequestCachePolicy)cholicy  delegate:(id)theDelegate selector:(SEL)theSelector selectorError:(SEL)theSelectorError;
 @end
 
 
