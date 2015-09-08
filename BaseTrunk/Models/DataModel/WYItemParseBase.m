@@ -143,6 +143,8 @@
 - (BOOL)parseData:(NSDictionary *)result
 {
     if (result && (NSObject *)result != [NSNull null]) {
+        
+        [self setDtoResult:result];
         unsigned int ptcnt = 0;
         Class cls = [self class];
         

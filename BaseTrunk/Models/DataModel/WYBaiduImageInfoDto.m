@@ -22,6 +22,8 @@
 
 - (BOOL)parseData:(NSDictionary *)result
 {
+    
+    [self setDtoResult:result];
     BOOL tf = YES;
     
     if ([result objectForKey:@"thumbURL"]) {

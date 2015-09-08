@@ -62,9 +62,13 @@
 {
     id item = nil;
     if(self.model != nil && [self.model isKindOfClass:[NSArray class]])
+    {
         item = [self.model objectAtIndex:indexpath.row];
+    }
     else if(self.model != nil && [self.model isKindOfClass:[NSDictionary class]])
+    {
         item = self.model;
+    }
     
     return item;
 }
@@ -72,9 +76,13 @@
 - (NSInteger)countOfArrangedObjects
 {
     if(self.model == nil)
+    {
         return 0;
+    }
     if([self.model isKindOfClass:[NSDictionary class]])
+    {
         return 1;
+    }
     
     return [self.model count];
 }

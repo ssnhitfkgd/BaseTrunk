@@ -68,6 +68,7 @@
 
 - (void)imageSelected:(UIGestureRecognizer*)sender
 {
+    [_baiduImageInfoDto.dtoResult setObject:@"1" forKey:@"like"];
     [SJAvatarBrowser showImage:(UIImageView*)sender.view];
 }
 

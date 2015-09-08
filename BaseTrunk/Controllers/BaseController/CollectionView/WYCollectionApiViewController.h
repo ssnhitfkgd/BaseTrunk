@@ -32,7 +32,6 @@
 @property (nonatomic, assign) BOOL hasMore;
 @property (nonatomic, strong) UIRefreshControl *refresh;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
-
 @property (nonatomic, strong) WYErrorView *errorView;
 @property (nonatomic, strong) NSNumber *loadmore;
 
