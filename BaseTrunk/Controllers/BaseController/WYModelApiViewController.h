@@ -30,7 +30,7 @@
 - (void)startLoadData:(NSNumber *)loadHeader;
 
 - (void)didFinishLoad:(id)object;
-- (void)updateTableView:(id)object;
+//- (void)updateTableView:(id)object;
 - (void)didFailWithError:(NSError *)error;
 
 - (void)requestDidFinishLoad:(NSData*)data;
