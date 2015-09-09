@@ -9,7 +9,6 @@
 #import "WYCollectionApiViewController.h"
 #import "WYCollectionViewGridLayout.h"
 #import "WYCollectViewCellDelegate.h"
-#import "MMDiskCacheCenter.h"
 #import "WYFileClient.h"
 
 @interface WYCollectionApiViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -59,11 +58,11 @@
     [self activityIndicatorAnimal:YES];
     
     [self setEnableHeader:YES];
-//    // setup infinite scrolling
-//    __block typeof(self) block_self = self;
-//    [self.collectionView addInfiniteScrollingWithActionHandler:^{
-//        [block_self reloadFooterTableViewDataSource];
-//    }];
+    // setup infinite scrolling
+    __block typeof(self) block_self = self;
+    [self.collectionView addInfiniteScrollingWithActionHandler:^{
+        [block_self reloadFooterTableViewDataSource];
+    }];
 }
 
 - (UIActivityIndicatorView*)activityIndicator
@@ -142,7 +141,7 @@
 - (void)setupData
 {
     //取缓存
-    id cache = [[MMDiskCacheCenter sharedInstance] cacheForKey:[self getCacheKey] dataType:[NSArray class]];
+    id cache = [self searchCache];
     
     if (cache && [cache isKindOfClass:[NSArray class]]) {
         //有缓存
@@ -303,7 +302,7 @@
     //存储缓存
     if (self.loadmore == [NSNumber numberWithBool:NO]) {
         if (array) {
-            [[MMDiskCacheCenter sharedInstance] setCache:array forKey:[self getCacheKey]];
+            [self setCache:array];
         }
     }
     
@@ -343,7 +342,7 @@
         
     }else{
         self.hasMore = YES;
-        [self.collectionView.infiniteScrollingView setHidden:NO];
+        [self setEnableFooter:YES];
         
     }
     

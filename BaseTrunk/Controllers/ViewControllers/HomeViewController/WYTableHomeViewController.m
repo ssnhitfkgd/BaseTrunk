@@ -34,12 +34,10 @@
     if(data && [data isKindOfClass:[NSArray class]])
     {
         [self didFinishLoad:data];
-        
         _loading = NO;
         
     }else if(data && [data isKindOfClass:[NSDictionary class]]) {
         [super requestDidFinishLoad:data];
-        
     }else  {
         [self reloadData];
     }

@@ -11,6 +11,8 @@
 #import "SBJson.h"
 #import "WYFileClient.h"
 #import "WYParamsBaseObject.h"
+#import "MMDiskCacheCenter.h"
+
 
 @interface WYModelApiViewController()
 @property (nonatomic, strong) id model;
@@ -213,6 +215,16 @@
 {
     NSString *key = [NSStringFromClass([self class]) md5Value];
     return [NSString stringWithFormat:@"%@",key];
+}
+
+- (id)searchCache
+{
+    return [[MMDiskCacheCenter sharedInstance] cacheForKey:[self getCacheKey] dataType:[NSArray class]];
+}
+
+- (void)setCache:(id)cache
+{
+    [[MMDiskCacheCenter sharedInstance] setCache:cache forKey:[self getCacheKey]];
 }
 
 #pragma mark didReceiveMemoryWarning

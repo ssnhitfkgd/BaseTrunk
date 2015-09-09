@@ -9,7 +9,6 @@
 #import "WYTableApiViewController.h"
 #import "WYTableCellDelegate.h"
 #import "WYFileClient.h"
-#import "MMDiskCacheCenter.h"
 
 
 @interface WYTableApiViewController()
@@ -242,7 +241,7 @@
     //存储缓存
     if (self.loadmore == [NSNumber numberWithBool:NO]) {
         if (array) {
-            [[MMDiskCacheCenter sharedInstance] setCache:array forKey:[self getCacheKey]];
+            [self setCache:array];
         }
     }
     
@@ -316,7 +315,7 @@
 - (void)setupData
 {
     //取缓存
-    id cache = [[MMDiskCacheCenter sharedInstance] cacheForKey:[self getCacheKey] dataType:[NSArray class]];
+    id cache = [self searchCache];
     
     if (cache && [cache isKindOfClass:[NSArray class]]) {
         //有缓存

@@ -41,6 +41,9 @@
 - (NSInteger)getPageSize;
 - (NSString *)getCacheKey;
 
+- (id)searchCache;
+- (void)setCache:(id)cache;
+
 // subclass to override
 - (id)paramsObject:(BOOL)more;
 //option
