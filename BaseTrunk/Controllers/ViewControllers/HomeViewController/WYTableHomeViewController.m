@@ -54,7 +54,7 @@
     model.version = @"1.0";
     model.tn = @"baiduimagejson";
     model.word = @"搞笑";
-    model.z = @"2";
+    model.z = @"3";
     model.ie = @"utf-8";
     model.oe = @"utf-8";
     model.rn = [NSString stringWithFormat:@"%ld",[self getPageSize]];

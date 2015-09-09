@@ -54,7 +54,7 @@
         
         if([_baiduImageInfoObject parseData:item])
         {
-            [_imageView sd_setImageWithURL:[NSURL URLWithString:_baiduImageInfoObject.thumbUrl] placeholderImage:nil options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
+            [_imageView sd_setImageWithURL:[NSURL URLWithString:_baiduImageInfoObject.thumbURL] placeholderImage:nil options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
         }
     }
     
