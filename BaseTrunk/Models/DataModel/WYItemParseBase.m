@@ -139,6 +139,13 @@
     else resultDictnary = [[NSMutableDictionary alloc] initWithDictionary:result];
 }
 
+- (BOOL)isNull:(id)value
+{
+    if (value != [NSNull null] && value != nil) {
+        return NO;
+    }
+    return YES;
+}
 
 - (BOOL)parseData:(NSDictionary *)result
 {
@@ -158,7 +165,7 @@
             
             id value = [result objectForKey:key];
             
-            if(value)
+            if(![self isNull:value])
             {
                 [self setValue:value forKey:key];
             }
@@ -189,7 +196,7 @@
         NSString *key = [NSString stringWithUTF8String:property_getName(ivar)];
         id value = [self valueForKey:key];
         
-        if (value)
+        if (![self isNull:value])
         {
             [dictionaryFormat setObject:value forKey:key];
         }

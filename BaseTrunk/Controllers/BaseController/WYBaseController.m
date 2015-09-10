@@ -45,10 +45,9 @@
     {
         // Add code to preserve data stored in the views that might be
         // needed later.
-        
         // Add code to clean up other strong references to the view in
         // the view hierarchy.
-        //self.view = nil;// 目的是再次进入时能够重新加载调用viewDidLoad函数。
+        // self.view = nil;// 目的是再次进入时能够重新加载调用viewDidLoad函数。
     }
 }
 
