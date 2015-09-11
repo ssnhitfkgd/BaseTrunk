@@ -333,8 +333,14 @@ typedef enum
         
         NSString *key = [NSString stringWithUTF8String:property_getName(ivar)];
         id value = [params valueForKey:key];
-        if(value && [value isKindOfClass:[NSString class]])
+        
+        if(value)
         {
+            if(! [value isKindOfClass:[NSString class]])
+            {
+                value = [NSString stringWithFormat:@"%@",value];
+            }
+            
             NSString *encodedValue = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                                   (CFStringRef)value,
                                                                                                   NULL,
