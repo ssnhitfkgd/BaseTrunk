@@ -8,10 +8,6 @@ If you believe you have identified a vulnerability with BaseTrunk, you should re
 ![Software architecture](https://github.com/ssnhitfkgd/BaseTrunk/blob/master/B3B9BE15-0BB4-4DFC-8F01-0C17E914BD20.jpg "Software architecture")
 
 
-
-![Data architecture](https://github.com/ssnhitfkgd/BaseTrunk/blob/master/6FB318C8-ACD1-4B5B-ACC1-4C99083CF5BF.png "Data architecture")
-
-
 ## Installation
 
 > pod install<br />
